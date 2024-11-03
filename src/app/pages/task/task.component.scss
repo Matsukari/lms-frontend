@@ -1,0 +1,29 @@
+.content {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.submission {
+  margin-top: 1em;
+  border: 1px solid gray;
+  min-height: 60vh;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.comments input {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 100px;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.comments input:focus {
+  border: 1px solid blue;
+}

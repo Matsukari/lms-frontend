@@ -1,0 +1,13 @@
+.avatars {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatars>* {
+  border: 1px solid gray;
+  border-radius: 100px;
+}
+
+mat-tab mat-icon {
+  margin: 0.5em;
+}

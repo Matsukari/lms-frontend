@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <button mat-icon-button>
+    <mat-icon>token</mat-icon>
+  </button>
+  <span>LMS</span>
+
+  <span class="spacer"></span>
+  <button mat-icon-button *ngIf="role == 'ADMIN'">
+    <mat-icon [matMenuTriggerFor]="createMenu.menu">design_services</mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>mail</mat-icon>
+  </button>
+  <mat-chip [matMenuTriggerFor]="profileMenu.menu">
+    <div matChipAvatar>
+      <mat-icon [class.admin]="role == 'ADMIN'" [class.student]="role == 'STUDENT'"
+        [class.teacher]="role == 'TEACHER'">person</mat-icon>
+    </div>
+    <div class="chip">
+      <div>{{ username }}</div>
+      <div>{{ role }}</div>
+    </div>
+  </mat-chip>
+
+  <app-profile-menu #profileMenu />
+  <app-create-menu #createMenu />
+
+</mat-toolbar>

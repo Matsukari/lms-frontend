@@ -1,0 +1,68 @@
+
+<div>
+  @defer (when task) {
+  <mat-toolbar>
+    <button mat-icon-button>
+      <mat-icon>
+        keyboard_return
+      </mat-icon>
+    </button>
+
+    <h3>{{ task.name }}</h3>
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+  </mat-toolbar>
+}
+
+
+  <mat-divider />
+
+
+  <div class="content">
+
+    <div class="main">
+      <p>
+        @if (task.desc) {
+        {{task.desc}}
+        }
+        @else {
+        This task does not have any description.
+        }
+      </p>
+      <div class="comments">
+        <h3>
+          Comments
+        </h3>
+        <form (ngSubmit)="submitComment()">
+          <input id="comment" placeholder="Add a comment" matInput [formControl]="comment">
+        </form>
+        <p>
+          No thoughts in this task yet.
+        </p>
+      </div>
+    </div>
+
+
+    <span class="spacer"></span>
+
+    <div class="submission">
+      <h4>Your Submission</h4>
+      @if (yourSubmission) {
+      Has Submission
+      }
+      @else {
+      <p>
+        <input type="file" />
+      </p>
+      <h5>Remarks</h5>
+      <input type="text" />
+      }
+    </div>
+
+
+  </div>

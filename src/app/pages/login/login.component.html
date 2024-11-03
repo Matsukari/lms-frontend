@@ -1,0 +1,22 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <h2>
+    <mat-icon>token</mat-icon>
+    <span>Login to LMS</span>
+  </h2>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Username</mat-label>
+    <input type="text" matInput formControlName="username">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="password" />
+    <button mat-icon-button matSuffix (click)="toogleEye($event)">
+      <mat-icon>{{hidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-flat-button type="submit" >
+    <mat-icon>login</mat-icon>
+    Login
+  </button>
+</form>
+

@@ -1,0 +1,55 @@
+<div class="sidenav">
+  <mat-accordion class="accordion" multi>
+    <mat-expansion-panel class="panel" expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Navigation</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list class="navs">
+        @for (item of popular; track item) {
+        <mat-list-item [routerLink]="item.url">
+          <mat-icon matListItemIcon>{{ item.icon}}</mat-icon>
+          <div matListItemTitle>{{item.name}}</div>
+          <!--<div matListItemLine>{{item.desc}}</div>-->
+        </mat-list-item>
+        }
+        <mat-divider></mat-divider>
+        <div mat-subheader>Classes</div>
+        @for (item of classes; track item) {
+        <mat-list-item routerLink="/group/{{item.id}}">
+          <mat-icon matListItemIcon>item</mat-icon>
+          <div matListItemTitle>{{item.name}}</div>
+          <!--<div matListItemLine>{{note.desc}}</div>-->
+        </mat-list-item>
+        }
+
+        <div *ngIf="classes.length <= 0">Your aren't part of any classes</div>
+      </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Groups</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      @for (item of groups; track item) {
+      <mat-list-item>
+        <mat-icon matListItemIcon>item</mat-icon>
+        <div matListItemTitle>{{item.name}}</div>
+        <!--<div matListItemLine>{{note.desc}}</div>-->
+      </mat-list-item>
+      }
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Tasks</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Resources</mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

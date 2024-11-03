@@ -1,0 +1,18 @@
+
+
+  @defer (when user) {
+<app-header />
+} 
+
+<mat-sidenav-container class="sidenav-container">
+
+
+  <mat-sidenav #sidenav mode="side" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="60"
+    [fixedBottomGap]="0" (openedChange)="navChanged()">
+    <app-side-nav [groups]="user.member_groups" [classes]="classes"/>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
