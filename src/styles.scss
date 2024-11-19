@@ -50,6 +50,11 @@ body {
   display: flex;
   flex-direction: row;
 }
+.app-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 .app-divider {
   display: block;

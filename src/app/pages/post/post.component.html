@@ -47,6 +47,18 @@
     <p>
       {{post.desc}}
     </p>
+    <div class="attachments">
+      <div *ngFor="let item of post.attachments; let i=index">
+        <mat-card>
+          @if (item) {
+          <mat-card-content>{{item}}</mat-card-content>
+          }
+          @else {
+          <mat-card-content>No name</mat-card-content>
+          }
+        </mat-card>
+      </div>
+    </div>
   </mat-card-content>
   <mat-card-actions class="actions row">
     <button mat-stroked-button [class.liked]="hasReaction()" (click)="react()"><mat-icon>thumb_up</mat-icon>
@@ -98,7 +110,8 @@
             </button>
           </div>
         </div>
-        <button mat-icon-button [matMenuTriggerFor]="commentMenu" (click)="commentSelected.set(item.id)"><mat-icon>more_vert</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="commentMenu"
+          (click)="commentSelected.set(item.id)"><mat-icon>more_vert</mat-icon>
         </button>
       </div>
       }

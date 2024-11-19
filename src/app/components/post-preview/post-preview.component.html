@@ -47,7 +47,21 @@
     <p>
       {{post.desc}}
     </p>
+    <div class="attachments">
+      @for (item of post.attachments; track item) {
+      @if (item) {
+      <div class="app-row-center">
+        <mat-icon>attachment</mat-icon>
+        <div>{{item}}</div>
+      </div>
+      }
+      @else {
+      <div>No name</div>
+      }
+      }
+    </div>
   </mat-card-content>
+  <mat-divider/>
   <mat-card-actions class="actions row">
     <button mat-stroked-button [class.liked]="hasReaction()" (click)="react()"><mat-icon>thumb_up</mat-icon>
       <div>{{post.reacts.length}}</div>
@@ -55,7 +69,7 @@
     <button mat-stroked-button routerLink="/post/{{post.id}}"><mat-icon>chat</mat-icon>
       <div>{{post.comments.length}}</div>
     </button>
-    <button mat-stroked-button><mat-icon>favorite</mat-icon>
+    <button mat-stroked-button [class.liked]="isFavorited()" (click)="favorite()"><mat-icon>favorite</mat-icon>
       <div>Favorite</div>
     </button>
     <button mat-stroked-button><mat-icon>share</mat-icon>

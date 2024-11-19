@@ -57,3 +57,13 @@ mat-card-content {
 .liked {
   background-color: #DFF2EB;
 }
+
+
+.attachments > * {
+  border: 1px solid gray;
+  border-radius: 2em;
+  padding: 0.4em;
+  gap: 0.4em;
+  margin-bottom: 0.4em;
+  background-color: #eaeaea;
+}

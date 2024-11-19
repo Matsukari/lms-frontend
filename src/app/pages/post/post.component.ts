@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { CommentBoxComponent } from '../../components/comment-box/comment-box.component';
 import { MatMenuModule } from '@angular/material/menu';
@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
     TimeAgoPipe,
     CommentBoxComponent,
     MatMenuModule,
+    CommonModule,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'

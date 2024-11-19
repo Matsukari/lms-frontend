@@ -27,9 +27,9 @@
     <div class="content">
 
       <!--@if (groups)-->
-      @defer (when posts) {
+      @defer (when posts()) {
       <div class="posts">
-        @for (item of posts; track item) {
+        @for (item of posts(); track item) {
         <app-post-preview [post]="item" />
         }
       </div>

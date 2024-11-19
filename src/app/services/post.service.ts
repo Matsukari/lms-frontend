@@ -29,11 +29,14 @@ export class PostService {
   react(data: { post: number, user: number, reaction: string }) {
     return this.http.post(environment.apiUrl + "/post/react", data);
   }
+  favorite(data: { post: number, user: number }) {
+    return this.http.post(environment.apiUrl + "/post/favorite", data);
+  }
   hasReacted(post: number, user: number) {
-    const params = new HttpParams()
-      .set("post", post)
-      .set("user", user);
     return this.http.post(environment.apiUrl + "/post/has/reaction", { user: user, post: post, reaction: "" });
+  }
+  isFavorited(post: number, user: number) {
+    return this.http.post(environment.apiUrl + "/post/is/favorited", { user: user, post: post, reaction: "" });
   }
   post(data: {
     title: string,

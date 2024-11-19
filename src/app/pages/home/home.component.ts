@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -49,7 +49,7 @@ import { CreatePostComponent } from '../create-post/create-post.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  posts: any;
+  posts = signal(null);
   view = 0;
   views = [
     {label: "List", icon: "reorder"},
@@ -70,7 +70,8 @@ export class HomeComponent {
   ngOnInit() {
 
     this.postService.getCommunity().subscribe((posts: any) => {
-      this.posts = posts.slice(0, Math.min(posts.length, 10))
+      posts[0].attachments.push("First one");
+      this.posts.set(posts.slice(0, Math.min(posts.length, 10)));
     });
   }
   openCreatePost() {
