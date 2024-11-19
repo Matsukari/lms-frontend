@@ -1,0 +1,44 @@
+<div class="app-row avatars">
+    @if (group.admins.length > 0) {
+    <img mat-card-avatar src="https://i.pravatar.cc/300" />
+    }
+
+    @for (item of group.admins; track item) {
+    @if ($index == 5) {
+    <div class="app-row label">
+
+      <span>+</span>
+      <span>{{group.admins.length}}</span>
+      <span>others</span>
+
+    </div>
+
+    }
+    @else if ($index > 5 || $index == 0) {}
+    @else {
+    <img mat-card-avatar class="shadow" src="https://i.pravatar.cc/300" />
+    }
+    }
+  </div>
+
+  <div class="app-row avatars">
+    @if (group.members.length > 0) {
+    <img mat-card-avatar src="https://i.pravatar.cc/300" />
+    }
+
+    @for (item of group.members; track item) {
+    @if ($index == 5) {
+    <div class="app-row label">
+      <span>+</span>
+      <span>{{group.members.length}}</span>
+      <span>others</span>
+
+    </div>
+
+    }
+    @else if ($index > 5 || $index == 0) {}
+    @else {
+    <img mat-card-avatar class="shadow" src="https://i.pravatar.cc/300" />
+    }
+    }
+  </div>

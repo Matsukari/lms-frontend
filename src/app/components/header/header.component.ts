@@ -7,6 +7,7 @@ import { CreateMenuComponent } from '../create-menu/create-menu.component';
 import { ProfileMenuComponent } from '../profile-menu/profile-menu.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
+import { NotificationsComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     ProfileMenuComponent,
     MatMenuModule,
     CommonModule,
+    NotificationsComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

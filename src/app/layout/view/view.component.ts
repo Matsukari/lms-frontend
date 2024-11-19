@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { SideNavComponent } from '../../components/side-nav/side-nav.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { ClassesComponent } from '../../components/classes/classes.component';
+import { MessengesComponent } from '../../components/messenges/messenges.component';
 export interface NavSection {
   name: string;
   desc: string;
@@ -27,6 +29,8 @@ export interface NavSection {
     MatDividerModule,
     MatListModule,
     MatIconModule,
+    ClassesComponent,
+    MessengesComponent,
   ],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss',
@@ -37,40 +41,23 @@ export class ViewComponent {
   ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
-      user.member_groups.forEach((item: any)=>{
+      user.member_groups.forEach((item: any) => {
         if (item.type === "CLASS") {
           this.classes.push(item);
         }
       })
     })
   }
+  @ViewChild('header', { static: true }) header: ElementRef;
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild(ClassesComponent) overlayComponent!: ClassesComponent;
   user: any;
+  sidenavPosition = 59;
 
   navChanged() {
     this.sidenavIsOpen = !this.sidenavIsOpen;
   }
   groups: any;
-
-
   sidenavIsOpen = false;
-
-  //accordion = viewChild.required(MatAccordion);
-  popular: NavSection[] = [
-    {
-      name: 'Home',
-      desc: "zxcvzxcvzxcv",
-      icon: "home",
-    },
-    {
-      name: 'Dashboard',
-      desc: "zxcvzxcv",
-      icon: "bar_chart_4_bars"
-    },
-    {
-      name: 'Updates',
-      desc: "Schools announcements & per group",
-      icon: "campaign"
-    },
-  ];
   classes = [];
 }

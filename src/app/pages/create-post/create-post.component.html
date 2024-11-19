@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Create a Post</h2>
+
+<mat-dialog-content class="content" [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Where</mat-label>
+    <mat-select [(value)]="selectedGroupType" (valueChange)="updateGroupTypeSelected()">
+      @for (item of groupTypes; track item) {
+      <mat-option [value]="item">{{item}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  @if (selectedGroupType != "Public") {
+  <mat-form-field >
+    <mat-label>Group</mat-label>
+    <input type="text" placeholder="Name of group" aria-label="Group" matInput formControlName="group"
+      [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayGroup">
+      @for (item of filteredGroups | async; track item) {
+      <mat-option [value]="item">{{item.name}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  }
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+  <mat-form-field class="desc">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="desc"></textarea>
+  </mat-form-field>
+  <app-file-uploader />
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Discard</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="post()">Post</button>
+</mat-dialog-actions>

@@ -5,6 +5,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { ViewComponent } from './layout/view/view.component';
 import { GroupComponent } from './pages/group/group.component';
 import { TaskComponent } from './pages/task/task.component';
+import { PostComponent } from './pages/post/post.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -13,8 +15,10 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "home", component: HomeComponent },
+      { path: "dashboard", component: DashboardComponent },
       { path: "group/:id", component: GroupComponent },
-      { path: "task/:id", component: TaskComponent }
+      { path: "post/:id", component: PostComponent },
+      { path: "task/:id", component: TaskComponent },
     ]
   },
   { path: "login", component: LoginComponent },

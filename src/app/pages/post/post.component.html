@@ -1,0 +1,122 @@
+<mat-card class="card" appearance="outlined">
+  <mat-card-header class="header">
+    <div class="row">
+      <div class="pictures">
+        <img mat-card-avatar width="200px" height="200px" src="https://i.pravatar.cc/300" />
+        <img mat-card-avatar src="https://i.pravatar.cc/300" />
+      </div>
+      <div>
+        <div class="labels">
+          <span>
+            {{ post.group.name }}
+          </span>
+          <span>
+            by
+          </span>
+          <span>
+            {{ post.source.username }}
+          </span>
+          <span class="time">
+            <span class="dot">
+              ・
+            </span>
+            <span class="text">
+              {{ post.updated_at | timeAgo }}
+            </span>
+          </span>
+        </div>
+        <div>
+          {{ post.title }}
+        </div>
+      </div>
+
+    </div>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <!--<mat-card-subtitle>title</mat-card-subtitle>-->
+  </mat-card-header>
+
+  @if (post.cover_img) {
+  <img mat-card-image [src]="post.cover_img" alt="Cover image" />
+  }
+  @else {
+  }
+  <mat-card-content>
+    <p>
+      {{post.desc}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="actions row">
+    <button mat-stroked-button [class.liked]="hasReaction()" (click)="react()"><mat-icon>thumb_up</mat-icon>
+      <div>{{post.reacts.length}}</div>
+    </button>
+    <button mat-stroked-button routerLink="/post/{{post.id}}"><mat-icon>chat</mat-icon>
+      <div>{{post.comments.length}}</div>
+    </button>
+    <button mat-stroked-button><mat-icon>favorite</mat-icon>
+      <div>Favorite</div>
+    </button>
+    <button mat-stroked-button><mat-icon>share</mat-icon>
+      <div>Share</div>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="comments">
+  <app-comment-box (onSubmit)="submitComment($event)" />
+  <div class="app-divider"></div>
+  @if (post.comments.length <= 0) { <p>
+    No thoughts in this task yet.
+    </p>
+    }
+    @else {
+    <div class="all">
+      @for (item of post.comments; track item) {
+      <div class="app-row comment">
+        <img mat-card-avatar src="https://i.pravatar.cc/300" />
+        <div class="section">
+          <p class="header">
+            <span class="name">
+              {{item.user.firstname}} {{item.user.lastname}}
+            </span>
+            <span class="dot">
+              ・
+            </span>
+            <span class="date">
+              {{ item.updated_at | timeAgo }}
+            </span>
+          </p>
+          <p>{{item.content}}</p>
+          <div class="actions">
+            <button mat-button><mat-icon>thumb_up</mat-icon>
+              <div>Like</div>
+            </button>
+            <button mat-button><mat-icon>reply</mat-icon>
+              <div>Reply</div>
+            </button>
+          </div>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="commentMenu" (click)="commentSelected.set(item.id)"><mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      }
+    </div>
+    }
+</div>
+<mat-menu #commentMenu="matMenu">
+
+  <button mat-menu-item (click)="editComment()">
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item (click)="deleteComment()">
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+  <button mat-menu-item (click)="reportComment()">
+    <mat-icon>flag</mat-icon>
+    <span>Report</span>
+  </button>
+</mat-menu>

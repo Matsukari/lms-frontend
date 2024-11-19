@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, WritableSignal } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 
@@ -12,13 +12,18 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
   ) {}
-  login(formData: FormData) {
+  login(formData: FormData, loading: WritableSignal<boolean>) {
+    loading.set(true);
     this.http.post(environment.apiUrl + "/login", formData).subscribe({
       next: (data: any) => {
         localStorage.setItem("token", data.access_token);
         this.router.navigate(["/home"]);
+        loading.set(false);
       },
-      error: this.errorHandler
+      error: (err: Error) => {
+        alert("Error: " + err.message);
+        loading.set(false);
+      }
     });
   }
   authenticate() {

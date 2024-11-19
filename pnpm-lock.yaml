@@ -47,6 +47,12 @@ importers:
       '@angular/ssr':
         specifier: ^18.2.10
         version: 18.2.10(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))
+      '@daypilot/daypilot-lite-angular':
+        specifier: ^3.30.0
+        version: 3.30.0(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       express:
         specifier: ^4.18.2
         version: 4.21.1
@@ -911,6 +917,15 @@ packages:
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+
+  '@daypilot/daypilot-lite-angular@3.30.0':
+    resolution: {integrity: sha512-eDL9UmD5DsAY1NmzNVlxUkX6Rsyu0aluNfrP3oTuLQC37JvidgtrsEVM8rZLgxmBbvDhy4xHhtijfjQNehTTBw==}
+    peerDependencies:
+      '@angular/common': '>=12.0.0'
+      '@angular/core': '>=12.0.0'
+
+  '@daypilot/daypilot-lite-javascript@3.30.0':
+    resolution: {integrity: sha512-uYZA/2P/aGl9GHEHONfXurhkzqHT4uQ0z79JVBCwHgpxAqgbfYuyYZTN/7U51pK+7PeJSj4lI84LvbP5hRumJA==}
 
   '@discoveryjs/json-ext@0.6.1':
     resolution: {integrity: sha512-boghen8F0Q8D+0/Q1/1r6DUEieUJ8w2a1gIknExMSHBsJFOr2+0KUfHiVYBvucPwl3+RU5PFBK833FjFCh3BhA==}
@@ -2187,6 +2202,9 @@ packages:
 
   custom-event@1.0.1:
     resolution: {integrity: sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   date-format@4.0.14:
     resolution: {integrity: sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg==}
@@ -5427,6 +5445,15 @@ snapshots:
 
   '@colors/colors@1.5.0': {}
 
+  '@daypilot/daypilot-lite-angular@3.30.0(@angular/common@18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1))(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))':
+    dependencies:
+      '@angular/common': 18.2.9(@angular/core@18.2.9(rxjs@7.8.1)(zone.js@0.14.10))(rxjs@7.8.1)
+      '@angular/core': 18.2.9(rxjs@7.8.1)(zone.js@0.14.10)
+      '@daypilot/daypilot-lite-javascript': 3.30.0
+      tslib: 2.8.0
+
+  '@daypilot/daypilot-lite-javascript@3.30.0': {}
+
   '@discoveryjs/json-ext@0.6.1': {}
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -6629,6 +6656,8 @@ snapshots:
   cssesc@3.0.0: {}
 
   custom-event@1.0.1: {}
+
+  date-fns@4.1.0: {}
 
   date-format@4.0.14: {}
 

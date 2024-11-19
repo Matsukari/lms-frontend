@@ -1,31 +1,29 @@
-<mat-toolbar>
+<mat-toolbar class="toolbar">
   <button mat-icon-button>
     <mat-icon>token</mat-icon>
   </button>
   <span>LMS</span>
 
   <span class="spacer"></span>
-  <button mat-icon-button *ngIf="role == 'ADMIN'">
-    <mat-icon [matMenuTriggerFor]="createMenu.menu">design_services</mat-icon>
-  </button>
 
-  <button mat-icon-button>
-    <mat-icon>notifications</mat-icon>
-  </button>
-  <button mat-icon-button>
-    <mat-icon>mail</mat-icon>
-  </button>
-  <mat-chip [matMenuTriggerFor]="profileMenu.menu">
-    <div matChipAvatar>
-      <mat-icon [class.admin]="role == 'ADMIN'" [class.student]="role == 'STUDENT'"
-        [class.teacher]="role == 'TEACHER'">person</mat-icon>
-    </div>
-    <div class="chip">
-      <div>{{ username }}</div>
-      <div>{{ role }}</div>
-    </div>
-  </mat-chip>
+  <div class="buttons app-row">
+    <button mat-icon-button *ngIf="role == 'ADMIN'">
+      <mat-icon [matMenuTriggerFor]="createMenu.menu">design_services</mat-icon>
+    </button>
 
+    <button mat-icon-button [matMenuTriggerFor]="notifMenu.menu" class="notif-button">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button class="mail-button">
+      <mat-icon>mail</mat-icon>
+    </button>
+    <button mat-icon-button class="account-button" [matMenuTriggerFor]="profileMenu.menu"
+      [class.admin]="role == 'ADMIN'" [class.student]="role == 'STUDENT'" [class.teacher]="role == 'TEACHER'">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+
+  <app-notifications #notifMenu />
   <app-profile-menu #profileMenu />
   <app-create-menu #createMenu />
 

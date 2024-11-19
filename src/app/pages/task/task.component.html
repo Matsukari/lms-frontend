@@ -1,8 +1,6 @@
-
 <div>
-  @defer (when task) {
   <mat-toolbar>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="gotoLastPage()">
       <mat-icon>
         keyboard_return
       </mat-icon>
@@ -17,7 +15,6 @@
     </button>
 
   </mat-toolbar>
-}
 
 
   <mat-divider />
@@ -26,41 +23,115 @@
   <div class="content">
 
     <div class="main">
-      <p>
-        @if (task.desc) {
-        {{task.desc}}
-        }
-        @else {
-        This task does not have any description.
-        }
-      </p>
-      <div class="comments">
-        <h3>
-          Comments
-        </h3>
-        <form (ngSubmit)="submitComment()">
-          <input id="comment" placeholder="Add a comment" matInput [formControl]="comment">
-        </form>
-        <p>
-          No thoughts in this task yet.
+      <div class="head app-row">
+        <p class="creator app-row">
+          <img mat-card-avatar src="https://i.pravatar.cc/300" />
+          <span class="label">Created by&nbsp;</span>
+          <span>{{task.creator.lastname}}</span>
+          <span>&nbsp;At&nbsp;</span>
+          <span class="date">{{task.created_at | date}}</span>
+        </p>
+        <span class="spacer"></span>
+        <p class="due app-row">
+          <span>Due&nbsp;</span>
+          <span>{{task.due_at | timeAgo}}</span>
         </p>
       </div>
+      <div class="desc">
+        @if (task.desc) {
+        <p>
+          {{task.desc}}
+        </p>
+        }
+        @else {
+        <p class="text-disabled">
+          This task does not have any description.
+        </p>
+        }
+      </div>
+
+      <mat-card class="comments">
+        <div class="app-divider"></div>
+        <app-comment-box (onSubmit)="submitComment($event)" />
+        @if (task.comments.length <= 0) { <p class="text-disabled">
+          No thoughts in this task yet.
+          </p>
+          }
+          @else {
+          <div class="all">
+            @for (item of task.comments; track item) {
+            <div class="app-row comment">
+              <img mat-card-avatar src="https://i.pravatar.cc/300" />
+              <div class="section">
+                <p class="header">
+                  <span class="name">
+                    {{item.user.firstname}} {{item.user.lastname}}
+                  </span>
+                  <span class="dot">
+                    ・
+                  </span>
+                  <span class="date">
+                    {{ item.updated_at | timeAgo }}
+                  </span>
+                </p>
+                <p>{{item.content}}</p>
+                <div class="actions">
+                  <button mat-button><mat-icon>thumb_up</mat-icon>
+                    <div>Like</div>
+                  </button>
+                  <button mat-button><mat-icon>reply</mat-icon>
+                    <div>Reply</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+          }
+      </mat-card>
     </div>
 
 
-    <span class="spacer"></span>
-
     <div class="submission">
       <h4>Your Submission</h4>
-      @if (yourSubmission) {
-      Has Submission
+      @if (yourSubmission()) {
+      <div>
+
+        <div class="attachments">
+          <div *ngFor="let item of yourSubmission().attachments; let i=index">
+            <mat-card>
+              @if (item) {
+              <mat-card-content>{{item}}</mat-card-content>
+              }
+              @else {
+              <mat-card-content>No name</mat-card-content>
+              }
+            </mat-card>
+          </div>
+        </div>
+
+        <p>
+          {{yourSubmission().desc}}
+        </p>
+
+        <button mat-button (click)="makeChange()">Make change</button>
+      </div>
       }
       @else {
-      <p>
-        <input type="file" />
-      </p>
-      <h5>Remarks</h5>
-      <input type="text" />
+      <form [formGroup]="submissionForm" (ngSubmit)="submit()">
+        <div formArrayName="attachments">
+          <div *ngFor="let attachment of getSubmissionAttachments().controls; let i=index">
+            <input type="file" [formControlName]="i" />
+          </div>
+          <button mat-button type="button" (click)="addAttachment()">Attach another</button>
+        </div>
+        <!--<p>-->
+        <!--  <input type="file" />-->
+        <!--</p>-->
+        <h5>Remarks</h5>
+        <input type="text" [formControl]="getSubmissionRemark()" />
+        <button mat-button type="submit">Submit</button>
+      </form>
       }
     </div>
 

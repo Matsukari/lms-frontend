@@ -14,7 +14,7 @@
       <mat-icon>{{hidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-flat-button type="submit" >
+  <button mat-flat-button type="submit" [disabled]="loading()" >
     <mat-icon>login</mat-icon>
     Login
   </button>

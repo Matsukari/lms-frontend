@@ -1,12 +1,12 @@
 
 .content {
-  padding: 2em;
+  padding: 0.5em;
 }
 
 .sidenav-container {
   position: absolute;
   top: 60px;
-  bottom: 60px;
+  bottom: 0;
   left: 0;
   right: 0;
 }
@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: center;
   width: 270px;
-  border: 1px solid gray;
-  background: rgba(220, 220, 220, 0.5);
+  border-radius: 0;
+  border: 1px solid #cacaca;
+  background: #f6f6f6;
 }

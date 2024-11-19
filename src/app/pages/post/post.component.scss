@@ -1,0 +1,92 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comments {
+  margin-top: 1em;
+}
+
+
+mat-card {
+  border-radius: 0;
+  background-color: #f8f8f8;
+}
+
+.labels {
+  align-self: first baseline;
+}
+
+.labels>* {
+  font-size: small;
+}
+
+mat-card-header {
+  background-color: #f1f1f1;
+}
+
+mat-card-content {
+  margin-top: -0.8em;
+}
+
+.pictures>*:nth-child(2) {
+  margin-left: -1.7em;
+  margin-bottom: 0.1em;
+  scale: 0.7;
+  padding: 0;
+  border: 3px solid white;
+}
+
+.title {
+  font-size: small;
+}
+
+
+.actions {
+  gap: 0.3em;
+}
+
+.actions * {
+  font-size: smaller;
+  color: gray;
+}
+
+.actions mat-icon {
+  font-size: medium;
+  color: black;
+}
+
+.actions>button {
+  font-size: small;
+}
+
+.liked {
+  background-color: #DFF2EB;
+}
+
+.comments .all {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.comment {
+  gap: 0.5em;
+}
+.comment .header {
+  margin: 0.2em;
+}
+.comment .name {
+  font-size: small;
+}
+.comment .date {
+  font-size: x-small;
+}
+.comment .section {
+  padding: 0 1em;
+  border-radius: 1em;
+  background-color: #f1f1f1;
+}
+.comment .actions * {
+  font-size: small;
+}

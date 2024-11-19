@@ -1,18 +1,22 @@
 
 
-.chip {
-  display: flex;
-  flex-flow: column;
+.toolbar {
+  border-bottom: 5px solid #cacaca;
 }
-.chip * {
-  padding: 0;
-  margin: 0;
+
+.buttons {
+  gap: 0.3em;
 }
-.chip div:first-child {
-  font-size: 0.7em;
-  margin-bottom: -0.3em;
+
+.mail-button, .notif-button {
+  background-color: #ebebeb;
 }
-.chip div:last-child {
-  font-size: 0.5em;
-  margin-top: -0.3em;
+
+.account-button {
+  border: 1px solid gray;
+  color: #CBDCEB;
+  background-color: #608BC1;
+  padding: 0.3em;
+  margin-left: 0.3em;
 }
+

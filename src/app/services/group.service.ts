@@ -18,4 +18,7 @@ export class GroupService {
     .set("posts", posts);
     return this.http.get(environment.apiUrl + "/get/group/" + id, {params: params});
   }
+  getGroups(type: string) {
+    return this.http.get(environment.apiUrl + "/get/groups/" + type);
+  }
 }

@@ -1,0 +1,17 @@
+<div *ngIf="visible" class="overlay" [ngStyle]="overlayStyle" id="classes-component">
+  @for (item of classes; track item) {
+  <div routerLink="/group/{{item.id}}" class="app-row item">
+    <img mat-card-avatar src="https://i.pravatar.cc/300" />
+    <div class="name label">
+      {{item.name}}
+    </div>
+    <div>
+      ・
+    </div>
+    <div class="updates label">
+      4 updates
+    </div>
+  </div>
+  }
+  <!-- Add your custom overlay content here -->
+</div>

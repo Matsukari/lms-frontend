@@ -23,13 +23,14 @@ import { MatIconModule } from "@angular/material/icon";
 })
 export class LoginComponent {
   hidePassword = signal(true);
+  loading = signal(false);
   profileForm = new FormGroup({
     username: new FormControl(""),
     password: new FormControl(""),
   })
   constructor(private auth: AuthService) { }
   onSubmit() {
-    this.auth.login(formGroupToFormData(this.profileForm));
+    this.auth.login(formGroupToFormData(this.profileForm), this.loading);
   }
   toogleEye(event: MouseEvent) {
     this.hidePassword.set(!this.hidePassword);

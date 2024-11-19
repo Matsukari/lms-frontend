@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ClassesComponent } from '../classes/classes.component';
 
 
 export interface NavSection {
@@ -25,7 +26,7 @@ export interface NavSection {
     MatDividerModule,
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    ClassesComponent,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',
@@ -37,6 +38,12 @@ export class SideNavComponent {
   }
   @Input() groups: any;
   @Input() classes: any;
+  @Input() overlayComponent!: ClassesComponent;
+
+  onElementClick(event: Event) {
+    this.overlayComponent.targetElement = event.target as HTMLElement;
+    this.overlayComponent.toggleOverlay();
+  }
 
 
   sidenavIsOpen = false;
@@ -54,12 +61,6 @@ export class SideNavComponent {
       desc: "zxcvzxcv",
       icon: "bar_chart_4_bars",
       url: "/dashboard"
-    },
-    {
-      name: 'Updates',
-      desc: "Schools announcements & per group",
-      icon: "campaign",
-      url: "/updates"
     },
   ];
 }

@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from "@angular/material/card";
 import { RouterLink } from '@angular/router';
+import { PostPreviewComponent } from '../../components/post-preview/post-preview.component';
+import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 
 @Component({
   selector: 'app-group',
@@ -27,6 +29,8 @@ import { RouterLink } from '@angular/router';
     CommonModule,
     MatCardModule,
     RouterLink,
+    PostPreviewComponent,
+    TimeAgoPipe,
   ],
   templateUrl: './group.component.html',
   styleUrl: './group.component.scss'
@@ -39,7 +43,9 @@ export class GroupComponent {
   set id(groupId: string) {
     this.groupService.getGroup(groupId, true, true, true).subscribe((data: any)=>{
       this.group = data;
+      this.posts = data.posts;
     });
   }
   group: any;
+  posts: any;
 }

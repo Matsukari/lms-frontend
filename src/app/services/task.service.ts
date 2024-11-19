@@ -21,7 +21,10 @@ export class TaskService {
     .set("assigned_groups", assigned_groups);
     return this.http.get(environment.apiUrl + "/get/task/" + id, {params: params});
   }
-  comment(text: string) {
-    return this.http.post(environment.apiUrl + "/post/comment", text);
+  comment(data: { text: string, post: number, user: number }) {
+    return this.http.post(environment.apiUrl + "/task/comment", data);
+  }
+  submit(data: {attachments: any, remark: string, user: any, source: any}) {
+    return this.http.post(environment.apiUrl + "/post/submission", data);
   }
 }

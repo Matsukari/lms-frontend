@@ -1,5 +1,35 @@
+.sidenav * {
+  font-size: 14px;
+}
+.navs>mat-list-item {
+  border-radius: 2em;
+  transition: background-color 0.1s;
+}
+
+.navs>mat-list-item:hover {
+  background-color: #dadada;
+}
+
+.navs>mat-list-item:active {
+  background-color: #bababa
+}
+
+.sidenav mat-icon {
+  font-size: 20px;
+}
 
 .accordion {
   color: white !important;
+  box-shadow: none;
+  border-radius: 0;
 }
 
+mat-divider {
+  background-color: white;
+  margin: 1em 2.2em;
+}
+
+.events {
+  background-color: #eaeaea;
+  padding: 1em;
+}

@@ -52,6 +52,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/material.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",

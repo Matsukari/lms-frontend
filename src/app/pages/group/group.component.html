@@ -1,4 +1,4 @@
-  @defer (when group) {
+@defer (when group) {
 <mat-toolbar>
 
   <h3>{{ group.name }}</h3>
@@ -14,26 +14,14 @@
 
 <mat-divider />
 
+<div class="body">
 
-<div class="avatars">
-  @for (item of group.admins; track item) {
-  <div>
-    <mat-icon>person</mat-icon>
-    <!--<div matListItemLine>{{item.desc}}</div>-->
-  </div>
-  }
+
+  <p>
+    {{group.desc}}
+  </p>
 </div>
 
-<div class="avatars">
-  @for (item of group.members; track item) {
-  <div>
-    <mat-icon>person</mat-icon>
-    <!--<div matListItemLine>{{item.desc}}</div>-->
-  </div>
-  }
-</div>
-
-}
 <!--<mat-form-field appearance="outline">-->
 <!--  <mat-label>Search for...</mat-label>-->
 <!--  <input matInput placeholder="Placeholder">-->
@@ -43,6 +31,24 @@
 
 
 <mat-tab-group>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>event</mat-icon>
+      <span>Events</span>
+    </ng-template>
+    <div class="content">
+
+      <p *ngIf="group.posts.length <= 0">No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon>
+      </p>
+      <div *ngIf="group.posts.length >= 0" class="posts">
+        @for (item of posts; track item) {
+        <app-post-preview [post]="item" />
+        }
+      </div>
+    </div>
+  </mat-tab>
+
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>task</mat-icon>
@@ -54,8 +60,19 @@
       </p>
       <div *ngIf="group.tasks.length >= 0" class="tasks">
         @for (item of group.tasks; track item) {
-        <mat-card routerLink="/task/{{item.id}}">
-          <mat-card-content>{{item.name}}</mat-card-content>
+        <mat-card class="task" routerLink="/task/{{item.id}}">
+          <div class="head app-row">
+            <mat-icon>description</mat-icon>
+            <p>{{item.name}}</p>
+            <span class="spacer"></span>
+            <button mat-icon-button>
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <div class="foot app-row">
+            <p class="label">Due</p>
+            <p class="date">{{item.due_at | timeAgo}}</p>
+          </div>
         </mat-card>
         }
       </div>
@@ -81,3 +98,6 @@
     </div>
   </mat-tab>
 </mat-tab-group>
+
+
+}

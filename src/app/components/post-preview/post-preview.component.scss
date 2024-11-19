@@ -1,0 +1,59 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+mat-card {
+  border-radius: 0;
+  background-color: #f8f8f8;
+  transition: background-color 0.1s;
+}
+
+.labels {
+  align-self: first baseline;
+}
+
+.labels>span {
+  font-size: small;
+}
+
+mat-card-header {
+  background-color: #f1f1f1;
+}
+
+mat-card-content {
+  margin-top: -0.8em;
+}
+
+.pictures>*:nth-child(2) {
+  margin-left: -1.7em;
+  margin-bottom: 0.1em;
+  scale: 0.7;
+  padding: 0;
+  border: 3px solid white;
+}
+
+
+
+.actions {
+  gap: 0.3em;
+}
+
+.actions * {
+  font-size: smaller;
+  color: gray;
+}
+
+.actions mat-icon {
+  font-size: medium;
+  color: black;
+}
+
+.actions>button {
+  font-size: small;
+}
+
+.liked {
+  background-color: #DFF2EB;
+}
