@@ -1,0 +1,28 @@
+@defer (when tasks()) {
+<div class="content">
+
+  <p *ngIf="tasks().length <= 0">No community has posted anything.
+    <mat-icon>sentiment_dissatisfied</mat-icon>
+  </p>
+  <div *ngIf="tasks().length >= 0" class="tasks">
+    @for (item of tasks(); track item) {
+    <mat-card class="task" routerLink="/task/{{item.id}}">
+      <div class="head app-row">
+        <mat-icon>description</mat-icon>
+        <p>{{item.name}}</p>
+        <span class="spacer"></span>
+
+
+        <button mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      <div class="foot app-row">
+        <p class="label">Due</p>
+        <p class="date">{{item.due_at | timeAgo}}</p>
+      </div>
+    </mat-card>
+    }
+  </div>
+</div>
+}

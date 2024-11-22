@@ -25,32 +25,4 @@
   margin-left: -0.4em;
 }
 
-mat-tab mat-icon {
-  margin: 0.5em;
-}
 
-.tasks {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
-  margin-top: 1em;
-}
-.tasks > .task {
-  border: 1px solid gray;
-  border-radius: 0;
-  padding: 0 1em;
-}
-.tasks .head {
-  align-items: center;
-  gap: 1em;
-  margin: 0;
-
-}
-.tasks .foot {
-  gap: 0.3em;
-  justify-content: right;
-}
-.tasks .foot * {
-  font-size: x-small;
-  color: gray;
-}

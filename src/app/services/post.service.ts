@@ -20,6 +20,12 @@ export class PostService {
       .set("comments", comments);
     return this.http.get(environment.apiUrl + "/get/post/" + id, { params: params });
   }
+  getPostsFromGroup(id: string, reacts?: boolean, comments?: boolean) {
+    const params = new HttpParams()
+      .set("reacts", reacts)
+      .set("comments", comments);
+    return this.http.get(environment.apiUrl + "/get/posts/group/" + id, { params: params });
+  }
   comment(data: { text: string, post: number, user: number }) {
     return this.http.post(environment.apiUrl + "/post/comment", data);
   }

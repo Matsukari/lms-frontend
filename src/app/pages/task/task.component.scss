@@ -8,8 +8,7 @@
   width: 60vw;
 }
 
-mat-toolbar {
-}
+
 .submission .attachments {
   display: flex;
   flex-direction: column;
@@ -21,6 +20,7 @@ mat-toolbar {
   box-shadow: none;
 }
 .submission {
+  background: #f6f6f6;
   position: sticky;
   top: 0;
   margin-top: 1em;
@@ -29,8 +29,8 @@ mat-toolbar {
   width: 20vw;
   border-radius: 10px;
   padding: 1em;
-}
-form {
+  display: flex;
+  flex-direction: column;
 }
 input[type="text"] {
   outline: none;
@@ -95,4 +95,14 @@ app-comment-box {
 }
 .comment .actions * {
   font-size: small;
+}
+
+.section.you {
+}
+.section.other {
+  flex-grow: 1;
+  align-content: center;
+  text-align: center;
+  background-color: #eaeaea;
+  border-radius: 2em;
 }

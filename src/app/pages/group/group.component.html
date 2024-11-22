@@ -15,8 +15,6 @@
 <mat-divider />
 
 <div class="body">
-
-
   <p>
     {{group.desc}}
   </p>
@@ -28,76 +26,14 @@
 <!--  <mat-icon matSuffix>search</mat-icon>-->
 <!--</mat-form-field>-->
 
-
-
-<mat-tab-group>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>event</mat-icon>
-      <span>Events</span>
-    </ng-template>
-    <div class="content">
-
-      <p *ngIf="group.posts.length <= 0">No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon>
-      </p>
-      <div *ngIf="group.posts.length >= 0" class="posts">
-        @for (item of posts; track item) {
-        <app-post-preview [post]="item" />
-        }
-      </div>
-    </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>task</mat-icon>
-      <span>Tasks</span>
-    </ng-template>
-    <div class="content">
-
-      <p *ngIf="group.tasks.length <= 0">No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon>
-      </p>
-      <div *ngIf="group.tasks.length >= 0" class="tasks">
-        @for (item of group.tasks; track item) {
-        <mat-card class="task" routerLink="/task/{{item.id}}">
-          <div class="head app-row">
-            <mat-icon>description</mat-icon>
-            <p>{{item.name}}</p>
-            <span class="spacer"></span>
-            <button mat-icon-button>
-              <mat-icon>more_vert</mat-icon>
-            </button>
-          </div>
-          <div class="foot app-row">
-            <p class="label">Due</p>
-            <p class="date">{{item.due_at | timeAgo}}</p>
-          </div>
-        </mat-card>
-        }
-      </div>
-    </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>school</mat-icon>
-      <span>Resources</span>
-    </ng-template>
-    <div class="content">
-    </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>connect_without_contact</mat-icon>
-      <span>Forum</span>
-    </ng-template>
-    <div class="content">
-      <p>No live events are ongoing.<mat-icon>sentiment_dissatisfied</mat-icon></p>
-    </div>
-  </mat-tab>
-</mat-tab-group>
-
-
+<nav mat-tab-nav-bar [tabPanel]="panel">
+  @for (item of tabs; track item) {
+  <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+    {{item.name}}
+  </a>
+  }
+</nav>
+<mat-tab-nav-panel #panel>
+  <router-outlet />
+</mat-tab-nav-panel>
 }

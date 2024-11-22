@@ -93,9 +93,9 @@
 
 
     <div class="submission">
-      <h4>Your Submission</h4>
-      @if (yourSubmission()) {
-      <div>
+      <h5>Your Submission</h5>
+      <div class="section you">
+        @if (yourSubmission()) {
 
         <div class="attachments">
           <div *ngFor="let item of yourSubmission().attachments; let i=index">
@@ -115,25 +115,39 @@
         </p>
 
         <button mat-button (click)="makeChange()">Make change</button>
+        }
+        @else {
+        <form [formGroup]="submissionForm" (ngSubmit)="submit()">
+          <div formArrayName="attachments">
+            <div *ngFor="let attachment of getSubmissionAttachments().controls; let i=index">
+              <input type="file" [formControlName]="i" />
+            </div>
+            <button mat-button type="button" (click)="addAttachment()">Attach another</button>
+          </div>
+          <!--<p>-->
+          <!--  <input type="file" />-->
+          <!--</p>-->
+          <h5>Remarks</h5>
+          <input type="text" [formControl]="getSubmissionRemark()" />
+          <button mat-button type="submit">Submit</button>
+        </form>
+        }
+        <div>
+          <!--{{ task.source.creator }} graded this-->
+        </div>
+      </div>
+
+      <div class="other section">
+        @if (otherSubmissions().length <= 0) { <div>
+          No submissions on this task yet.
       </div>
       }
       @else {
-      <form [formGroup]="submissionForm" (ngSubmit)="submit()">
-        <div formArrayName="attachments">
-          <div *ngFor="let attachment of getSubmissionAttachments().controls; let i=index">
-            <input type="file" [formControlName]="i" />
-          </div>
-          <button mat-button type="button" (click)="addAttachment()">Attach another</button>
-        </div>
-        <!--<p>-->
-        <!--  <input type="file" />-->
-        <!--</p>-->
-        <h5>Remarks</h5>
-        <input type="text" [formControl]="getSubmissionRemark()" />
-        <button mat-button type="submit">Submit</button>
-      </form>
+
+      {{otherSubmissions().length}} have already submitted
       }
     </div>
-
-
   </div>
+
+
+</div>

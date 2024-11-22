@@ -53,11 +53,11 @@ export class ViewComponent {
   @ViewChild(ClassesComponent) overlayComponent!: ClassesComponent;
   user: any;
   sidenavPosition = 59;
+  groups: any;
+  sidenavIsOpen = false;
+  classes = [];
 
   navChanged() {
     this.sidenavIsOpen = !this.sidenavIsOpen;
   }
-  groups: any;
-  sidenavIsOpen = false;
-  classes = [];
 }

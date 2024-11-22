@@ -36,6 +36,8 @@ export class TaskComponent {
   user: any;
   task: any;
   yourSubmission = signal(null);
+  yourSubmissionResponse = signal(null);
+  otherSubmissions = signal(null);
   submissionForm = new FormGroup({
     attachments: new FormArray([]),
     remark: new FormControl(""),
@@ -51,8 +53,11 @@ export class TaskComponent {
       this.task = data;
       this.userService.getLoggedUser().subscribe((user: any) => {
         this.user = user;
-        this.service.getTaskSubmisison(this.task.id, user.id).subscribe((submission: any) => {
+        this.service.getTaskSubmission(this.task.id, user.id).subscribe((submission: any) => {
           this.yourSubmission.set(submission);
+        });
+        this.service.getTaskOtherSubmissions(this.task.id, user.id).subscribe((data: any) => {
+          this.otherSubmissions.set(data);
         });
       })
     });
