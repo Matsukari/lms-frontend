@@ -12,28 +12,55 @@
 </mat-toolbar>
 
 
-<mat-divider />
 
-<div class="body">
-  <p>
-    {{group.desc}}
-  </p>
+
+<div class="app-row sections">
+  <div class="content app-col">
+    <nav mat-tab-nav-bar [tabPanel]="panel">
+      @for (item of tabs; track item) {
+      <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+        {{item.name}}
+      </a>
+      }
+    </nav>
+    <mat-tab-nav-panel #panel>
+      <router-outlet />
+    </mat-tab-nav-panel>
+
+  </div>
+  <mat-card class="about panel">
+    <div class="title">{{group.name}}</div>
+    <div class="desc">{{group.desc}}</div>
+    <div class="app-divider"></div>
+    <div class="status">
+      <button mat-button>
+        <mat-icon>language</mat-icon>
+        <div>7 Online</div>
+      </button>
+      <button mat-button>
+        <mat-icon>person</mat-icon>
+        <div>{{group.members.length}} Members</div>
+      </button>
+      <button mat-button>
+        <mat-icon>visibility</mat-icon>
+        <div>4 Watching</div>
+      </button>
+    </div>
+    <div class="admin">
+      <div class="title">Administrators</div>
+      <div class="list">
+        @for (item of group.admins; track item) {
+        <div class="app-row-center">
+          <img mat-card-avatar src="https://i.pravatar.cc/300" />
+          <div>{{item.lastname}} {{item.firstname}}</div>
+          <span class="spacer"></span>
+          <button mat-icon-button><mat-icon>mail</mat-icon></button>
+          <button mat-icon-button><mat-icon>info</mat-icon></button>
+        </div>
+        }
+      </div>
+    </div>
+  </mat-card>
 </div>
 
-<!--<mat-form-field appearance="outline">-->
-<!--  <mat-label>Search for...</mat-label>-->
-<!--  <input matInput placeholder="Placeholder">-->
-<!--  <mat-icon matSuffix>search</mat-icon>-->
-<!--</mat-form-field>-->
-
-<nav mat-tab-nav-bar [tabPanel]="panel">
-  @for (item of tabs; track item) {
-  <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
-    {{item.name}}
-  </a>
-  }
-</nav>
-<mat-tab-nav-panel #panel>
-  <router-outlet />
-</mat-tab-nav-panel>
 }

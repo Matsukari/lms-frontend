@@ -20,11 +20,14 @@ export class PostService {
       .set("comments", comments);
     return this.http.get(environment.apiUrl + "/get/post/" + id, { params: params });
   }
+  setMeta(id: string, data: {key: string, value: any}) {
+    return this.http.post(environment.apiUrl + "/set/meta/" + id, data);
+  }
   getPostsFromGroup(id: string, reacts?: boolean, comments?: boolean) {
-    const params = new HttpParams()
-      .set("reacts", reacts)
-      .set("comments", comments);
-    return this.http.get(environment.apiUrl + "/get/posts/group/" + id, { params: params });
+    return this.http.get(environment.apiUrl + "/get/posts/group/" + id);
+  }
+  getResourcesFromGroup(id: string, reacts?: boolean, comments?: boolean) {
+    return this.http.get(environment.apiUrl + "/get/resources/group/" + id);
   }
   comment(data: { text: string, post: number, user: number }) {
     return this.http.post(environment.apiUrl + "/post/comment", data);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-resources',
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './resources.component.scss'
 })
 export class ResourcesComponent {
+  posts = signal(null);
 
 }

@@ -1,1 +1,22 @@
-<p>resources works!</p>
+@defer (when posts()) {
+<div class="content">
+  <p *ngIf="posts().length <= 0">No community has posted anything.
+    <mat-icon>sentiment_dissatisfied</mat-icon>
+  </p>
+  <div *ngIf="posts().length >= 0" class="posts">
+    @for (item of posts(); track item) {
+    <mat-card class="task" routerLink="/post/{{item.id}}">
+      <div class="head app-row">
+        <mat-icon>description</mat-icon>
+        <p>{{item.title}}</p>
+        <span class="spacer"></span>
+
+        <button mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+    }
+  </div>
+</div>
+}

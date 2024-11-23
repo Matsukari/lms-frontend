@@ -1,0 +1,27 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  width: 100%;
+}
+.posts > .task {
+  border: 1px solid gray;
+  border-radius: 0;
+  padding: 0 1em;
+  width: 100%;
+  cursor: pointer;
+}
+.posts .head {
+  align-items: center;
+  gap: 1em;
+  margin: 0;
+
+}
+.posts .foot {
+  gap: 0.3em;
+  justify-content: right;
+}
+.posts .foot * {
+  font-size: x-small;
+  color: gray;
+}

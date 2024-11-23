@@ -11,6 +11,9 @@
       <mat-icon [matMenuTriggerFor]="createMenu.menu">design_services</mat-icon>
     </button>
 
+    <button mat-icon-button [matMenuTriggerFor]="appMenu.menu"class="post-button" >
+      <mat-icon>apps</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="notifMenu.menu" class="notif-button">
       <mat-icon>notifications</mat-icon>
     </button>
@@ -23,6 +26,7 @@
     </button>
   </div>
 
+  <app-app-menu #appMenu />
   <app-notifications #notifMenu />
   <app-profile-menu #profileMenu />
   <app-create-menu #createMenu />

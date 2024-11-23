@@ -22,12 +22,15 @@ export class EventsComponent {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-  ) {}
+  ) { }
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       let groupId = params["id"];
       this.postService.getPostsFromGroup(groupId, true, true).subscribe((data: any) => {
         this.posts.set(data);
+        //this.postService.setMeta(data[0].id, { key: "resource", value: "lesson" }).subscribe((data: any) => {
+        //  alert("ADDED meta");
+        //})
       })
     })
   }

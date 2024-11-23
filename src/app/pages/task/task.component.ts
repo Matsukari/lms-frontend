@@ -56,6 +56,9 @@ export class TaskComponent {
         this.service.getTaskSubmission(this.task.id, user.id).subscribe((submission: any) => {
           this.yourSubmission.set(submission);
         });
+        this.service.getTaskResponse(this.task.id, user.id).subscribe((data: any) => {
+          this.yourSubmissionResponse.set(data);
+        });
         this.service.getTaskOtherSubmissions(this.task.id, user.id).subscribe((data: any) => {
           this.otherSubmissions.set(data);
         });

@@ -17,6 +17,9 @@ export class TaskService {
   getTaskOtherSubmissions(task: string, userId: string) {
     return this.http.get(`${environment.apiUrl}/from/task-other-submission/${task}/${userId}`);
   }
+  getTaskResponse(task: string, userId: string) {
+    return this.http.get(`${environment.apiUrl}/from/task-response/${task}/${userId}`);
+  }
   getTask(id: string, submissions?: boolean, assigned_users?: boolean, assigned_groups?: boolean) {
     const params = new HttpParams()
     .set("submissions", submissions)

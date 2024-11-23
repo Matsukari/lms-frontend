@@ -97,6 +97,11 @@
       <div class="section you">
         @if (yourSubmission()) {
 
+        <div>
+
+          {{task.creator.lastname}} has graded you {{yourSubmissionResponse().grade}}
+        </div>
+
         <div class="attachments">
           <div *ngFor="let item of yourSubmission().attachments; let i=index">
             <mat-card>

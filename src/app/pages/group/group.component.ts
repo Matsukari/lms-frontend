@@ -10,7 +10,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from "@angular/material/card";
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { MatGridListModule } from "@angular/material/grid-list";
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { PostPreviewComponent } from '../../components/post-preview/post-preview.component';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { PassThrough } from 'node:stream';
@@ -33,6 +34,8 @@ import { PassThrough } from 'node:stream';
     PostPreviewComponent,
     TimeAgoPipe,
     RouterOutlet,
+    MatGridListModule,
+
   ],
   templateUrl: './group.component.html',
   styleUrl: './group.component.scss'
@@ -45,7 +48,7 @@ export class GroupComponent {
   ];
   group: any;
   posts: any;
-  activeTab: any = "events";
+  activeTab: any;
 
   @Input()
   set id(groupId: string) {
@@ -55,8 +58,14 @@ export class GroupComponent {
     });
   }
   constructor(
-    private groupService: GroupService
+    private groupService: GroupService,
+    private route: ActivatedRoute,
   ) { }
+  ngOnInit() {
+    this.route.firstChild.url.subscribe(url => {
+      this.activeTab = url;
+    })
+  }
   taskIsOverdue(task: any) {
     return new Date().toISOString() > task.due_at;
   }
