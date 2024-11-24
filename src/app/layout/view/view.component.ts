@@ -11,6 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { ClassesComponent } from '../../components/classes/classes.component';
 import { MessengesComponent } from '../../components/messenges/messenges.component';
+import { UiStateService } from '../../services/ui-state.service';
+import { StatusPanelComponent } from '../../components/status-panel/status-panel.component';
 export interface NavSection {
   name: string;
   desc: string;
@@ -31,14 +33,18 @@ export interface NavSection {
     MatIconModule,
     ClassesComponent,
     MessengesComponent,
+    StatusPanelComponent,
   ],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewComponent {
-  constructor(private userService: UserService) { }
-  ngOnInit() {
+  constructor(
+    private userService: UserService,
+    private uiState: UiStateService,
+  ) { }
+  async ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
       user.member_groups.forEach((item: any) => {
@@ -46,6 +52,10 @@ export class ViewComponent {
           this.classes.push(item);
         }
       })
+    })
+    this.uiState.sidenavOpen.subscribe(async (open) => {
+      if (open) this.sidenav.open();
+      else this.sidenav.close();
     })
   }
   @ViewChild('header', { static: true }) header: ElementRef;

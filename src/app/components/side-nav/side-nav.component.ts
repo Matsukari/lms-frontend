@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ClassesComponent } from '../classes/classes.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 
 export interface NavSection {
@@ -27,6 +29,8 @@ export interface NavSection {
     CommonModule,
     RouterLink,
     ClassesComponent,
+    MatMenuModule,
+    MatCardModule,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',
@@ -54,7 +58,7 @@ export class SideNavComponent {
       name: 'Home',
       desc: "zxcvzxcvzxcv",
       icon: "home",
-      url: "/home"
+      url: "/community"
     },
     {
       name: 'Dashboard',

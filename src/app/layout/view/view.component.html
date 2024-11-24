@@ -11,13 +11,13 @@
     <app-side-nav [overlayComponent]="overlayComponent" [groups]="user.member_groups" [classes]="classes" />
   </mat-sidenav>
 
-  <mat-sidenav-content class="content" id="view-content">
-    <router-outlet></router-outlet>
+  <mat-sidenav-content class="app-row content" id="view-content">
+    <router-outlet class="main-content"></router-outlet>
+    <div id="side-content" class="side-content">
+      <app-status-panel/>
+    </div>
   </mat-sidenav-content>
 
-  <!--<mat-sidenav #sidenav mode="side" position="end" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="sidenavPosition"-->
-  <!--  [fixedBottomGap]="0" (openedChange)="navChanged()">-->
-  <!--</mat-sidenav>-->
 
 </mat-sidenav-container>
 

@@ -1,0 +1,31 @@
+<div class="app-row options">
+  <button mat-stroked-button class="sort-button">
+    <mat-icon>sort</mat-icon>
+    <div>
+      {{sortings[sorting]}}
+    </div>
+  </button>
+  <div class="app-row views">
+    @for (item of views; track item) {
+    <mat-icon [class.curview]="$index == view">{{item.icon}}</mat-icon>
+    }
+  </div>
+
+</div>
+<div class="content">
+
+  <!--@if (groups)-->
+  @defer (when posts()) {
+  <div class="posts">
+    @for (item of posts(); track item) {
+    <app-post-preview [post]="item" />
+    }
+  </div>
+  }
+  @placeholder (minimum 0.4s) {
+  <div class="app-anim-loadbars"></div>
+  }
+  @error {
+  <p>No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon></p>
+  }
+</div>

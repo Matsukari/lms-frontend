@@ -1,0 +1,33 @@
+<mat-card class="about panel">
+  <div class="title">{{group.name}}</div>
+  <div class="desc">{{group.desc}}</div>
+  <div class="app-divider"></div>
+  <div class="status">
+    <button mat-button>
+      <mat-icon>language</mat-icon>
+      <div>7 Online</div>
+    </button>
+    <button mat-button>
+      <mat-icon>person</mat-icon>
+      <div>{{group.members.length}} Members</div>
+    </button>
+    <button mat-button>
+      <mat-icon>visibility</mat-icon>
+      <div>4 Watching</div>
+    </button>
+  </div>
+  <div class="admin">
+    <div class="title">Administrators</div>
+    <div class="list">
+      @for (item of group.admins; track item) {
+      <div class="app-row-center">
+        <img mat-card-avatar src="https://i.pravatar.cc/300" />
+        <div>{{item.lastname}} {{item.firstname}}</div>
+        <span class="spacer"></span>
+        <button mat-icon-button><mat-icon>mail</mat-icon></button>
+        <button mat-icon-button><mat-icon>info</mat-icon></button>
+      </div>
+      }
+    </div>
+  </div>
+</mat-card>

@@ -1,52 +1,12 @@
-<mat-tab-group>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon>groups</mat-icon>
-      <span class="label">Community</span>
-    </ng-template>
-
-    <div class="app-row options">
-      <button mat-stroked-button class="sort-button">
-        <mat-icon>sort</mat-icon>
-        <div>
-          {{sortings[sorting]}}
-        </div>
-      </button>
-      <div class="app-row views">
-        @for (item of views; track item) {
-        <mat-icon [class.curview]="$index == view">{{item.icon}}</mat-icon>
-        }
-      </div>
-
-    </div>
-
-    <div class="content">
-
-      <!--@if (groups)-->
-      @defer (when posts()) {
-      <div class="posts">
-        @for (item of posts(); track item) {
-        <app-post-preview [post]="item" />
-        }
-      </div>
-      }
-      @placeholder (minimum 0.4s) {
-      <div class="app-anim-loadbars" ></div>
-      }
-      @error {
-      <p>No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon></p>
-      }
-    </div>
-  </mat-tab>
-
-  <mat-tab >
-    <ng-template mat-tab-label>
-      <mat-icon>live_tv</mat-icon>
-      <span class="label">Live</span>
-    </ng-template>
-    <div class="content">
-      <p>No live events are ongoing.<mat-icon>sentiment_dissatisfied</mat-icon></p>
-    </div>
-  </mat-tab>
-
-</mat-tab-group>
+<div class="content app-col">
+  <nav mat-tab-nav-bar [tabPanel]="panel">
+    @for (item of tabs; track item) {
+    <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+      {{item.name}}
+    </a>
+    }
+  </nav>
+  <mat-tab-nav-panel #panel>
+    <router-outlet />
+  </mat-tab-nav-panel>
+</div>

@@ -34,6 +34,15 @@ export class TaskService {
     .set("assigned_groups", assigned_groups);
     return this.http.get(environment.apiUrl + "/get/tasks/group/" + id, {params: params});
   }
+  getTasksFromUserAndGroup(id: string, user: string, category: string, submissions?: boolean, assigned_users?: boolean, assigned_groups?: boolean) {
+    const params = new HttpParams()
+    .set("category", category)
+    .set("user_id", user)
+    .set("submissions", submissions)
+    .set("assigned_users", assigned_users)
+    .set("assigned_groups", assigned_groups);
+    return this.http.get(environment.apiUrl + "/get/tasks-category/group/" + id, {params: params});
+  }
   comment(data: { text: string, post: number, user: number }) {
     return this.http.post(environment.apiUrl + "/task/comment", data);
   }

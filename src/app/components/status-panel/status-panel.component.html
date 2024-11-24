@@ -1,0 +1,8 @@
+<div class="container">
+  <p>Your status</p>
+  <div>Your due tasks</div>
+  @for (item of dueTasks(); track item) {
+  <div>{{item.name}}</div>
+  }
+</div>
+

@@ -36,10 +36,13 @@ export class TasksComponent {
       this.taskService.getTasksFromGroup(groupId, true, true, true).subscribe((data: any) => {
         this.tasks.set(data);
         this.userService.getLoggedUser().subscribe((user: any) => {
-          this.taskService.submit({ attachments: ["Sample"], remark: "Sample remark", user: user.id, source: data[0].id }).subscribe(data => {
-          });
-          this.taskService.grade({ attachments: [], remark: "You did a fucking good job", grade: 99, user: user.id, source: data[0].id }).subscribe(data => {
-          });
+          this.taskService.getTasksFromUserAndGroup(groupId, user.id, "completed", true, true, true).subscribe((data: any)=>{
+            alert(data.length);
+          })
+          //this.taskService.submit({ attachments: ["Sample"], remark: "Sample remark", user: user.id, source: data[0].id }).subscribe(data => {
+          //});
+          //this.taskService.grade({ attachments: [], remark: "You did a fucking good job", grade: 99, user: user.id, source: data[0].id }).subscribe(data => {
+          //})
         });
       })
     })

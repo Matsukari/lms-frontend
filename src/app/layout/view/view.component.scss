@@ -1,7 +1,12 @@
-
 .content {
   padding: 0.5em;
+  display: flex;
+  flex-direction: row;
 }
+.content::-webkit-scrollbar {
+  display: none;
+}
+
 
 
 .sidenav-container {
@@ -12,6 +17,19 @@
   right: 0;
 }
 
+.side-content {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  overflow:auto;
+  scrollbar-width: 0;
+  -ms-overflow-style: none;
+  margin-left: 0.5em;
+}
+
+.side-content::-webkit-scrollbar {
+  display: none;
+}
 
 .sidenav {
   display: flex;

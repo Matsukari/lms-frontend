@@ -1,0 +1,23 @@
+<div class="app-row container">
+  <mat-card class="profile">
+    <img mat-card-avatar src="https://i.pravatar.cc/300" />
+    <div>{{user.lastname}} {{user.firstname}}</div>
+    <button mat-button>Preview</button>
+  </mat-card>
+  <mat-card class="section">
+    <form [formGroup]="form">
+      <div>
+        <mat-label>Email</mat-label>
+        <input type="email" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+      </div>
+      <div>
+        <mat-label>Address</mat-label>
+        <input type="text" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+      </div>
+      <div>
+        <mat-label>Password</mat-label>
+        <input type="password" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+      </div>
+    </form>
+  </mat-card>
+</div>

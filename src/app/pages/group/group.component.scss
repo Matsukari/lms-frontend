@@ -39,46 +39,5 @@ mat-tab-nav-panel {
   width: 55vw;
 }
 
-.panel.about {
-  width: 35vw;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  margin-left: 0.5em;
-  border: 1px solid #dadada;
-  padding: 1em;
-  box-shadow: none;
-  background-color: white;
-}
-
-.about>.title {
-  text-align: center;
-}
-
-.about>.desc {
-  padding: 1em;
-  border-radius: 2em;
-  background-color: #fafafa;
-  color: #444;
-
-}
-
-.about>.status {
-  background-color: #eaeaea;
-  margin-bottom: 1em;
-}
-
-.about>.admin .title {
-  margin-bottom: 1em;
-}
-
-.admin > .list > * {
-  backgroundc-color: #fafafa;
-}
-.admin > .list button {
-  color: gray;
-}
-.admin .list img {
-  margin: 0;
-  margin-right: 1em;
+app-group-about-panel {
 }

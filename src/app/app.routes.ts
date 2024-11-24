@@ -10,6 +10,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ResourcesComponent } from './components/group/resources/resources.component';
 import { TasksComponent } from './components/group/tasks/tasks.component';
 import { EventsComponent } from './components/group/events/events.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { MediaComponent } from './pages/media/media.component';
+import { LiveComponent } from './pages/live/live.component';
+import { SchoolComponent } from './pages/school/school.component';
 
 export const routes: Routes = [
   {
@@ -17,8 +21,9 @@ export const routes: Routes = [
     component: ViewComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: "home", component: HomeComponent },
       { path: "dashboard", component: DashboardComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: "school", component: SchoolComponent },
       {
         path: "group/:id", component: GroupComponent, children: [
           { path: "", redirectTo: "events", pathMatch: "full" },
@@ -29,6 +34,13 @@ export const routes: Routes = [
       },
       { path: "post/:id", component: PostComponent },
       { path: "task/:id", component: TaskComponent },
+      {
+        path: "", component: HomeComponent, children: [
+          { path: "", redirectTo: "community", pathMatch: "full" },
+          { path: "community", component: MediaComponent },
+          { path: "live", component: LiveComponent },
+        ]
+      },
     ]
   },
   { path: "login", component: LoginComponent },

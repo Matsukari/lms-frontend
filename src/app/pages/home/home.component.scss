@@ -2,49 +2,4 @@ mat-icon {
   margin: 0.5em;
 }
 
-.posts {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  margin-top: 0.5em;
-}
-.post-button mat-icon {
-  margin: 0;
-}
 
-
-.label {
-  font-size: smaller;
-}
-
-.views {
-  background-color: #eaeaea;
-  border-radius: 2em;
-  align-items: center;
-  padding: 0em 0.4em;
-}
-
-
-.views > * {
-  font-size: medium;
-  width: 16px;
-  height: 16px;
-}
-
-.curview {
-  color: gray;
-}
-
-.options {
-  gap: 1em;
-  margin-top: 0.5em;
-}
-
-
-
-.app-anim-loadbars {
-  position: absolute;
-  top: 50%;
-  // bottom: 50%;
-  left: 50%
-}
