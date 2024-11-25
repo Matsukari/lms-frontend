@@ -4,34 +4,7 @@
   align-items: start;
 }
 
-.main {
-  width: 60vw;
-}
 
-
-.submission .attachments {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4em;
-}
-
-.submission .attachments mat-card {
-  border: none;
-  box-shadow: none;
-}
-.submission {
-  background: #f6f6f6;
-  position: sticky;
-  top: 0;
-  margin-top: 1em;
-  border: 1px solid gray;
-  min-height: 70vh;
-  width: 20vw;
-  border-radius: 10px;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-}
 input[type="text"] {
   outline: none;
 }
@@ -39,6 +12,7 @@ input[type="text"] {
 .desc {
   min-height: 10em;
 }
+
 .text-disabled {
   color: gray;
   font-size: smaller;
@@ -48,6 +22,7 @@ input[type="text"] {
 .creator {
   align-items: center;
 }
+
 .due {
   align-items: center;
   font-size: smaller;
@@ -58,51 +33,4 @@ input[type="text"] {
   margin: 0;
   margin-right: 1em;
 }
-.comments .text-disabled {
-  margin-top: 3em;
-}
 
-app-comment-box {
-  margin-bottom: 1em;
-}
-.comments {
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-}
-.comments .all {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-.comment {
-  gap: 0.5em;
-}
-.comment .header {
-  margin: 0.2em;
-}
-.comment .name {
-  font-size: small;
-}
-.comment .date {
-  font-size: x-small;
-}
-.comment .section {
-  padding: 0 1em;
-  border-radius: 1em;
-  background-color: #f1f1f1;
-}
-.comment .actions * {
-  font-size: small;
-}
-
-.section.you {
-}
-.section.other {
-  flex-grow: 1;
-  align-content: center;
-  text-align: center;
-  background-color: #eaeaea;
-  border-radius: 2em;
-}

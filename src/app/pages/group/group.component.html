@@ -1,7 +1,10 @@
-@defer (when group) {
-
 <mat-toolbar>
+  @defer (when group) {
   <h3>{{ group.name }}</h3>
+  }
+  @placeholder (minimum 0.4s) {
+  <h3></h3>
+  }
   <span class="spacer"></span>
   <button mat-icon-button>
     <mat-icon>more_vert</mat-icon>
@@ -19,10 +22,10 @@
       }
     </nav>
     <mat-tab-nav-panel class="active-content" #panel>
-      <router-outlet />
+      <div class="tab-content">
+        <router-outlet />
+      </div>
     </mat-tab-nav-panel>
   </div>
   <app-group-about-panel #about [group]="group" />
 </div>
-
-}

@@ -11,6 +11,7 @@ import { CommonModule, Location } from '@angular/common';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { CommentBoxComponent } from '../../components/comment-box/comment-box.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 
 @Component({
   selector: 'app-post',
@@ -27,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
     CommentBoxComponent,
     MatMenuModule,
     CommonModule,
+    CommentsSectionComponent,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
@@ -34,7 +36,6 @@ import { MatMenuModule } from '@angular/material/menu';
 export class PostComponent {
   post: any;
   hasReaction = signal(false);
-  commentSelected = signal(0);
   @Input()
   set id(postId: string) {
     this.service.getPost(postId, true, true).subscribe((data: any) => {
@@ -42,7 +43,7 @@ export class PostComponent {
     });
   }
   constructor(
-    private service: PostService,
+    protected service: PostService,
     private location: Location
   ) { }
 
@@ -67,17 +68,10 @@ export class PostComponent {
       });
     })
   }
-  editComment() {
-
-  }
   deleteComment() {
-    this.service.deleteComment(this.commentSelected().toString()).subscribe(_ => {
-      this.service.getPost(this.post.id, true, true).subscribe((data: any) => {
-        this.post = data;
-      });
+    this.service.getPost(this.post.id, true, true).subscribe((data: any) => {
+      this.post = data;
     });
   }
-  reportComment() {
-
-  }
 }
+

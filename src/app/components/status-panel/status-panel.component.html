@@ -1,8 +1,12 @@
 <div class="container">
   <p>Your status</p>
-  <div>Your due tasks</div>
+  <div class="accordion">Your due tasks</div>
   @for (item of dueTasks(); track item) {
-  <div>{{item.name}}</div>
+  <div class="item" routerLink="/task/{{item.id}}">{{item.name}}</div>
+
+  }
+  <div class="accordion">Your recently missed tasks</div>
+  @for (item of missedTasks(); track item) {
+  <div class="item" routerLink="/task/{{item.id}}">{{item.name}}</div>
   }
 </div>
-

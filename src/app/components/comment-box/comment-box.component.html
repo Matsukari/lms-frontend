@@ -1,12 +1,12 @@
-<form class="app-row" (ngSubmit)="submitComment()">
+<div class="app-row">
   <img mat-card-avatar src="https://i.pravatar.cc/300" />
   <div class="section" [class.fullbox]="showFull()">
     <input class="box" id="comment" placeholder="Add a comment" matInput [formControl]="comment">
     <div *ngIf="showFull()" class="foot app-row">
       <div class="actions app-row">
         <button mat-button (click)="cancel()">Cancel</button>
-        <button mat-button type="submit">Comment</button>
+        <button mat-button (click)="submitComment()">Comment</button>
       </div>
     </div>
   </div>
-</form>
+</div>

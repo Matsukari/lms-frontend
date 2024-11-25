@@ -12,9 +12,11 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="app-row content" id="view-content">
-    <router-outlet class="main-content"></router-outlet>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
     <div id="side-content" class="side-content">
-      <app-status-panel/>
+      <app-status-panel />
     </div>
   </mat-sidenav-content>
 

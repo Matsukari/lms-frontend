@@ -5,7 +5,6 @@
         keyboard_return
       </mat-icon>
     </button>
-
     <h3>{{ task.name }}</h3>
 
     <span class="spacer"></span>
@@ -13,12 +12,9 @@
     <button mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
-
   </mat-toolbar>
 
-
   <mat-divider />
-
 
   <div class="content">
 
@@ -50,110 +46,8 @@
         }
       </div>
 
-      <mat-card class="comments">
-        <div class="app-divider"></div>
-        <app-comment-box (onSubmit)="submitComment($event)" />
-        @if (task.comments.length <= 0) { <p class="text-disabled">
-          No thoughts in this task yet.
-          </p>
-          }
-          @else {
-          <div class="all">
-            @for (item of task.comments; track item) {
-            <div class="app-row comment">
-              <img mat-card-avatar src="https://i.pravatar.cc/300" />
-              <div class="section">
-                <p class="header">
-                  <span class="name">
-                    {{item.user.firstname}} {{item.user.lastname}}
-                  </span>
-                  <span class="dot">
-                    ・
-                  </span>
-                  <span class="date">
-                    {{ item.updated_at | timeAgo }}
-                  </span>
-                </p>
-                <p>{{item.content}}</p>
-                <div class="actions">
-                  <button mat-button><mat-icon>thumb_up</mat-icon>
-                    <div>Like</div>
-                  </button>
-                  <button mat-button><mat-icon>reply</mat-icon>
-                    <div>Reply</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            }
-          </div>
-          }
-      </mat-card>
-    </div>
-
-
-    <div class="submission">
-      <h5>Your Submission</h5>
-      <div class="section you">
-        @if (yourSubmission()) {
-
-
-        <div>
-
-          {{task.creator.lastname}} has graded you {{yourSubmissionResponse().grade}}
-        </div>
-
-        <div class="attachments">
-          <div *ngFor="let item of yourSubmission().attachments; let i=index">
-            <mat-card>
-              @if (item) {
-              <mat-card-content>{{item}}</mat-card-content>
-              }
-              @else {
-              <mat-card-content>No name</mat-card-content>
-              }
-            </mat-card>
-          </div>
-        </div>
-
-        <p>
-          {{yourSubmission().desc}}
-        </p>
-
-        <button mat-button (click)="makeChange()">Make change</button>
-        }
-        @else {
-        <form [formGroup]="submissionForm" (ngSubmit)="submit()">
-          <div formArrayName="attachments">
-            <div *ngFor="let attachment of getSubmissionAttachments().controls; let i=index">
-              <input type="file" [formControlName]="i" />
-            </div>
-            <button mat-button type="button" (click)="addAttachment()">Attach another</button>
-          </div>
-          <!--<p>-->
-          <!--  <input type="file" />-->
-          <!--</p>-->
-          <h5>Remarks</h5>
-          <input type="text" [formControl]="getSubmissionRemark()" />
-          <button mat-button type="submit">Submit</button>
-        </form>
-        }
-        <div>
-          <!--{{ task.source.creator }} graded this-->
-        </div>
-      </div>
-
-      <div class="other section">
-        @if (otherSubmissions().length <= 0) { <div>
-          No submissions on this task yet.
-      </div>
-      }
-      @else {
-
-      {{otherSubmissions().length}} have already submitted
-      }
+      <app-comments-section (onSubmit)="submitComment($event)" [commentService]="service" [comments]="task.comments"/>
     </div>
   </div>
-
 
 </div>

@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
+import { CommentServiceInterface } from './interface/comment.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostService {
+export class PostService implements CommentServiceInterface {
   constructor(
     private http: HttpClient,
   ) { }

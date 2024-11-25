@@ -1,0 +1,47 @@
+<div class="submission">
+  <h5>Your Submission</h5>
+  <div class="section you">
+    @if (yourSubmission()) {
+
+
+    <div>
+      {{task.creator.lastname}} has graded you {{yourSubmissionResponse().grade}}
+    </div>
+
+    <div class="attachments">
+      <div *ngFor="let item of yourSubmission().attachments; let i=index">
+        <mat-card>
+          @if (item) {
+          <mat-card-content>{{item}}</mat-card-content>
+          }
+          @else {
+          <mat-card-content>No name</mat-card-content>
+          }
+        </mat-card>
+      </div>
+    </div>
+
+    <p>
+      {{yourSubmission().desc}}
+    </p>
+
+    <button mat-button (click)="makeChange()">Make change</button>
+    }
+    @else {
+    You have no submission
+    }
+    <div>
+      <!--{{ task.source.creator }} graded this-->
+    </div>
+  </div>
+
+  <div class="other section">
+    @if (otherSubmissions().length <= 0) { <div>
+      No submissions on this task yet.
+  </div>
+  }
+  @else {
+
+  {{otherSubmissions().length}} have already submitted
+  }
+</div>

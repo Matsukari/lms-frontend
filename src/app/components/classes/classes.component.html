@@ -1,4 +1,4 @@
-<div *ngIf="visible" class="overlay" [ngStyle]="overlayStyle" id="classes-component">
+<mat-card *ngIf="visible" class="overlay" [ngStyle]="overlayStyle" id="classes-component">
   @for (item of classes; track item) {
   <div routerLink="/group/{{item.id}}" class="app-row item">
     <img mat-card-avatar src="https://i.pravatar.cc/300" />
@@ -14,4 +14,4 @@
   </div>
   }
   <!-- Add your custom overlay content here -->
-</div>
+</mat-card>

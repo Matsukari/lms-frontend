@@ -13,6 +13,7 @@ import { ClassesComponent } from '../../components/classes/classes.component';
 import { MessengesComponent } from '../../components/messenges/messenges.component';
 import { UiStateService } from '../../services/ui-state.service';
 import { StatusPanelComponent } from '../../components/status-panel/status-panel.component';
+import { SideContentComponent } from '../../components/side-content/side-content.component';
 export interface NavSection {
   name: string;
   desc: string;
@@ -34,6 +35,7 @@ export interface NavSection {
     ClassesComponent,
     MessengesComponent,
     StatusPanelComponent,
+    SideContentComponent,
   ],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss',

@@ -4,11 +4,11 @@
     <mat-list-item [routerLink]="item.url">
       <mat-icon matListItemIcon>{{ item.icon}}</mat-icon>
       <div matListItemTitle>{{item.name}}</div>
-      <!--<div matListItemLine>{{item.desc}}</div>-->
     </mat-list-item>
     }
+
     <mat-divider></mat-divider>
-    <!--<div mat-subheader class="classes">Classes</div>-->
+
     <mat-list-item (click)="onElementClick($event)">
       <mat-icon matListItemIcon>splitscreen_landscape</mat-icon>
       <div matListItemTitle>Classes</div>
@@ -28,8 +28,7 @@
     <mat-divider />
 
     <div class="events">
-      Nothings happening right now.
-
+      Nothing's happening right now.
     </div>
   </mat-list>
 </div>

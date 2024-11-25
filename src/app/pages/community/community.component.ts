@@ -5,17 +5,17 @@ import { PostService } from '../../services/post.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-media',
+  selector: 'app-community',
   standalone: true,
   imports: [
     MatIconModule,
     MatButtonModule,
     PostPreviewComponent,
   ],
-  templateUrl: './media.component.html',
-  styleUrl: './media.component.scss'
+  templateUrl: './community.component.html',
+  styleUrl: './community.component.scss'
 })
-export class MediaComponent {
+export class CommunityComponent {
   posts = signal(null);
   view = 0;
   views = [

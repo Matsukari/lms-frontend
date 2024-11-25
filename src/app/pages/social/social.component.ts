@@ -6,7 +6,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { PostService } from '../../services/post.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-social',
   standalone: true,
   imports: [
     RouterOutlet,
@@ -15,11 +15,11 @@ import { PostService } from '../../services/post.service';
     MatTabsModule,
     RouterLink,
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './social.component.html',
+  styleUrl: './social.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
+export class SocialComponent {
   posts = signal(null);
   tabs = [
     { name: "Community", url: "community" },

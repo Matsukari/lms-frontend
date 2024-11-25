@@ -46,6 +46,9 @@ export class TaskService {
   comment(data: { text: string, post: number, user: number }) {
     return this.http.post(environment.apiUrl + "/task/comment", data);
   }
+  deleteComment(id: string) {
+    return this.http.delete(environment.apiUrl + "/delete/task/comment/" + id);
+  }
   submit(data: {attachments: any, remark: string, user: any, source: any}) {
     return this.http.post(environment.apiUrl + "/post/submission", data);
   }

@@ -55,16 +55,16 @@ export class SideNavComponent {
   //accordion = viewChild.required(MatAccordion);
   popular: NavSection[] = [
     {
-      name: 'Home',
-      desc: "zxcvzxcvzxcv",
-      icon: "home",
-      url: "/community"
-    },
-    {
       name: 'Dashboard',
       desc: "zxcvzxcv",
       icon: "bar_chart_4_bars",
       url: "/dashboard"
+    },
+    {
+      name: 'Social',
+      desc: "zxcvzxcvzxcv",
+      icon: "diversity_1",
+      url: "/social"
     },
   ];
 }

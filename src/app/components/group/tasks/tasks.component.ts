@@ -37,7 +37,7 @@ export class TasksComponent {
         this.tasks.set(data);
         this.userService.getLoggedUser().subscribe((user: any) => {
           this.taskService.getTasksFromUserAndGroup(groupId, user.id, "completed", true, true, true).subscribe((data: any)=>{
-            alert(data.length);
+            //alert(data.length);
           })
           //this.taskService.submit({ attachments: ["Sample"], remark: "Sample remark", user: user.id, source: data[0].id }).subscribe(data => {
           //});

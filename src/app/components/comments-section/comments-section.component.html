@@ -1,0 +1,58 @@
+<mat-card class="comments">
+  <div class="app-divider"></div>
+  <app-comment-box (onSubmit)="submitComment($event)" />
+  @if (comments.length <= 0) { <p class="text-disabled">
+    No thoughts in this task yet.
+    </p>
+    }
+    @else {
+    <div class="all">
+      @for (item of comments; track item) {
+      <div class="app-row comment">
+        <img mat-card-avatar src="https://i.pravatar.cc/300" />
+        <div class="section">
+          <p class="header">
+            <span class="name">
+              {{item.user.firstname}} {{item.user.lastname}}
+            </span>
+            <span class="dot">
+              ・
+            </span>
+            <span class="date">
+              {{ item.updated_at | timeAgo }}
+            </span>
+          </p>
+          <p>{{item.content}}</p>
+          <div class="actions">
+            <button mat-button><mat-icon>thumb_up</mat-icon>
+              <div>Like</div>
+            </button>
+            <button mat-button><mat-icon>reply</mat-icon>
+              <div>Reply</div>
+            </button>
+          </div>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="commentMenu"
+          (click)="commentSelected.set(item.id)"><mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      }
+    </div>
+    }
+</mat-card>
+
+
+<mat-menu #commentMenu="matMenu">
+  <button mat-menu-item (click)="editComment()">
+    <mat-icon>edit</mat-icon>
+    <span>Edit</span>
+  </button>
+  <button mat-menu-item (click)="deleteComment()">
+    <mat-icon>delete</mat-icon>
+    <span>Delete</span>
+  </button>
+  <button mat-menu-item (click)="reportComment()">
+    <mat-icon>flag</mat-icon>
+    <span>Report</span>
+  </button>
+</mat-menu>

@@ -15,9 +15,9 @@ export class MessengesComponent {
   user: any;
   constructor(
     private userService: UserService,
-  ) {}
+  ) { }
   ngOnInit() {
-    this.userService.getLoggedUser().subscribe((user: any)=> {
+    this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
     })
   }

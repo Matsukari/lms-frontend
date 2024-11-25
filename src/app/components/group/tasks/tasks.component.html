@@ -1,16 +1,16 @@
-@defer (when tasks()) {
 <div class="content">
+  @defer (when tasks()) {
   <p *ngIf="tasks().length <= 0">No community has posted anything.
     <mat-icon>sentiment_dissatisfied</mat-icon>
   </p>
-  <div *ngIf="tasks().length >= 0" class="tasks">
+  <div *ngIf="tasks().length >= 0" class="tasks app-col">
     @for (item of tasks(); track item) {
     <mat-card class="task" routerLink="/task/{{item.id}}">
       <div class="head app-row">
         <mat-icon>description</mat-icon>
         <p>{{item.name}}</p>
-        <span class="spacer"></span>
 
+        <span class="spacer"></span>
 
         <button mat-icon-button>
           <mat-icon>more_vert</mat-icon>
@@ -23,5 +23,5 @@
     </mat-card>
     }
   </div>
+  }
 </div>
-}

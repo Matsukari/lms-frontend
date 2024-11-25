@@ -1,7 +1,26 @@
-
 .container {
   padding: 1em;
   border-radius: 1em;
   border: 1px solid #aaaa;
   margin: 0.4em 0;
 }
+
+.accordion {
+  padding: 1em;
+  background-color: #eaeaea;
+  margin-bottom: 1em;
+}
+
+.item {
+  text-overflow: ellipsis;
+  padding: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #555;
+}
+
+.item:hover {
+  background-color: #eaeaea;
+  color: black;
+}
+

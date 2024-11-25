@@ -1,0 +1,34 @@
+<div class="calendar-container">
+
+  <div class="calendar-header">
+    <button mat-icon-button (click)="navigateMonth(-1)">
+      <mat-icon>
+        chevron_left
+      </mat-icon>
+    </button>
+    <h2>{{ monthNames[displayedMonth] }} {{ displayedYear }}</h2>
+    <button mat-icon-button (click)="navigateMonth(1)">
+
+      <mat-icon>
+        chevron_right
+      </mat-icon>
+    </button>
+  </div>
+
+  <div class="calendar-grid weekdays">
+    <div class="weekday" *ngFor="let day of weekDays">
+      {{ day }}
+    </div>
+  </div>
+
+  <div class="calendar-grid days">
+    <div *ngFor="let day of daysInMonth" class="calendar-day" [ngClass]="{'today': isToday(day.date)}">
+      <div class="date">{{ day.date.getDate() }}</div>
+      <div class="events">
+        <div *ngFor="let event of day.events" class="event">
+          {{ event }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

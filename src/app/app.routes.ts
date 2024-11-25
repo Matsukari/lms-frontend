@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
+import { SocialComponent } from './pages/social/social.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ViewComponent } from './layout/view/view.component';
 import { GroupComponent } from './pages/group/group.component';
@@ -11,7 +11,7 @@ import { ResourcesComponent } from './components/group/resources/resources.compo
 import { TasksComponent } from './components/group/tasks/tasks.component';
 import { EventsComponent } from './components/group/events/events.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { MediaComponent } from './pages/media/media.component';
+import { CommunityComponent } from './pages/community/community.component';
 import { LiveComponent } from './pages/live/live.component';
 import { SchoolComponent } from './pages/school/school.component';
 
@@ -35,12 +35,13 @@ export const routes: Routes = [
       { path: "post/:id", component: PostComponent },
       { path: "task/:id", component: TaskComponent },
       {
-        path: "", component: HomeComponent, children: [
+        path: "social", component: SocialComponent, children: [
           { path: "", redirectTo: "community", pathMatch: "full" },
-          { path: "community", component: MediaComponent },
+          { path: "community", component: CommunityComponent },
           { path: "live", component: LiveComponent },
         ]
       },
+      { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ]
   },
   { path: "login", component: LoginComponent },

@@ -1,0 +1,49 @@
+
+.comments .text-disabled {
+  margin-top: 3em;
+}
+
+app-comment-box {
+  margin-bottom: 1em;
+}
+
+.comments {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.comments .all {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.comment {
+  gap: 0.5em;
+}
+
+.comment .header {
+  margin: 0.2em;
+}
+
+.comment .name {
+  font-size: small;
+}
+
+.comment .date {
+  font-size: x-small;
+}
+
+.comment .section {
+  padding: 0 1em;
+  border-radius: 1em;
+  background-color: #f1f1f1;
+}
+
+.comment .actions * {
+  font-size: small;
+}
+
+

@@ -1,3 +1,31 @@
+
+
+    <form [formGroup]="submissionForm" (ngSubmit)="submit()">
+      <div formArrayName="attachments">
+        <div *ngFor="let attachment of getSubmissionAttachments().controls; let i=index">
+          <input type="file" [formControlName]="i" />
+        </div>
+        <button mat-button type="button" (click)="addAttachment()">Attach another</button>
+      </div>
+      <!--<p>-->
+      <!--  <input type="file" />-->
+      <!--</p>-->
+      <h5>Remarks</h5>
+      <input type="text" [formControl]="getSubmissionRemark()" />
+      <button mat-button type="submit">Submit</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="app-row avatars">
     @if (group.admins.length > 0) {
     <img mat-card-avatar src="https://i.pravatar.cc/300" />
