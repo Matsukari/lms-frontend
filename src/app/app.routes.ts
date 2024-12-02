@@ -14,6 +14,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CommunityComponent } from './pages/community/community.component';
 import { LiveComponent } from './pages/live/live.component';
 import { SchoolComponent } from './pages/school/school.component';
+import { CommentsComponent } from './pages/task/comments/comments.component';
+import { SubmissionsComponent } from './pages/task/submissions/submissions.component';
 
 export const routes: Routes = [
   {
@@ -33,7 +35,13 @@ export const routes: Routes = [
         ]
       },
       { path: "post/:id", component: PostComponent },
-      { path: "task/:id", component: TaskComponent },
+      {
+        path: "task/:id", component: TaskComponent, children: [
+          { path: "", redirectTo: "comments", pathMatch: "full" },
+          { path: "comments", component: CommentsComponent },
+          { path: "submissions", component: SubmissionsComponent },
+        ]
+      },
       {
         path: "social", component: SocialComponent, children: [
           { path: "", redirectTo: "community", pathMatch: "full" },

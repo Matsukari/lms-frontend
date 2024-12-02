@@ -1,38 +1,21 @@
 
 
-mat-icon {
-  margin: 0.5em;
+// .options {
+//   font-size: ;
+// }
+
+.views * {
+  color: var(--color-disabled);
 }
 
-.views {
-  background-color: #eaeaea;
-  border-radius: 2em;
-  align-items: center;
-  padding: 0em 0.4em;
-}
-
-
-.views>* {
-  font-size: medium;
-  width: 16px;
-  height: 16px;
-}
-
-.curview {
-  color: gray;
-}
-
-.options {
-  gap: 1em;
-  margin-top: 0.5em;
+.view * {
+  color: var(--color-normal);
 }
 
 
 .posts {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  margin-top: 0.5em;
+  gap: var(--margin-small);
+  margin-top: var(--margin-small);
 }
 
 .app-anim-loadbars {

@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { SubmissionPanelComponent } from '../../components/submission-panel/submission-panel.component';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -24,20 +26,28 @@ import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
     SubmissionPanelComponent,
     CommentsSectionComponent,
     TimeAgoPipe,
+    MatTabsModule,
+    RouterLink,
+    RouterOutlet,
   ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
 export class TaskComponent {
   submissionPanel: ComponentRef<SubmissionPanelComponent>;
-  activeTab: any;
   user: any;
   task: any;
+  activeTab: any;
+  tabs = [
+    { name: "Comments", icon: "forum", url: "comments" },
+    { name: "Submissions", icon: "book_4", url: "submissions" },
+  ];
   constructor(
     protected service: TaskService,
     private userService: UserService,
     private location: Location,
     private appRef: ApplicationRef,
+    private route: ActivatedRoute,
   ) { }
   @Input()
   set id(taskId: string) {
@@ -57,17 +67,13 @@ export class TaskComponent {
         sideContent.insertBefore(component.location.nativeElement, sideContent.firstChild);
       })
     });
+    this.route.firstChild.url.subscribe(url => {
+      this.activeTab = url;
+    })
   }
   ngOnDestroy() {
     const sideContent = document.getElementById("side-content");
     sideContent.removeChild(this.submissionPanel.location.nativeElement);
-  }
-  submitComment(comment: string) {
-    this.service.comment({ text: comment, post: this.task.id, user: this.user.id }).subscribe(_ => {
-      this.service.getTask(this.task.id, true, true, true).subscribe((data: any) => {
-        this.task = data;
-      });
-    });
   }
   gotoLastPage() {
     this.location.back();

@@ -1,13 +1,21 @@
-<div class="app-row options">
-  <button mat-stroked-button class="sort-button">
+<div class="row options">
+  <button mat-button class="sort-button">
     <mat-icon>sort</mat-icon>
     <div>
       {{sortings[sorting]}}
     </div>
   </button>
-  <div class="app-row views">
+  <div class="views">
     @for (item of views; track item) {
-    <mat-icon [class.curview]="$index == view">{{item.icon}}</mat-icon>
+    <button mat-button [class.view]="view == $index" (click)="view = $index">
+      <mat-icon>
+        {{item.icon}}
+      </mat-icon>
+      <p>
+        {{item.label}}
+      </p>
+
+    </button>
     }
   </div>
 
@@ -16,7 +24,7 @@
 
   <!--@if (groups)-->
   @defer (when posts()) {
-  <div class="posts">
+  <div class="posts column">
     @for (item of posts(); track item) {
     <app-post-preview [post]="item" />
     }

@@ -1,0 +1,52 @@
+
+
+[data-theme="light"] {
+  --color-accent: #77aaff;
+  --color-accent-light: #77aaff;
+  --color-accent-subtle: #bbccff;
+  --color-accent-dip: #cddeff;
+  --color-header: #000000;
+  --color-title: #000000;
+  --color-contrast: #000000;
+  --color-default: #444;
+  --color-good: green;
+  --color-normal: #5a5a5a;
+  --color-medium: #707070;
+  --color-disabled: #9a9a9a;
+  --color-dim: #555;
+  --color-alert: skyblue;
+  --color-hint: #000000;
+  --color-info: #000000;
+  --color-liked: #000000;
+  --color-favorited: #000000;
+  --color-neutral: #000000;
+  --color-date-created: #000000;
+  --color-date-due: #000000;
+  --color-task-missed: #000000;
+  --color-task-completed: #000000;
+  --color-task-due: #000000;
+  --color-task-sidenav: #000000;
+
+
+  --color-light: #f6f6f6;
+  --color-bg-light: #f6f6f6;
+  --color-bg-subtle: #eaeaea;
+  --color-bg-mid: #dadada;
+  --color-bg-deep: #dadada;
+
+  --color-outline-light: #f6f6f6;
+  --color-outline-normal: #eaeaea;
+  --color-outline-deep: #aaaa;
+
+  --color-nav: white;
+  --color-nav-line: #cacaca;
+  --color-background: white;
+  --color-sidenav: white;
+  --color-tab-inactive: var(--color-disabled);
+  --color-tab-active: var(--color-medium);
+  --color-bg-tab-active: var(--color-bg-subtle);
+  // --color-status-panel: var(--color-bg-light);
+  --color-status-panel-border: var(--color-outline-normal);
+  --color-divider-line: var(--color-outline-normal);
+  --color-divider-line-deep: var(--color-outline-deep);
+}

@@ -1,0 +1,51 @@
+
+.icon-outline {
+  font-family: 'Material Icons Outlined';
+}
+.border-circle {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.container {
+  padding: var(--margin-normal);
+}
+.horizontal-line {
+  display: block;
+  background-color: var(--color-divider-line-deep);
+  width: auto;
+  height: 1px;
+}
+.divider-line {
+  display: block;
+  background-color: var(--color-divider-line);
+  width: auto;
+  height: 1px;
+  margin: var(--margin-divider);
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+.column-centered {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-items: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.row-centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

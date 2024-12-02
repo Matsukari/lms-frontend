@@ -1,21 +1,16 @@
 
 
 .toolbar {
-  border-bottom: 5px solid #cacaca;
+  border-bottom: 5px solid red;
+  border-color: var(--color-nav-line);
+  background-color: var(--color-nav);
 }
 
 .buttons {
   gap: 0.3em;
 }
 
-.mail-button, .notif-button {
-  background-color: #ebebeb;
-}
-
 .account-button {
-  border: 1px solid gray;
-  // color: #CBDCEB;
-  // background-color: #608BC1;
   padding: 0.3em;
   margin-left: 0.3em;
 }

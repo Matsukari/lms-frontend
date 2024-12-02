@@ -1,7 +1,6 @@
 <mat-card class="comments">
-  <div class="app-divider"></div>
   <app-comment-box (onSubmit)="submitComment($event)" />
-  @if (comments.length <= 0) { <p class="text-disabled">
+  @if (comments.length <= 0) { <p class="text-disabled notice">
     No thoughts in this task yet.
     </p>
     }

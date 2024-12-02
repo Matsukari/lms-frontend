@@ -1,0 +1,51 @@
+:root {
+  --margin-small: 0.5em;
+  --margin-normal: 1em;
+  --margin-medium: 1.5em;
+  --margin-large: 2.2em;
+
+
+  --margin-icon: var(--margin-small);
+  --margin-divider: var(--margin-small) 0em;
+
+  --border-small: 0.5em;
+  --border-normal: 1em;
+  --border-rounded: 2em;
+}
+
+.text-hint-number-large {
+  color: var(--color-medium);
+  font-size: large;
+}
+
+
+.text-hint-small {
+  font-size: small;
+  color: var(--color-medium);
+}
+.gap-small {
+  gap: var(--margin-small);
+}
+
+p {
+  margin: 0;
+}
+p + mat-icon {
+  margin-left: var(--margin-icon);
+}
+mat-icon + p {
+  margin-left: var(--margin-icon);
+}
+.icon-label + mat-icon {
+  margin-left: var(--margin-icon);
+}
+mat-icon + .icon-label {
+  margin-left: var(--margin-icon);
+}
+img + span {
+  margin-left: var(--margin-icon);
+}
+span + img {
+  margin-left: var(--margin-icon);
+}
+

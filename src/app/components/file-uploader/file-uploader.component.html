@@ -4,7 +4,7 @@
     Upload files here
   </div>
 </div>
-<div class="files-list" *ngFor="let file of files;let i=index">
+<div class="files-list" *ngFor="let file of files();let i=index">
   <p>{{ file }}</p>
   <button mat-icon-button class="delete-file" (click)="deleteAttachment(i)">
     <mat-icon>delete</mat-icon>

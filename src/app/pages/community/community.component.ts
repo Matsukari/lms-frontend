@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { PostPreviewComponent } from '../../components/post-preview/post-preview.component';
 import { PostService } from '../../services/post.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-community',
@@ -11,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
     PostPreviewComponent,
+    MatButtonToggleModule,
   ],
   templateUrl: './community.component.html',
   styleUrl: './community.component.scss'

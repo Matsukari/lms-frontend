@@ -1,53 +1,84 @@
-<div>
-  <mat-toolbar>
-    <button mat-icon-button (click)="gotoLastPage()">
-      <mat-icon>
-        keyboard_return
-      </mat-icon>
-    </button>
-    <h3>{{ task.name }}</h3>
+@defer (when task) {
+<div class="">
+  <mat-toolbar class="header row">
+    <div class="header-text row-centered">
+      <mat-icon class="icon-outline">task</mat-icon>
+      <span class="header-title">
+        <span>
+          Task
+        </span>
+        <span class="number">
+          # 1
+        </span>
+      </span>
+    </div>
 
     <span class="spacer"></span>
 
-    <button mat-icon-button>
-      <mat-icon>more_vert</mat-icon>
+    <button class="close-button" mat-icon-button (click)="gotoLastPage()">
+      <mat-icon>
+        close
+      </mat-icon>
     </button>
   </mat-toolbar>
 
-  <mat-divider />
+  <div class="horizontal-line"></div>
 
-  <div class="content">
 
-    <div class="main">
-      <div class="head app-row">
-        <p class="creator app-row">
-          <img mat-card-avatar src="https://i.pravatar.cc/300" />
-          <span class="label">Created by&nbsp;</span>
-          <span>{{task.creator.lastname}}</span>
-          <span>&nbsp;At&nbsp;</span>
-          <span class="date">{{task.created_at | date}}</span>
-        </p>
-        <span class="spacer"></span>
-        <p class="due app-row">
-          <span>Due&nbsp;</span>
-          <span>{{task.due_at | timeAgo}}</span>
-        </p>
+  <div class="content column container">
+    <div class="semi-header row-centered">
+      <span class="task-name">
+        {{ task.name }}
+      </span>
+      <span class="spacer"></span>
+
+      <button mat-icon-button (click)="gotoLastPage()">
+        <mat-icon>
+          more_horiz
+        </mat-icon>
+      </button>
+    </div>
+    <div class="main column">
+      <div class="head row">
+        <div class="column">
+          <span class="due">Due {{task.due_at | date}}</span>
+        </div>
+        <div class="creator row">
+          <img class="border-circle" src="https://i.pravatar.cc/300" />
+          <span>
+            <p>{{task.creator.lastname}}</p>
+            <p class="text-hint-small">Teacher</p>
+          </span>
+        </div>
+
       </div>
-      <div class="desc">
-        @if (task.desc) {
+      @if (task.desc) {
+      <div class="desc container">
         <p>
           {{task.desc}}
         </p>
-        }
-        @else {
-        <p class="text-disabled">
-          This task does not have any description.
-        </p>
-        }
       </div>
+      }
 
-      <app-comments-section (onSubmit)="submitComment($event)" [commentService]="service" [comments]="task.comments"/>
+
+      <div class="row sections">
+        <div class="tab-section column">
+          <nav mat-tab-nav-bar [tabPanel]="panel">
+            @for (item of tabs; track item) {
+            <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+              {{item.name}}
+            </a>
+            }
+          </nav>
+          <mat-tab-nav-panel class="active-content" #panel>
+            <div class="tab-content">
+              <router-outlet />
+            </div>
+          </mat-tab-nav-panel>
+        </div>
+      </div>
     </div>
   </div>
 
 </div>
+}

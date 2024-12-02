@@ -1,24 +1,18 @@
 
 .tasks {
-  gap: 0.3em;
+  gap: var(--margin-small);
 }
-.tasks > .task {
-  border: 1px solid gray;
-  border-radius: 0;
-  padding: 0 1em;
+.task-icon {
+  // color: var(--color-accent);
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+.task {
+  border: 1px solid var(--color-outline-normal);
+  border-radius: var(--border-normal);
   cursor: pointer;
 }
-.tasks .head {
-  align-items: center;
-  gap: 1em;
-  margin: 0;
-
-}
-.tasks .foot {
-  gap: 0.3em;
-  justify-content: right;
-}
-.tasks .foot * {
-  font-size: x-small;
-  color: gray;
+.foot {
+  justify-content: left;
 }

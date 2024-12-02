@@ -1,12 +1,38 @@
-<div class="container">
-  <p>Your status</p>
-  <div class="accordion">Your due tasks</div>
-  @for (item of dueTasks(); track item) {
-  <div class="item" routerLink="/task/{{item.id}}">{{item.name}}</div>
+<div class="panel">
+  <div class="accordion container row font-title">
+    <mat-icon class="icon-outline">
+      task
+    </mat-icon>
+    <p>
+      Tasks
+    </p>
+    <span class="spacer"></span>
+    <p class="row gap-small">
+      <span class="text-hint-number-large">
+        {{dueTasks().length}}
+      </span>
+      <span>
+        Due
+      </span>
+    </p>
+  </div>
+  <div class="divider-line"></div>
+  <div class="container tasks column">
+    @for (item of dueTasks(); track item) {
+    <div class="item row" routerLink="/task/{{item.id}}">
+      <mat-icon>
+        task
+      </mat-icon>
+      <div class="icon-label">
+        <p>
+          {{item.name}}
+        </p>
+        <p class="text-hint-small">
+          {{item.due_at | timeAgo }}
+        </p>
+      </div>
+    </div>
 
-  }
-  <div class="accordion">Your recently missed tasks</div>
-  @for (item of missedTasks(); track item) {
-  <div class="item" routerLink="/task/{{item.id}}">{{item.name}}</div>
-  }
+    }
+  </div>
 </div>

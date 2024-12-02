@@ -1,0 +1,19 @@
+
+
+:root {
+  --font-size-sidenav: 14px;
+  --font-size-header: 14px;
+  --font-size-title: 14px;
+  --font-size-sub: 18px;
+  --font-size-tab: 15px;
+
+}
+
+
+.font-title {
+  font-size: var(--font-size-sub);
+}
+
+.font-sub {
+  font-size: var(--font-size-tab);
+}

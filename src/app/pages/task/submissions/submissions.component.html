@@ -1,0 +1,10 @@
+<div class="app-col container">
+  @for (item of otherSubmissions(); track item) {
+  <mat-card>
+    <div class="creator app-row-center">
+      <img mat-card-avatar src="https://i.pravatar.cc/300" />
+      <span>{{item.user.lastname}}, {{item.user.firstname}}</span>
+    </div>
+  </mat-card>
+  }
+</div>

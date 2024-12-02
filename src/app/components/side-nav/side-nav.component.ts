@@ -5,7 +5,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ClassesComponent } from '../classes/classes.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
@@ -37,8 +37,14 @@ export interface NavSection {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent {
+  constructor(
+    private route: Router,
+  ) {}
   navChanged() {
     this.sidenavIsOpen = !this.sidenavIsOpen;
+  }
+  isCurrentRoute(route: string) {
+    return this.route.url.includes(route);
   }
   @Input() groups: any;
   @Input() classes: any;

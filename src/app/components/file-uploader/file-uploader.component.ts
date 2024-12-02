@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, signal} from '@angular/core';
 import { DragDropDirective } from '../../directives/drag-drop.directive';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   selector: 'app-file-uploader',
   imports: [
-    DragDropDirective,
+    //DragDropDirective,
     CommonModule,
     MatIconModule,
     MatButtonModule,
@@ -18,15 +18,18 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class FileUploaderComponent {
 
-  files: any = [];
+  files = signal([]);
 
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
-      this.files.push(element.name)
+      this.files.set(this.files().concat([element.name]))
+      alert(this.files());
     }
   }
   deleteAttachment(index) {
-    this.files.splice(index, 1)
+    let arr = this.files();
+    arr.splice(index, 1);
+    this.files.set(arr);
   }
 }

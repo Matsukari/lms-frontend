@@ -1,10 +1,9 @@
-.body {
-  margin-top: 1em;
-
-}
 
 .avatars {
   align-items: center;
+}
+.group-type {
+  text-transform: capitalize;
 }
 
 .avatars .label {
@@ -33,8 +32,4 @@ nav {
   top: -0.5em;
   z-index: 99;
   background-color: white;
-}
-
-.tab-content {
-  margin-top: 0.5em;
 }

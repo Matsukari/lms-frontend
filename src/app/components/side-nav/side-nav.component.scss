@@ -1,39 +1,43 @@
 .sidenav * {
   font-size: 14px;
 }
-.navs>mat-list-item {
-  border-radius: 2em;
-  transition: background-color 0.1s;
+
+.current-router {
+  border-left: 5px solid var(--color-accent);
 }
 
-.navs>mat-list-item:hover {
-  background-color: #dadada;
+.current-router {
+  color: var(--color-normal);
+}
+
+.navs>mat-list-item {
+  border-radius: var(--border-rounded);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: color 0.1s;
+}
+
+mat-list-item * {
+  color: var(--color-normal);
+}
+
+.navs>mat-list-item:hover mat-list-item {
+  color: var(--color-contrast);
 }
 
 .navs>mat-list-item:active {
-  background-color: #bababa
+  background-color: transparent;
 }
 
 .sidenav mat-icon {
-  font-size: 20px;
-}
-
-.accordion {
-  color: white !important;
-  box-shadow: none;
-  border-radius: 0;
+  font-size: large;
 }
 
 mat-divider {
-  background-color: white;
   margin: 1em 2.2em;
 }
 
 .events {
   background-color: #eaeaea;
   padding: 1em;
-}
-
-.item > img {
-  margin: 0;
 }

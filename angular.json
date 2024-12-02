@@ -54,6 +54,11 @@
               "src/styles.scss",
               "src/material.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+              ]
+            },
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,

@@ -1,6 +1,9 @@
 <mat-toolbar>
   @defer (when group) {
-  <h3>{{ group.name }}</h3>
+
+  <mat-icon>wysiwyg</mat-icon>
+
+  <p><span class="group-type">{{group.type.toLowerCase()}}</span> : {{ group.name }}</p>
   }
   @placeholder (minimum 0.4s) {
   <h3></h3>
@@ -22,10 +25,9 @@
       }
     </nav>
     <mat-tab-nav-panel class="active-content" #panel>
-      <div class="tab-content">
+      <div class="container">
         <router-outlet />
       </div>
     </mat-tab-nav-panel>
   </div>
-  <app-group-about-panel #about [group]="group" />
 </div>

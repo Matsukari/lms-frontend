@@ -4,6 +4,9 @@ import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } f
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TaskService } from '../../services/task.service';
+import { MatIconModule } from '@angular/material/icon';
+import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
+import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 
 @Component({
   selector: 'app-submission-panel',
@@ -14,6 +17,9 @@ import { TaskService } from '../../services/task.service';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
+    TimeAgoPipe,
+    FileUploaderComponent,
   ],
   templateUrl: './submission-panel.component.html',
   styleUrl: './submission-panel.component.scss'

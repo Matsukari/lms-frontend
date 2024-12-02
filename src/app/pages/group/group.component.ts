@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, createComponent, ElementRef, Injector, Input, Renderer2, signal, ViewChild, ViewContainerRef, WritableSignal } from '@angular/core';
+import { ApplicationRef, Component, ComponentRef, createComponent, ElementRef, Injector, Input, Renderer2, signal, ViewChild, ViewContainerRef, WritableSignal } from '@angular/core';
 import { GroupService } from '../../services/group.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,7 +33,7 @@ export class GroupComponent {
   group: any;
   posts: any;
   activeTab: any;
-  @ViewChild('about', {read: ElementRef}) aboutPanel?: ElementRef;
+  aboutPanel: ComponentRef<GroupAboutPanelComponent>;
 
 
   @Input()
@@ -41,38 +41,34 @@ export class GroupComponent {
     this.groupService.getGroup(groupId, true, true, true).subscribe((data: any) => {
       this.group = data;
       this.posts = data.posts;
+      this.createPanel();
     });
   }
   constructor(
     private groupService: GroupService,
     private route: ActivatedRoute,
-    private renderer: Renderer2,
-    private injector: Injector,
     private appRef: ApplicationRef,
   ) { }
   ngOnInit() {
     this.route.firstChild.url.subscribe(url => {
       this.activeTab = url;
     })
-    //const sideContent = document.getElementById("side-content");
-    //const component = createComponent(GroupAboutPanelComponent, {
-    //  environmentInjector: this.appRef.injector,
-    //})
-    //this.appRef.attachView(component.hostView);
-    //sideContent.appendChild(component.location.nativeElement);
   }
-  once = true;
-  ngAfterViewChecked() {
-    if (this.aboutPanel && this.once) {
-      this.once = false;
-      const sideContent = document.getElementById("side-content");
-      sideContent.insertBefore(this.aboutPanel.nativeElement, sideContent.firstChild);
-      //this.renderer.appendChild(sideContent, this.aboutPanel.nativeElement);
-    }
+  createPanel() {
+    const appRef = this.appRef;
+    const sideContent = document.getElementById("side-content");
+    const component = createComponent(GroupAboutPanelComponent, {
+      environmentInjector: appRef.injector,
+    })
+    component.setInput("group", this.group);
+    this.aboutPanel = component;
+    appRef.attachView(component.hostView);
+    sideContent.insertBefore(component.location.nativeElement, sideContent.firstChild);
+
   }
   ngOnDestroy() {
     const sideContent = document.getElementById("side-content");
-    sideContent.removeChild(this.aboutPanel.nativeElement);
+    sideContent.removeChild(this.aboutPanel.location.nativeElement);
   }
   taskIsOverdue(task: any) {
     return new Date().toISOString() > task.due_at;

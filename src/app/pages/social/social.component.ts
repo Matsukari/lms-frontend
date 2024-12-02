@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
-import { PostService } from '../../services/post.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-social',
@@ -13,6 +13,7 @@ import { PostService } from '../../services/post.service';
     MatToolbarModule,
     MatButtonModule,
     MatTabsModule,
+    MatIconModule,
     RouterLink,
   ],
   templateUrl: './social.component.html',
@@ -22,8 +23,8 @@ import { PostService } from '../../services/post.service';
 export class SocialComponent {
   posts = signal(null);
   tabs = [
-    { name: "Community", url: "community" },
-    { name: "Live", url: "live" },
+    { name: "Community", url: "community", icon: "diversity_3" },
+    { name: "Live", url: "live", icon: "live_tv" },
   ]
   activeTab: any;
   @Input() user: any;

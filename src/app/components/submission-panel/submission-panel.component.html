@@ -1,47 +1,93 @@
-<div class="submission">
-  <h5>Your Submission</h5>
-  <div class="section you">
-    @if (yourSubmission()) {
-
-
-    <div>
-      {{task.creator.lastname}} has graded you {{yourSubmissionResponse().grade}}
-    </div>
-
-    <div class="attachments">
-      <div *ngFor="let item of yourSubmission().attachments; let i=index">
-        <mat-card>
-          @if (item) {
-          <mat-card-content>{{item}}</mat-card-content>
-          }
-          @else {
-          <mat-card-content>No name</mat-card-content>
-          }
-        </mat-card>
-      </div>
-    </div>
-
+<div class="submission column">
+  <div class="row font-title container">
+    <mat-icon>
+      receipt_long
+    </mat-icon>
     <p>
-      {{yourSubmission().desc}}
+      Your Submission
     </p>
-
-    <button mat-button (click)="makeChange()">Make change</button>
+    <span class="spacer"></span>
+    @if (yourSubmissionResponse()) {
+    <p class="grade">
+      {{yourSubmissionResponse().grade}} / 100
+    </p>
     }
     @else {
-    You have no submission
+    <mat-icon class="alert-icon">
+      error
+    </mat-icon>
     }
-    <div>
-      <!--{{ task.source.creator }} graded this-->
+  </div>
+  <div class="horizontal-line"></div>
+
+  <div class="container content">
+    <div class="column main">
+      <div class="column">
+
+        @if (yourSubmission()) {
+        <div class="attachments">
+          <div class="">Attachments <span class="text-hint-small">({{yourSubmission().attachments.length}})</span></div>
+          <div *ngFor="let item of yourSubmission().attachments; let i=index">
+            <div class="attachment row-centered">
+              @if (item) {
+              <mat-icon>
+                attach_file
+              </mat-icon>
+              <p>
+                {{item}}
+              </p>
+              }
+              @else {
+              <p>No name</p>
+              }
+            </div>
+          </div>
+
+          <div *ngIf="yourSubmission().desc">
+            <p>Remarks</p>
+            <p>{{yourSubmission().desc}}</p>
+          </div>
+
+        </div>
+        }
+        @else {
+        <div class="attachments tag">
+          <div class="title">Your attachments</div>
+          <!--<app-file-uploader ></app-file-uploader>-->
+
+          <!--<div *ngFor="let item of yourSubmission().attachments; let i=index">-->
+          <!--  <div class="attachment">-->
+          <!--    @if (item) {-->
+          <!--    <div class="row-centered">-->
+          <!--      <mat-icon>-->
+          <!--        attach_file-->
+          <!--      </mat-icon>-->
+          <!--      <span>-->
+          <!--        {{i+1}}: {{item}}-->
+          <!--      </span>-->
+          <!--    </div>-->
+          <!--    }-->
+          <!--    @else {-->
+          <!--    <div>No name</div>-->
+          <!--    }-->
+          <!--  </div>-->
+          <!--</div>-->
+        </div>
+
+        <div *ngIf="yourSubmission().desc">
+          <p>
+            Your Remark
+          </p>
+
+          <p>
+            {{yourSubmission().desc}}
+          </p>
+        </div>
+        }
+      </div>
+
+      <div class="spacer"></div>
+      <button mat-button class="submit-button" (click)="makeChange()">Make change</button>
     </div>
   </div>
-
-  <div class="other section">
-    @if (otherSubmissions().length <= 0) { <div>
-      No submissions on this task yet.
-  </div>
-  }
-  @else {
-
-  {{otherSubmissions().length}} have already submitted
-  }
 </div>

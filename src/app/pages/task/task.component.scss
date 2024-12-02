@@ -1,7 +1,33 @@
+.container {
+  // border: 1px solid darkgray;
+  // border-top-right-radius: 1em;
+  // border-top-left-radius: 1em;
+  min-height: 100%;
+}
+
+
+.header-text {
+  gap: var(--margin-small);
+}
+
+.header-title .number {
+  color: var(--color-medium);
+}
+
+.close-button {
+  background-color: var(--color-bg-subtle);
+}
+
 .content {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
+  width: auto;
+}
+
+.head {
+  margin: 0;
+}
+
+.task-name {
+  font-size: larger;
 }
 
 
@@ -10,27 +36,23 @@ input[type="text"] {
 }
 
 .desc {
+  color: var(--color-medium);
   min-height: 10em;
-}
-
-.text-disabled {
-  color: gray;
-  font-size: smaller;
-  text-align: center;
 }
 
 .creator {
   align-items: center;
+  justify-self: center;
 }
 
 .due {
-  align-items: center;
-  font-size: smaller;
-  margin-right: 1em;
+  color: var(--color-medium);
 }
 
-.creator img {
-  margin: 0;
-  margin-right: 1em;
+.sections {
+  margin-top: var(--margin-large);
 }
 
+.tab-content {
+  margin-top: var(--margin-normal);
+}

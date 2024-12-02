@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { AppMenuComponent } from '../app-menu/app-menu.component';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,13 @@ import { AppMenuComponent } from '../app-menu/app-menu.component';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
   @Input() username: string;
   @Input() role: string;
+
+  constructor(
+    private uiState: UiStateService,
+  ) {}
+  toggleSidenav() {
+    this.uiState.toggleSidenav();
+  }
 }

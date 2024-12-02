@@ -1,26 +1,39 @@
 <div class="content">
+  <mat-chip-listbox class="row">
+    <mat-chip-option selected (click)="tasks.set(allTasks)">All {{allTasks.length}}</mat-chip-option>
+    @for (item of categories; track item) {
+    <mat-chip-option (click)="tasks.set(item.items)">
+      <span>
+        {{item.label}}
+      </span>
+      <span class="text-hint-small">
+        ({{item.items.length}})
+      </span>
+    </mat-chip-option>
+    }
+  </mat-chip-listbox>
   @defer (when tasks()) {
-  <p *ngIf="tasks().length <= 0">No community has posted anything.
+  <p *ngIf="tasks().length <= 0">
+    No tasks in this class.
     <mat-icon>sentiment_dissatisfied</mat-icon>
   </p>
-  <div *ngIf="tasks().length >= 0" class="tasks app-col">
+  <div *ngIf="tasks().length >= 0" class="tasks column container">
     @for (item of tasks(); track item) {
-    <mat-card class="task" routerLink="/task/{{item.id}}">
-      <div class="head app-row">
-        <mat-icon>description</mat-icon>
-        <p>{{item.name}}</p>
+    <div class="task container row" routerLink="/task/{{item.id}}">
+      <mat-icon class="task-icon">description</mat-icon>
+      <div class="head column icon-label">
+        <p>{{item.name}} - <span class="text-hint-small">{{item.created_at | timeAgo}}</span></p>
 
-        <span class="spacer"></span>
+        <div class="foot row text-hint-small">
+          Due in {{item.due_at | timeAgo}}
+        </div>
+      </div>
+      <span class="spacer"></span>
 
-        <button mat-icon-button>
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </div>
-      <div class="foot app-row">
-        <p class="label">Due</p>
-        <p class="date">{{item.due_at | timeAgo}}</p>
-      </div>
-    </mat-card>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
     }
   </div>
   }

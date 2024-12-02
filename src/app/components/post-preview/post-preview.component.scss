@@ -1,40 +1,16 @@
-.row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
-mat-card {
-  border-radius: 0;
-  background-color: #f8f8f8;
+.post.container {
+  border-radius: var(--border-normal);
+  border: 2px solid var(--color-outline-normal);
   transition: background-color 0.1s;
 }
-
-.labels {
-  align-self: first baseline;
+.post-title {
+  color: var(--color-normal);
+  font-size: large;
 }
-
-.labels>span {
-  font-size: small;
+.post-desc {
+  color: var(--color-medium);
 }
-
-mat-card-header {
-  background-color: #f1f1f1;
-}
-
-mat-card-content {
-  margin-top: -0.8em;
-}
-
-.pictures>*:nth-child(2) {
-  margin-left: -1.7em;
-  margin-bottom: 0.1em;
-  scale: 0.7;
-  padding: 0;
-  border: 3px solid white;
-}
-
-
 
 .actions {
   gap: 0.3em;
@@ -42,7 +18,7 @@ mat-card-content {
 
 .actions * {
   font-size: smaller;
-  color: gray;
+  color: var(--color-medium);
 }
 
 .actions mat-icon {
@@ -54,16 +30,10 @@ mat-card-content {
   font-size: small;
 }
 
-.liked {
-  background-color: #DFF2EB;
-}
-
 
 .attachments > * {
-  border: 1px solid gray;
-  border-radius: 2em;
-  padding: 0.4em;
-  gap: 0.4em;
-  margin-bottom: 0.4em;
-  background-color: #eaeaea;
+  border-radius: var(--border-normal);
+  padding: var(--margin-small);
+  gap: var(--margin-small);
+  background-color: var(--color-bg-light);
 }

@@ -4,14 +4,14 @@
   }
 </div>
 
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="view-container">
 
   <mat-sidenav #sidenav mode="side" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="sidenavPosition"
     [fixedBottomGap]="0" (openedChange)="navChanged()">
     <app-side-nav [overlayComponent]="overlayComponent" [groups]="user.member_groups" [classes]="classes" />
   </mat-sidenav>
 
-  <mat-sidenav-content class="app-row content" id="view-content">
+  <mat-sidenav-content class="row content" id="view-content">
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>

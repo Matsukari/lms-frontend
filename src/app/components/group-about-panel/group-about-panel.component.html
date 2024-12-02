@@ -1,7 +1,8 @@
+@defer (when group) {
 <mat-card class="about panel">
-  <div class="title">{{group.name}}</div>
-  <div class="desc">{{group.desc}}</div>
-  <div class="app-divider"></div>
+  <div class="title font-title">{{group.name}}</div>
+  <div class="desc container">{{group.desc}}</div>
+  <div class="divider-line"></div>
   <div class="status">
     <button mat-button>
       <mat-icon>language</mat-icon>
@@ -20,7 +21,7 @@
     <div class="title">Administrators</div>
     <div class="list">
       @for (item of group.admins; track item) {
-      <div class="app-row-center">
+      <div class="row-centered">
         <img mat-card-avatar src="https://i.pravatar.cc/300" />
         <div>{{item.lastname}} {{item.firstname}}</div>
         <span class="spacer"></span>
@@ -31,3 +32,4 @@
     </div>
   </div>
 </mat-card>
+}
