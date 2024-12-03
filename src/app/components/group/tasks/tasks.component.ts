@@ -26,7 +26,7 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class TasksComponent {
   tasks = signal(null);
-  allTasks = signal(null);
+  allTasks = signal([]);
   categories = [];
 
   constructor(
@@ -39,7 +39,7 @@ export class TasksComponent {
       let groupId = params["id"];
       this.taskService.getTasksFromGroup(groupId, true, true, true).subscribe((data: any) => {
         this.tasks.set(data);
-        this.allTasks = this.tasks();
+        this.allTasks.set(this.tasks());
         this.userService.getLoggedUser().subscribe((user: any) => {
           this.taskService.getTasksFromUser(user.id, "due", true, true, true).subscribe((items: any) => {
             this.categories.push({ label: "Due", items: items });

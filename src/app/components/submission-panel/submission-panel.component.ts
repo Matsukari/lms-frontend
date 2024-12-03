@@ -20,6 +20,7 @@ import { FileUploaderComponent } from '../file-uploader/file-uploader.component'
     MatIconModule,
     TimeAgoPipe,
     FileUploaderComponent,
+    ReactiveFormsModule,
   ],
   templateUrl: './submission-panel.component.html',
   styleUrl: './submission-panel.component.scss'
@@ -31,14 +32,16 @@ export class SubmissionPanelComponent {
   yourSubmissionResponse = signal(null);
   otherSubmissions = signal(null);
   submissionForm = new FormGroup({
-    attachments: new FormArray([]),
     remark: new FormControl(""),
   });
+  submissionAttachments = [];
   @Input()
   set userData(user: any) {
     this.user = user;
     this.service.getTaskSubmission(this.task.id, this.user.id).subscribe((submission: any) => {
       this.yourSubmission.set(submission);
+      this.submissionAttachments = this.yourSubmission().attachments;
+      this.submissionForm.get("remark").setValue(this.yourSubmission().desc);
     });
     this.service.getTaskResponse(this.task.id, this.user.id).subscribe((data: any) => {
       this.yourSubmissionResponse.set(data);
@@ -51,22 +54,32 @@ export class SubmissionPanelComponent {
     private service: TaskService,
   ) { }
   getSubmissionAttachments() {
-    return this.submissionForm.get("attachments") as FormArray;
+    return this.submissionAttachments;
   }
   getSubmissionRemark() {
-    return this.submissionForm.get("remark") as FormControl;
+    return (this.submissionForm.get("remark") as FormControl).value;
+  }
+  isValidForm() {
+    return this.yourSubmission() || this.submissionAttachments.length != 0 || this.getSubmissionRemark();
   }
   addAttachment() {
     this.getSubmissionAttachments().push(new FormControl(""));
   }
-  makeChange() {
-    this.getSubmissionAttachments().setValue(this.yourSubmission().attachments);
-    this.getSubmissionRemark().setValue(this.yourSubmission().desc);
-    this.yourSubmission.set(null);
+  openFileSelector(fileSelector: HTMLInputElement) {
+    fileSelector.click();
+  }
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      const files = Array.from(input.files);
+      files.forEach(file => {
+        this.submissionAttachments.push(file.name);
+      })
+    }
   }
   submit() {
     this.service.submit({
-      attachments: this.getSubmissionAttachments().value,
+      attachments: this.getSubmissionAttachments(),
       source: this.task.id,
       user: this.user.id,
       remark: this.submissionForm.get("remark").value

@@ -7,6 +7,10 @@
 .alert-icon {
   color: var(--color-alert);
 }
+.note {
+  border: 1px solid var(--color-hint);
+  border-radius: var(--border-normal);
+}
 
 .attachments {
   display: flex;
@@ -39,6 +43,15 @@
 .submit-button {
   border: 1px solid var(--color-outline-deep);
   border-radius: var(--border-rounded);
+}
+textarea {
+  height: 20vh;
+  max-width: 100%;
+  min-width: 100%;
+  border-radius: var(--border-normal);
+}
+textarea:focus {
+  outline: none;
 }
 
 .grade.container {

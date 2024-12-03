@@ -21,13 +21,19 @@
   <div class="horizontal-line"></div>
 
   <div class="container content">
-    <div class="column main">
+    <form class="column main" [formGroup]="submissionForm">
       <div class="column">
 
-        @if (yourSubmission()) {
+        @if (!yourSubmission()) {
+        <div class="container note">
+          Note: You have not yet submitted.
+        </div>
+        <div class="margin-bottom"></div>
+        }
         <div class="attachments">
-          <div class="">Attachments <span class="text-hint-small">({{yourSubmission().attachments.length}})</span></div>
-          <div *ngFor="let item of yourSubmission().attachments; let i=index">
+          <div class="">Attachments <span class="text-hint-small">({{getSubmissionAttachments().length}})</span>
+          </div>
+          <div *ngFor="let item of getSubmissionAttachments(); let i=index">
             <div class="attachment row-centered">
               @if (item) {
               <mat-icon>
@@ -42,52 +48,29 @@
               }
             </div>
           </div>
+          <div class="margin-bottom"></div>
+          <input #fileSelector hidden="true" type="file" formControlName="attachments" (change)="onFileSelected($event)"
+            multiple>
+          <button mat-button class="container note" (click)="openFileSelector(fileSelector)">
+            Upload here
+          </button>
+          <div class="margin-bottom"></div>
 
-          <div *ngIf="yourSubmission().desc">
-            <p>Remarks</p>
-            <p>{{yourSubmission().desc}}</p>
-          </div>
-
+          <p>Remarks</p>
+          <textarea formControlName="remark"></textarea>
+          <div class="margin-bottom"></div>
         </div>
-        }
-        @else {
-        <div class="attachments tag">
-          <div class="title">Your attachments</div>
-          <!--<app-file-uploader ></app-file-uploader>-->
-
-          <!--<div *ngFor="let item of yourSubmission().attachments; let i=index">-->
-          <!--  <div class="attachment">-->
-          <!--    @if (item) {-->
-          <!--    <div class="row-centered">-->
-          <!--      <mat-icon>-->
-          <!--        attach_file-->
-          <!--      </mat-icon>-->
-          <!--      <span>-->
-          <!--        {{i+1}}: {{item}}-->
-          <!--      </span>-->
-          <!--    </div>-->
-          <!--    }-->
-          <!--    @else {-->
-          <!--    <div>No name</div>-->
-          <!--    }-->
-          <!--  </div>-->
-          <!--</div>-->
-        </div>
-
-        <div *ngIf="yourSubmission().desc">
-          <p>
-            Your Remark
-          </p>
-
-          <p>
-            {{yourSubmission().desc}}
-          </p>
-        </div>
-        }
       </div>
 
       <div class="spacer"></div>
-      <button mat-button class="submit-button" (click)="makeChange()">Make change</button>
-    </div>
+      <button mat-button class="submit-button" (click)="submit()" [disabled]="!isValidForm()">
+        @if (yourSubmission()) {
+        Make Change
+        }
+        @else {
+        Submit Now
+        }
+      </button>
+    </form>
   </div>
 </div>

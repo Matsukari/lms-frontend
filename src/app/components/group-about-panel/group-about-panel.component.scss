@@ -7,9 +7,6 @@
   background-color: white;
 }
 
-.about>.title {
-  text-align: center;
-}
 
 .about>.desc {
   border-radius: var(--border-normal);
@@ -17,9 +14,15 @@
 
 }
 
-.about>.status {
+.status {
+  display: flex;
+  flex-direction: column;
   margin-bottom: var(--margin-normal);
 }
+.status * {
+  color: var(--color-medium);
+}
+
 
 .about>.admin .title {
   margin-bottom: var(--margin-normal);
@@ -35,5 +38,5 @@
 
 .admin .list img {
   margin: 0;
-  margin-right: 1em;
+  margin-right: var(--margin-normal);
 }

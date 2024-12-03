@@ -13,6 +13,9 @@
   --border-rounded: 2em;
 }
 
+.margin-bottom {
+  margin-bottom: var(--margin-normal);
+}
 .text-hint-number-large {
   color: var(--color-medium);
   font-size: large;
