@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row-centered">
+    <h3>Classes</h3>
+    <span class="margin-left"></span>
+    <span>({{classes().length}})</span>
+  </div>
+  <div class="classes">
+    @for (item of classes(); track item) {
+    <div class="row-centered container clickable" routerLink="/group/{{item.id}}">
+      <mat-icon>wysiwyg</mat-icon>
+      <p>{{item.name}}</p>
+      <span class="spacer"></span>
+      <button mat-button>
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+  <div class="row-centered">
+    <h3>Groups</h3>
+    <span class="margin-left"></span>
+  </div>
+
+  <div class="row sections">
+    <div class="content column">
+      <nav mat-tab-nav-bar [tabPanel]="panel">
+        @for (item of tabs; track item) {
+        <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+          {{item.name}}
+        </a>
+        }
+      </nav>
+      <mat-tab-nav-panel class="active-content" #panel>
+        <div class="container">
+          <router-outlet />
+        </div>
+      </mat-tab-nav-panel>
+    </div>
+  </div>
+
+</div>

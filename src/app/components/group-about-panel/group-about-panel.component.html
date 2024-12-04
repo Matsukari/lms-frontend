@@ -12,7 +12,7 @@
       </button>
     </div>
     <div>
-      <button mat-button>
+      <button mat-button (click)="seeMembers()">
         <mat-icon>person</mat-icon>
         <div>{{group.members.length}} Members</div>
       </button>
@@ -32,7 +32,6 @@
         <img mat-card-avatar src="https://i.pravatar.cc/300" />
         <div>{{item.lastname}} {{item.firstname}}</div>
         <span class="spacer"></span>
-        <button mat-icon-button><mat-icon>mail</mat-icon></button>
         <button mat-icon-button><mat-icon>info</mat-icon></button>
       </div>
       }

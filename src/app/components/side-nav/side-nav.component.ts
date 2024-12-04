@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ClassesComponent } from '../classes/classes.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 
@@ -28,7 +27,6 @@ export interface NavSection {
     MatDividerModule,
     CommonModule,
     RouterLink,
-    ClassesComponent,
     MatMenuModule,
     MatCardModule,
   ],
@@ -46,15 +44,6 @@ export class SideNavComponent {
   isCurrentRoute(route: string) {
     return this.route.url.includes(route);
   }
-  @Input() groups: any;
-  @Input() classes: any;
-  @Input() overlayComponent!: ClassesComponent;
-
-  onElementClick(event: Event) {
-    this.overlayComponent.targetElement = event.target as HTMLElement;
-    this.overlayComponent.toggleOverlay();
-  }
-
 
   sidenavIsOpen = false;
 

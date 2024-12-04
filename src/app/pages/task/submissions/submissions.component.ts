@@ -3,12 +3,14 @@ import { TaskService } from '../../../services/task.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatCardModule } from '@angular/material/card';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-submissions',
   standalone: true,
   imports: [
     MatCardModule,
+    DatePipe,
   ],
   templateUrl: './submissions.component.html',
   styleUrl: './submissions.component.scss'

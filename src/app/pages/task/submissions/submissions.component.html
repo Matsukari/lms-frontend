@@ -1,10 +1,13 @@
-<div class="app-col container">
+<div class="column">
   @for (item of otherSubmissions(); track item) {
-  <mat-card>
-    <div class="creator app-row-center">
-      <img mat-card-avatar src="https://i.pravatar.cc/300" />
-      <span>{{item.user.lastname}}, {{item.user.firstname}}</span>
+  <div class="container">
+    <div class="creator row-centered">
+      <img class="border-circle" src="https://i.pravatar.cc/300" />
+      <span class="icon-label column">
+        <span>{{item.user.lastname}}, {{item.user.firstname}}</span>
+        <div class="text-hint-small">{{item.updated_at | date }}</div>
+      </span>
     </div>
-  </mat-card>
+  </div>
   }
 </div>

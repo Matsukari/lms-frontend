@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Members</h3>
+<mat-dialog-content class="content">
+  <div class="column">
+    @for (item of data.members; track item) {
+    <div class="container row">
+      <img class="border-circle" src="https://i.pravatar.cc/300" />
+      <span>
+        <p>{{item.lastname}}</p>
+        <p class="text-hint-small">{{item.role}}</p>
+      </span>
+      <span class="spacer"></span>
+      <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+    </div>
+    }
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+
+</mat-dialog-actions>

@@ -1,10 +1,11 @@
-<div class="content">
+<div class="posts">
   @defer (when posts()) {
   <p *ngIf="posts().length <= 0">No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon>
   </p>
   <div *ngIf="posts().length >= 0" class="posts">
     @for (item of posts(); track item) {
     <app-post-preview [post]="item" />
+    <div class="margin-bottom"></div>
     }
   </div>
   }

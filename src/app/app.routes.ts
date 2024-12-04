@@ -16,6 +16,8 @@ import { LiveComponent } from './pages/live/live.component';
 import { SchoolComponent } from './pages/school/school.component';
 import { CommentsComponent } from './pages/task/comments/comments.component';
 import { SubmissionsComponent } from './pages/task/submissions/submissions.component';
+import { GroupsComponent } from './pages/groups/groups.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +28,14 @@ export const routes: Routes = [
       { path: "dashboard", component: DashboardComponent },
       { path: "profile", component: ProfileComponent },
       { path: "school", component: SchoolComponent },
+      {
+        path: "groups", component: GroupsComponent, children: [
+          { path: "", redirectTo: "clubs", pathMatch: "full" },
+          { path: "clubs", component: GroupListComponent, data: {type: "CLUB", icon: "person_play"} },
+          { path: "orgs", component: GroupListComponent, data: {type: "ORGANIZATION", icon: "account_tree"} },
+          { path: "customs", component: GroupListComponent, data: {type: "CASUAL", icon: "groups_2"} },
+        ]
+      },
       {
         path: "group/:id", component: GroupComponent, children: [
           { path: "", redirectTo: "events", pathMatch: "full" },

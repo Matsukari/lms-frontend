@@ -21,4 +21,7 @@ export class GroupService {
   getGroups(type: string) {
     return this.http.get(environment.apiUrl + "/get/groups/" + type);
   }
+  getGroupsOf(user: string, type: string) {
+    return this.http.get(environment.apiUrl + "/get/groups/" + type);
+  }
 }

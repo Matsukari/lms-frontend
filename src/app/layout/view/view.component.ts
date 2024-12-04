@@ -49,11 +49,6 @@ export class ViewComponent {
   async ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
-      user.member_groups.forEach((item: any) => {
-        if (item.type === "CLASS") {
-          this.classes.push(item);
-        }
-      })
     })
     this.uiState.sidenavOpen.subscribe(async (open) => {
       if (open) this.sidenav.open();
@@ -62,12 +57,9 @@ export class ViewComponent {
   }
   @ViewChild('header', { static: true }) header: ElementRef;
   @ViewChild('sidenav') sidenav: MatSidenav;
-  @ViewChild(ClassesComponent) overlayComponent!: ClassesComponent;
   user: any;
   sidenavPosition = 59;
-  groups: any;
   sidenavIsOpen = false;
-  classes = [];
 
   navChanged() {
     this.sidenavIsOpen = !this.sidenavIsOpen;

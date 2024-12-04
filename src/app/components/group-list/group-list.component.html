@@ -1,0 +1,12 @@
+<div class="groups">
+  @for (item of groups(); track item) {
+  <div class="row-centered container clickable" routerLink="/group/{{item.id}}">
+    <mat-icon>{{icon}}</mat-icon>
+    <p>{{item.name}}</p>
+    <span class="spacer"></span>
+    <button mat-button>
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+  </div>
+  }
+</div>

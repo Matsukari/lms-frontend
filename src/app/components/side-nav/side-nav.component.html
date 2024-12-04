@@ -9,11 +9,7 @@
 
     <mat-divider></mat-divider>
 
-    <mat-list-item (click)="onElementClick($event)" [class.current-router]="isCurrentRoute('class')">
-      <mat-icon matListItemIcon>splitscreen_landscape</mat-icon>
-      <div matListItemTitle>Classes</div>
-    </mat-list-item>
-    <mat-list-item [matMenuTriggerFor]="groupsMenu" [class.curent-router]="isCurrentRoute('groups')">
+    <mat-list-item routerLink="/groups" [class.current-router]="isCurrentRoute('group')">
       <mat-icon matListItemIcon>diversity_3</mat-icon>
       <div matListItemTitle>Groups</div>
     </mat-list-item>
@@ -33,19 +29,3 @@
   </mat-list>
 </div>
 
-
-<mat-menu #groupsMenu="matMenu" class="groups">
-  @for (item of groups; track item) {
-  @if (item.type != "CLASS") {
-  <div mat-menu-item routerLink="/group/{{item.id}}">
-    <div class="app-row-center item ">
-      <img mat-card-avatar src="https://i.pravatar.cc/300" />
-      <div class="name label">
-        {{item.name}}
-      </div>
-    </div>
-  </div>
-  }
-  }
-  <!-- Add your custom overlay content here -->
-</mat-menu>
