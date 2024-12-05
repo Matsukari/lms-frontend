@@ -1,23 +1,58 @@
-<div class="app-row container">
-  <mat-card class="profile">
-    <img mat-card-avatar src="https://i.pravatar.cc/300" />
-    <div>{{user.lastname}} {{user.firstname}}</div>
+<div class="row profile">
+  <div class="side">
+    <div class="font-title">{{user.role.toLowerCase()}} Profile</div>
+    <div class="margin-bottom"></div>
+    <div class="pfp-container" (click)="fileSelector.click()">
+      <img class="border-circle pfp" src="https://i.pravatar.cc/300" />
+      <div class="border-circle pfp-options row">
+        <mat-icon>edit</mat-icon>
+        <p>
+          Edit
+        </p>
+      </div>
+    </div>
+    <div class="margin-bottom"></div>
+    <div class="font-title">{{user.lastname}} {{user.firstname}}</div>
+    <div class="text-hint-small">{{user.username}}</div>
+    <div class="margin-bottom"></div>
     <button mat-button>Preview</button>
-  </mat-card>
-  <mat-card class="section">
-    <form [formGroup]="form">
-      <div>
+  </div>
+  <div class="content column container">
+    <form [formGroup]="form" class="personal form">
+      <input #fileSelector hidden="true" type="file" formControlName="pfp" (change)="onFileSelected($event)" multiple>
+      <p class="font-title">Personal Information</p>
+      <div class="disabled">
         <mat-label>Email</mat-label>
-        <input type="email" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+        <input type="email" matInput formControlName="email">
       </div>
-      <div>
+      <div class="disabled">
+        <mat-label>Sex</mat-label>
+        <input type="text" matInput formControlName="sex">
+      </div>
+      <div class="disabled">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput formControlName="sex">
+      </div>
+      <div class="disabled">
+        <mat-label>Birthday</mat-label>
+        <input type="date" matInput formControlName="sex">
+      </div>
+      <div class="disabled">
+        <mat-label>Religion</mat-label>
+        <input type="number" matInput formControlName="sex">
+      </div>
+      <div class="disabled">
         <mat-label>Address</mat-label>
-        <input type="text" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+        <input type="number" matInput formControlName="sex">
       </div>
+      <p class="font-title">Bio</p>
       <div>
-        <mat-label>Password</mat-label>
-        <input type="password" placeholder="Name of group" aria-label="Group" matInput formControlName="email">
+        <input type="text" class="interactable" matInput formControlName="desc">
+        <div class="bio-actions">
+          <button mat-button>Cancel</button>
+          <button mat-button>Save</button>
+        </div>
       </div>
     </form>
-  </mat-card>
+  </div>
 </div>

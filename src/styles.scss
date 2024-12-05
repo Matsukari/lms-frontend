@@ -46,10 +46,9 @@ $lms-frontend-theme: mat.define-theme((color: (theme-type: light,
 
   @include mat.button-toggle-overrides((height: 3px,
     ));
-  @include mat.chips-overrides((
-  outline-color: var(--color-outline-normal),
-  selected-focus-state-layer-color: var(--color-accent),
-  ));
+  @include mat.chips-overrides((outline-color: var(--color-outline-normal),
+      selected-focus-state-layer-color: var(--color-accent),
+    ));
 }
 
 html,
@@ -65,4 +64,9 @@ body * {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+input[type="text"]:focus {
+  outline: none;
 }

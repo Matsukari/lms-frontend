@@ -1,20 +1,64 @@
 
-.container {
-  padding: 4em 10em;
-  gap: 1em;
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  padding: var(--margin-normal);
+  width: 30vw;
+  height: fit-content;
+  position:sticky;
+  top: 0;
+  left: 0;
+}
+.side:first-child {
+  text-transform:capitalize;
+  font-size: var(--font-size-title);
+}
+.pfp, .pfp-options {
+  width: 10vw;
+  height: 10vw;
+  transition: var(--tran-fast);
+}
+.pfp-container {
+    position: relative;
+}
+.pfp-options {
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // background-color: var(--color-medium);
+}
+.pfp-options * {
+  font-weight: bolder;
+}
+.pfp-container:hover .pfp{
+  opacity: 0.4;
+}
+.pfp-container:hover .pfp-options {
+  opacity: 1;
+}
+.content {
+  border-left: 1px solid var(--color-outline-normal);
+  padding-left: var(--margin-normal);
+}
+.form.personal > div {
+  padding: var(--margin-normal);
+  display: grid;
+}
+.disabled input {
+  pointer-events: none;
+}
+input {
+  border-radius: var(--border-small);
+  border: 1px solid var(--color-outline-deep);
+  padding: var(--margin-small);
+  font-size: var(--font-size-normal);
+}
+input[formControlName="desc"] {
+  height: 8em;
 }
 
-
-.profile {
-  padding: 2em 4em;
-
-}
-.profile img {
-  width: 7em;
-  height: 7em;
-}
-
-.section {
-  flex-grow: 1;
-  padding: 3em;
-}

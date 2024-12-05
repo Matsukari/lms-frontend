@@ -1,13 +1,11 @@
 
-div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
+mat-menu {
+  background-color: black;
 }
-
+.profile {
+  width: 200px;
+}
 button {
-  padding: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: var(--margin-normal);
 }
 

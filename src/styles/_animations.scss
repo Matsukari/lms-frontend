@@ -1,3 +1,8 @@
 
 @use "animations/loadsquare";
 @use "animations/loadbars";
+
+:root {
+  --tran-normal: 0.5s;
+  --tran-fast: 0.3s;
+}

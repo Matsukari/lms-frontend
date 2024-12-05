@@ -1,8 +1,11 @@
-<mat-menu #menu="matMenu">
-  <div>
+<mat-menu #menu="matMenu" class="column">
   <button mat-menu-item routerLink="/profile">
     <mat-icon>face</mat-icon>
-    <span>Profile</span>
+    <span>
+      <div class="profile">
+        Profile
+      </div>
+    </span>
   </button>
   <button mat-menu-item routerLink="/report">
     <mat-icon>summarize</mat-icon>
@@ -16,5 +19,4 @@
     <mat-icon>logout</mat-icon>
     <span>Logout</span>
   </button>
-  </div>
 </mat-menu>
