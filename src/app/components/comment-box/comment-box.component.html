@@ -1,12 +1,12 @@
 <div class="row">
   <img mat-card-avatar src="https://i.pravatar.cc/300" />
-  <div class="section" [class.fullbox]="showFull()">
-    <input class="box" id="comment" placeholder="Add a comment" matInput [formControl]="comment">
+  <span class="section" [class.fullbox]="showFull()">
+    <input class="box container" id="comment" placeholder="Add a comment" matInput [formControl]="comment">
     <div *ngIf="showFull()" class="foot row">
       <div class="actions row">
         <button mat-button (click)="cancel()">Cancel</button>
         <button mat-button (click)="submitComment()">Comment</button>
       </div>
     </div>
-  </div>
+  </span>
 </div>

@@ -1,86 +1,71 @@
-<mat-card class="card" appearance="outlined">
-  <mat-card-header class="header">
-    <button mat-icon-button (click)="gotoLastPage()">
-      <mat-icon>
-        keyboard_return
-      </mat-icon>
-    </button>
+<div class="post container">
+  <div class="header">
     <div class="row">
-      <div class="pictures">
-        <img mat-card-avatar width="200px" height="200px" src="https://i.pravatar.cc/300" />
-        <img mat-card-avatar src="https://i.pravatar.cc/300" />
-      </div>
-      <div>
-        <div class="labels">
+      <img class="border-circle" src="https://i.pravatar.cc/300" />
+      <span class="header-info column">
+        <p>
           <span>
-            {{ post.group.name }}
+            {{ post.source.lastname }}, {{ post.source.firstname }}
           </span>
-          <span>
-            by
-          </span>
-          <span>
-            {{ post.source.username }}
-          </span>
-          <span class="time">
-            <span class="dot">
-              ・
-            </span>
-            <span class="text">
-              {{ post.updated_at | timeAgo }}
-            </span>
-          </span>
-        </div>
-        <div>
-          {{ post.title }}
-        </div>
-      </div>
+          <span class="text-hint-small">
 
+            - {{post.group.name}}
+          </span>
+        </p>
+        <p class="text-hint-small">
+          {{ post.updated_at | timeAgo }}
+        </p>
+      </span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="favorite()">
+        <mat-icon [class.icon-outline]="!isFavorited()">book</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
     </div>
-    <span class="spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <!--<mat-card-subtitle>title</mat-card-subtitle>-->
-  </mat-card-header>
+    <div class="post-title container">
+      {{ post.title }}
+    </div>
+  </div>
 
   @if (post.cover_img) {
-  <img mat-card-image [src]="post.cover_img" alt="Cover image" />
+  <img [src]="post.cover_img" alt="Cover image" />
   }
-  @else {
-  }
-  <mat-card-content>
-    <p>
+  <div>
+    <p class="post-desc">
       {{post.desc}}
     </p>
-    <div class="attachments">
-      <div *ngFor="let item of post.attachments; let i=index">
-        <mat-card>
-          @if (item) {
-          <mat-card-content>{{item}}</mat-card-content>
-          }
-          @else {
-          <mat-card-content>No name</mat-card-content>
-          }
-        </mat-card>
+    <div class="attachments container">
+      @for (item of post.attachments; track item) {
+      @if (item) {
+      <div class="row">
+        <mat-icon>attachment</mat-icon>
+        <div>{{item}}</div>
       </div>
+      }
+      @else {
+      <div>No name</div>
+      }
+      }
     </div>
-  </mat-card-content>
-  <mat-card-actions class="actions row">
-    <button mat-stroked-button [class.liked]="hasReaction()" (click)="react()"><mat-icon>thumb_up</mat-icon>
+  </div>
+  <div class="actions row">
+    <button mat-button (click)="react()">
+      <mat-icon [class.icon-outline]="!hasReaction()">thumb_up</mat-icon>
       <div>{{post.reacts.length}}</div>
     </button>
-    <button mat-stroked-button routerLink="/post/{{post.id}}"><mat-icon>chat</mat-icon>
+    <button mat-button routerLink="/post/{{post.id}}">
+      <mat-icon>chat</mat-icon>
       <div>{{post.comments.length}}</div>
     </button>
-    <button mat-stroked-button><mat-icon>favorite</mat-icon>
-      <div>Favorite</div>
-    </button>
-    <button mat-stroked-button><mat-icon>share</mat-icon>
+    <span class="spacer"></span>
+    <button mat-button><mat-icon>share</mat-icon>
       <div>Share</div>
     </button>
-  </mat-card-actions>
-</mat-card>
+  </div>
+</div>
 
-
-<app-comments-section (onSubmit)="submitComment($event)" [commentService]="service" [comments]="post.comments"/>
-
+<div class="container">
+  <app-comments-section (onSubmit)="submitComment($event)" [commentService]="service" [comments]="post.comments" />
+</div>

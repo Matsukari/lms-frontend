@@ -7,6 +7,7 @@ import { TaskService } from '../../services/task.service';
 import { MatIconModule } from '@angular/material/icon';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-submission-panel',
@@ -52,6 +53,7 @@ export class SubmissionPanelComponent {
   }
   constructor(
     private service: TaskService,
+    private ui: UiStateService,
   ) { }
   getSubmissionAttachments() {
     return this.submissionAttachments;
@@ -85,6 +87,7 @@ export class SubmissionPanelComponent {
       remark: this.submissionForm.get("remark").value
     }).subscribe((data: any) => {
       this.yourSubmission.set(data);
+      this.ui.openSnackBar("Submitted your task!");
     })
   }
 }

@@ -32,7 +32,7 @@ export class UiStateService {
     const dialogRef = this.dialog.open(component, config);
     return dialogRef;
   }
-  openSnackBar(message: string, config: any) {
+  openSnackBar(message: string, config: any = {duration: 2000}) {
     const snackbar = this.snackBar.open(message, "Ok", config);
     return snackbar;
   }

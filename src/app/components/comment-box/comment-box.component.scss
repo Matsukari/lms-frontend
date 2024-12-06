@@ -1,16 +1,20 @@
 .section {
-  border: 1px solid #cacaca;
-  border-radius: 2em;
-  border-left: 3px solid skyblue;
-  min-width: 20em;
-  background-color: #f1f1f1;
+  border: 1px solid var(--color-outine-deep);
+  border-radius: var(--border-rounded);
+  // border-left: 3px solid var(--color-accent);
+  min-width: 30vw;
+  background-color: var(--color-bg-subtle);
 }
 
 .box {
-  padding: 1em;
-  background-color: #f1f1f1;
-  outline: none;
   border: none;
+  // border-left: 3px solid var(--color-accent);
+  background-color: var(--color-bg-subtle);
+  outline: none;
+}
+
+input {
+  font-size: var(--font-size-normal);
 }
 
 .box:active {
@@ -18,20 +22,16 @@
 }
 
 .fullbox {
-  border-radius: 0.5em;
+  border-radius: bar(--border-small);
   width: 80%;
 }
 
-div img {
-  margin: 0;
-  margin-right: 1em;
-}
 
 .section {
-  gap: 0.5em;
+  gap: var(--margin-small);
 }
 
 .actions {
-  gap: 0.5em;
+  gap: var(--margin-small);
   justify-content: flex-end;
 }

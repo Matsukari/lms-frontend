@@ -7,7 +7,7 @@
     @else {
     <div class="all">
       @for (item of comments; track item) {
-      <div class="app-row comment">
+      <div class="row comment">
         <img mat-card-avatar src="https://i.pravatar.cc/300" />
         <div class="section">
           <p class="header">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <button mat-icon-button [matMenuTriggerFor]="commentMenu"
-          (click)="commentSelected.set(item.id)"><mat-icon>more_vert</mat-icon>
+          (click)="commentSelected.set(item)"><mat-icon>more_vert</mat-icon>
         </button>
       </div>
       }
@@ -42,6 +42,7 @@
 
 
 <mat-menu #commentMenu="matMenu">
+  @if (ownComment()) {
   <button mat-menu-item (click)="editComment()">
     <mat-icon>edit</mat-icon>
     <span>Edit</span>
@@ -50,6 +51,7 @@
     <mat-icon>delete</mat-icon>
     <span>Delete</span>
   </button>
+  }
   <button mat-menu-item (click)="reportComment()">
     <mat-icon>flag</mat-icon>
     <span>Report</span>

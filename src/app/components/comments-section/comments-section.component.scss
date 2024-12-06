@@ -5,7 +5,7 @@
 }
 
 app-comment-box {
-  margin-bottom: 1em;
+  margin-bottom: var(--margin-normal);
 }
 
 .comments {
@@ -18,11 +18,11 @@ app-comment-box {
 .comments .all {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: var(--margin-small);
 }
 
 .comment {
-  gap: 0.5em;
+  gap: var(--margin-small);
 }
 
 .comment .header {
@@ -38,9 +38,9 @@ app-comment-box {
 }
 
 .comment .section {
-  padding: 0 1em;
-  border-radius: 1em;
-  background-color: #f1f1f1;
+  padding: 0 var(--margin-normal);
+  border-radius: var(--border-normal);
+  background-color: var(--color-bg-subtle);
 }
 
 .comment .actions * {

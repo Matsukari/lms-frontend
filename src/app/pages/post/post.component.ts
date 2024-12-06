@@ -12,6 +12,7 @@ import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { CommentBoxComponent } from '../../components/comment-box/comment-box.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-post',
@@ -35,23 +36,29 @@ import { CommentsSectionComponent } from '../../components/comments-section/comm
 })
 export class PostComponent {
   post: any;
+  user: any;
   hasReaction = signal(false);
+  isFavorited = signal(false);
   @Input()
   set id(postId: string) {
     this.service.getPost(postId, true, true).subscribe((data: any) => {
       this.post = data;
+      this.userService.getLoggedUser().subscribe((user: any) => {
+        this.user = user;
+        this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => this.isFavorited.set(result));
+        this.service.hasReacted(this.post.id, this.user.id).subscribe((data: boolean) => this.hasReaction.set(data));
+      });
     });
   }
   constructor(
     protected service: PostService,
-    private location: Location
+    private location: Location,
+    private userService: UserService,
+    private ui: UiStateService
   ) { }
 
-  ngOnInit() {
-    this.service.hasReacted(this.post.id, this.post.source.id).subscribe((data: boolean) => this.hasReaction.set(data));
-  }
   submitComment(comment: string) {
-    this.service.comment({ text: comment, post: this.post.id, user: this.post.source.id }).subscribe(_ => {
+    this.service.comment({ text: comment, post: this.post.id, user: this.user.id }).subscribe(_ => {
       this.service.getPost(this.post.id, true, true).subscribe((data: any) => {
         this.post = data;
       });
@@ -61,16 +68,28 @@ export class PostComponent {
     this.location.back();
   }
   react(reaction: string = "LIKE") {
-    this.service.react({ post: this.post.id, user: this.post.source.id, reaction: reaction }).subscribe(_ => {
-      this.service.hasReacted(this.post.id, this.post.source.id).subscribe((result: boolean) => this.hasReaction.set(result));
-      this.service.getPost(this.post.id, true, true).subscribe((data: any) => {
-        this.post = data;
+    this.service.react({ post: this.post.id, user: this.user.id, reaction: reaction }).subscribe(_ => {
+      this.service.hasReacted(this.post.id, this.user.id).subscribe((result: boolean) => {
+        this.hasReaction.set(result)
+        if (result)
+          this.ui.openSnackBar("Liked post!");
+        else
+          this.ui.openSnackBar("Unliked post.");
       });
     })
   }
-  deleteComment() {
-    this.service.getPost(this.post.id, true, true).subscribe((data: any) => {
-      this.post = data;
+  favorite() {
+    this.service.favorite({
+      post: this.post.id,
+      user: this.user.id,
+    }).subscribe((_: any) => {
+      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => {
+        this.isFavorited.set(result)
+        if (result)
+          this.ui.openSnackBar("Added post to favorites.");
+        else
+          this.ui.openSnackBar("Removed post to favorites.");
+      });
     });
   }
 }

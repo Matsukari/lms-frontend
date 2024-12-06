@@ -6,6 +6,8 @@ import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { MatButtonModule } from '@angular/material/button';
 import { CommentServiceInterface } from '../../services/interface/comment.interface';
 import { MatMenuModule } from '@angular/material/menu';
+import { UserService } from '../../services/user.service';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-comments-section',
@@ -26,18 +28,35 @@ export class CommentsSectionComponent {
   @Output() onChange = new EventEmitter<void>();
   @Input() commentService: CommentServiceInterface;
   @Input() comments = [];
-  commentSelected = signal(0);
+  commentSelected = signal(null);
+  user: any;
 
+  constructor(
+    private userService: UserService,
+    private ui: UiStateService,
+  ) { }
+  ngOnInit() {
+    this.userService.getLoggedUser().subscribe((user: any) => {
+      this.user = user;
+    })
+  }
   submitComment(comment: string) {
     this.onSubmit.emit(comment);
   }
   editComment() {
 
   }
+  ownComment() {
+    return (this.user && this.commentSelected().user.id == this.user.id)
+
+  }
   deleteComment() {
-    this.commentService.deleteComment(this.commentSelected().toString()).subscribe(_ => {
-      this.onChange.emit();
-    });
+    if (this.ownComment()) {
+      this.commentService.deleteComment(this.commentSelected().id.toString()).subscribe(_ => {
+        this.onChange.emit();
+        this.ui.openSnackBar("Deleted your comment!");
+      });
+    }
   }
   reportComment() {
 

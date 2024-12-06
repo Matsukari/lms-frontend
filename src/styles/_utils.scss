@@ -1,7 +1,15 @@
-
 .icon-outline {
   font-family: 'Material Icons Outlined';
 }
+
+.out {
+  font-variation-settings:
+    'FILL' 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24
+}
+
 .border-circle {
   border-radius: 50%;
   width: 32px;
@@ -15,12 +23,14 @@
 .container {
   padding: var(--margin-normal);
 }
+
 .horizontal-line {
   display: block;
   background-color: var(--color-divider-line-deep);
   width: auto;
   height: 1px;
 }
+
 .divider-line {
   display: block;
   background-color: var(--color-divider-line);
@@ -33,21 +43,25 @@
 .spacer {
   flex: 1 1 auto;
 }
+
 .column-centered {
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-items: center;
 }
+
 .column {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
+
 .row {
   display: flex;
   flex-direction: row;
 }
+
 .row-centered {
   display: flex;
   flex-direction: row;
