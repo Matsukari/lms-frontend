@@ -1,12 +1,7 @@
-.container {
-  background-repeat: no-repeat;
-  background-size: 100px;
-  background-position: center;
+.container.upload {
   height: 20vh;
-  width: 80%;
-  margin: 20px auto;
-  border: 2px dashed #1C8ADB;
-  border-radius: 10px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--border-normal);
   display: flex;
   cursor: pointer;
   justify-content: center;
@@ -19,23 +14,14 @@
 }
 
 .files-list {
-  display: flex;
   justify-content: space-between;
-  width: 80%;
-  margin: 10px auto;
-  background: #ffffff;
-  border: 1px dashed;
-  border-radius: 12px;
-  padding: 5px;
-  color: #1c8adb;
+  width: 100%;
+  border: 1px solid var(--color-outline-deep);
+  border-radius: var(--border-normal);
 }
 
 .files-list .delete-file {
-  background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.files-list .delete-file img {
-  width: 30px;
-}

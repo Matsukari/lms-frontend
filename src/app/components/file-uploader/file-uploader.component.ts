@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   selector: 'app-file-uploader',
   imports: [
-    //DragDropDirective,
+    DragDropDirective,
     CommonModule,
     MatIconModule,
     MatButtonModule,

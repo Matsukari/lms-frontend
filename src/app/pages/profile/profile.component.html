@@ -3,7 +3,8 @@
     <div class="font-title">{{user.role.toLowerCase()}} Profile</div>
     <div class="margin-bottom"></div>
     <div class="pfp-container" (click)="fileSelector.click()">
-      <img class="border-circle pfp" src="https://i.pravatar.cc/300" />
+
+      <img class="border-circle pfp" [src]="form.get('pfp').value" />
       <div class="border-circle pfp-options row">
         <mat-icon>edit</mat-icon>
         <p>
@@ -50,7 +51,7 @@
         <input type="text" class="interactable" matInput formControlName="desc">
         <div class="bio-actions">
           <button mat-button>Cancel</button>
-          <button mat-button>Save</button>
+          <button mat-button (click)="saveBio()">Save</button>
         </div>
       </div>
     </form>

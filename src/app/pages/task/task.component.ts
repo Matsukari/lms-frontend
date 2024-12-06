@@ -76,6 +76,7 @@ export class TaskComponent {
     sideContent.removeChild(this.submissionPanel.location.nativeElement);
   }
   gotoLastPage() {
+    this.ngOnDestroy();
     this.location.back();
   }
 }

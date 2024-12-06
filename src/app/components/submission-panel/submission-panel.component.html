@@ -36,12 +36,14 @@
           <div *ngFor="let item of getSubmissionAttachments(); let i=index">
             <div class="attachment row-centered">
               @if (item) {
-              <mat-icon>
-                attach_file
-              </mat-icon>
+              <mat-icon>attach_file</mat-icon>
               <p>
                 {{item}}
               </p>
+              <span class="spacer"></span>
+              <button mat-button>
+                <mat-icon>delete</mat-icon>
+              </button>
               }
               @else {
               <p>No name</p>

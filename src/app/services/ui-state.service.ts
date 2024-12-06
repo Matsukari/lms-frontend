@@ -2,6 +2,7 @@ import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -13,6 +14,7 @@ export class UiStateService {
   theme = "light";
   constructor(
     private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
   init() {
     this.setTheme(this.theme);
@@ -29,6 +31,10 @@ export class UiStateService {
   openDialog(component: ComponentType<unknown>, config: any) {
     const dialogRef = this.dialog.open(component, config);
     return dialogRef;
+  }
+  openSnackBar(message: string, config: any) {
+    const snackbar = this.snackBar.open(message, "Ok", config);
+    return snackbar;
   }
   setTheme(theme: string) {
     this.theme = theme;

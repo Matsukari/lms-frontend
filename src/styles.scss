@@ -49,6 +49,9 @@ $lms-frontend-theme: mat.define-theme((color: (theme-type: light,
   @include mat.chips-overrides((outline-color: var(--color-outline-normal),
       selected-focus-state-layer-color: var(--color-accent),
     ));
+  @include mat.snack-bar-overrides((
+  container-color: var(--color-bg-mid),
+  ))
 }
 
 html,
