@@ -1,0 +1,53 @@
+<div class="posts">
+  @if (news()) {
+  <div class="news">
+    <h3>News This Month</h3>
+    <div class="row news-list">
+      @for (item of news(); track item) {
+      <div class="news-item">
+        <img class="event" src="https://picsum.photos/200/240" />
+        <p>{{item.title}}</p>
+      </div>
+      }
+    </div>
+  </div>
+  }
+  @if (events()) {
+  <div>
+    <h3>Events Ongoing</h3>
+    @if (currentEvent()) {
+    <div class="event">
+      <div class="event">
+        <img class="event" src="https://picsum.photos/300/100/?blur=2" />
+        <p>{{currentEvent().title}}</p>
+      </div>
+      <button mat-button class="prev">
+        <mat-icon>
+          chevron_left
+        </mat-icon>
+      </button>
+      <button mat-button class="next">
+        <mat-icon>
+          chevron_right
+        </mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+  <h3>Posts</h3>
+  <div class="margin-bottom"></div>
+  }
+
+
+  @defer (when posts()) {
+  <p *ngIf="posts().length <= 0">No community has posted anything. <mat-icon>sentiment_dissatisfied</mat-icon>
+  </p>
+  <div *ngIf="posts().length >= 0" class="posts">
+    @for (item of posts(); track item) {
+    <app-post-preview [post]="item" />
+    <div class="margin-bottom"></div>
+    }
+  </div>
+  }
+
+</div>

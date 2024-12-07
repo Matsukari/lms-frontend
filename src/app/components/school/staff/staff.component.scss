@@ -1,0 +1,23 @@
+img {
+  width: 128px;
+  border-radius: var(--border-normal);
+}
+
+mat-icon {
+  width: 128px;
+  height: 128px;
+  font-size: 128px;
+}
+
+.teachers {
+  display: grid;
+  gap: var(--margin-small);
+  grid-template-columns: auto auto auto auto auto;
+}
+
+.teachers>* {
+  width: 128px;
+  border-radius: var(--border-normal);
+  border: 2px solid var(--color-outline-normal);
+  background-color: var(--color-bg-subtle);
+}

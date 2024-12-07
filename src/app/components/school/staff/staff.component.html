@@ -1,0 +1,28 @@
+<div>
+  <h2>Dean</h2>
+  <div class="column">
+    <img [src]="serverFile(dean().pfp)" (error)="handleNoImage($event)" />
+    <div hidden="true">
+      <mat-icon>person</mat-icon>
+    </div>
+    <div class="spacer"></div>
+    <p class="teacher-name">
+      {{dean().lastname}}, {{dean().firstname}}
+    </p>
+  </div>
+  <h2>Teachers</h2>
+  <div class="teachers">
+    @for (item of teachers(); track item) {
+    <div class="column">
+      <img #pic [src]="teacherFile(item.pfp)" (error)="handleNoImage($event)" />
+      <div hidden="true">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="spacer"></div>
+      <p class="teacher-name">
+        {{item.lastname}}
+      </p>
+    </div>
+    }
+  </div>
+</div>

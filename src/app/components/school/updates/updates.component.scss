@@ -1,0 +1,26 @@
+.news-list {
+  gap: var(--margin-normal);
+}
+.news-item, .news-item img {
+  width: 300px;
+}
+.news-item p {
+  color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: -2em;
+}
+.event {
+  width: 100%;
+}
+.event button {
+  position: absolute;
+  top: 50%;
+}
+.event .prev {
+  left: 0;
+}
+.event .next {
+  right: 0;
+}

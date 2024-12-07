@@ -1,0 +1,16 @@
+
+.header {
+  place-items: center;
+}
+.banner {
+  width: 100%;
+  background-color: var(--color-accent-subtle);
+}
+.logo {
+  width: 128px;
+  height: 128px;
+  background-color: var(--color-accent);
+  margin-top: -100px;
+  place-self: center;
+}
+

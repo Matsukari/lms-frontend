@@ -1,6 +1,6 @@
 <div class="content">
   <mat-chip-listbox class="row">
-    <mat-chip-option selected (click)="tasks.set(allTasks)">All {{allTasks().length}}</mat-chip-option>
+    <mat-chip-option selected (click)="tasks.set(allTasks())">All {{allTasks().length}}</mat-chip-option>
     @for (item of categories; track item) {
     <mat-chip-option (click)="tasks.set(item.items)">
       <span>

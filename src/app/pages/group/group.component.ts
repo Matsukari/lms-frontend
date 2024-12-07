@@ -27,7 +27,6 @@ import { GroupAboutPanelComponent } from '../../components/group-about-panel/gro
 export class GroupComponent {
   tabs = [
     { name: "Events", icon: "event", url: "events" },
-    { name: "Tasks", icon: "task", url: "tasks" },
     { name: "Resources", icon: "task", url: "resources" },
   ];
   group: any;
@@ -41,6 +40,9 @@ export class GroupComponent {
     this.groupService.getGroup(groupId, true, true, true).subscribe((data: any) => {
       this.group = data;
       this.posts = data.posts;
+      if (this.group.type == "CLASS") {
+        this.tabs.splice(1, 0, { name: "Tasks", icon: "task", url: "tasks" });
+      }
       this.createPanel();
     });
   }

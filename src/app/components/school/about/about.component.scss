@@ -1,0 +1,11 @@
+
+.values * {
+  padding: var(--margin-normal);
+}
+.row div {
+  font-size: var(--font-size-title);
+}
+.row p {
+  background-color: var(--color-bg-subtle);
+  text-align: justify;
+}

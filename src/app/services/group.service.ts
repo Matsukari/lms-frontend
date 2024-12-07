@@ -13,15 +13,18 @@ export class GroupService {
   }
   getGroup(id: string, members?: boolean, tasks?: boolean, posts?: boolean) {
     const params = new HttpParams()
-    .set("members", members)
-    .set("tasks", tasks)
-    .set("posts", posts);
-    return this.http.get(environment.apiUrl + "/get/group/" + id, {params: params});
+      .set("members", members)
+      .set("tasks", tasks)
+      .set("posts", posts);
+    return this.http.get(environment.apiUrl + "/get/group/" + id, { params: params });
   }
   getGroups(type: string) {
     return this.http.get(environment.apiUrl + "/get/groups/" + type);
   }
   getGroupsOf(user: string, type: string) {
     return this.http.get(environment.apiUrl + "/get/groups/" + type);
+  }
+  getSchool() {
+    return this.http.get(environment.apiUrl + "/get/school");
   }
 }
