@@ -17,7 +17,7 @@ export class AuthService {
     this.http.post(environment.apiUrl + "/login", formData).subscribe({
       next: (data: any) => {
         localStorage.setItem("token", data.access_token);
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/"]);
         loading.set(false);
       },
       error: (err: Error) => {

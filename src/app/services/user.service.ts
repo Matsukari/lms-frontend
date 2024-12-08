@@ -1,23 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  loggedUser: any;
+  loggedUser = new Subject<any>();
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
-  ) { }
-  ngOnInit() {
-    this.getLoggedUser().subscribe((user: any) => this.loggedUser = user);
+  ) {
+    this.authService.authenticate().subscribe((user: any) => {
+      this.loggedUser.next(user);
+    });
   }
 
   getLoggedUser() {
+    //return this.loggedUser;
     return this.authService.authenticate();
   }
   getUser(username: string) {

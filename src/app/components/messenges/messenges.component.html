@@ -1,1 +1,35 @@
+<div class="host">
 
+  <div>
+    <div class="font-title container">Messages</div>
+
+    <div class="container">
+      <div class="chat-list column">
+        @for (item of displayedRooms(); track item) {
+        <div class="container" (click)="selectRoom(item)">
+          <div>
+            Group name
+          </div>
+          @if (item.messages[0]) {
+          <div class="text-hint-small last-message row">
+            <span class="message">
+              {{item.messages[0].content}}
+            </span>
+            <span class="date">
+              {{item.messages[0].updated_at | timeAgo}}
+            </span>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+
+  <!--@if (selectedRoom()) {-->
+  <!--<div class="room">-->
+  <!--  <app-chatroom [room]="selectedRoom()"/>-->
+  <!--</div>-->
+  <!--}-->
+</div>

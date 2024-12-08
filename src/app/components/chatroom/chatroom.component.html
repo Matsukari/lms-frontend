@@ -1,0 +1,38 @@
+<div class="container room column">
+  <div class="row-centered">
+    <div>
+      Group name
+    </div>
+    <div class="spacer"></div>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
+
+
+  <div class="message-list column">
+    @for (item of room.messages;track item) {
+    <div class="row message">
+      <img src="https://i.pravatar.cc/300" class="border-circle" />
+      <span class="section container">
+        {{item.content}}
+      </span>
+    </div>
+    }
+  </div>
+
+  <div class="row sender">
+    <img src="https://i.pravatar.cc/300" class="border-circle" />
+    <span class="section">
+      <input type="text" class="box container" id="chat" placeholder="Type something..." matInput [formControl]="chat">
+    </span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+
+
+</div>

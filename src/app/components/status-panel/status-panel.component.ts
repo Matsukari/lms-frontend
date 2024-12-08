@@ -25,6 +25,7 @@ export class StatusPanelComponent {
     private userService: UserService,
   ) { }
   ngOnInit() {
+    //alert(this.userService.loggedUser());
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.taskService.getTasksFromUser(user.id, "completed", true, true, true).subscribe((data: any) => {
         //alert("completed: " + data.length.toString());

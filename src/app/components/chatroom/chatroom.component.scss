@@ -1,0 +1,26 @@
+.room {
+  border-radius: var(--border-normal);
+  border: 2px solid var(--color-outline-deep);
+  position: absolute;
+  z-index: 99999999;
+  bottom: var(--margin-normal);
+  right: var(--margin-normal);
+  height: 400px;
+  width: 400px;
+  background-color: var(--color-bg-subtle);
+}
+.message-list {
+  overflow: scroll;
+  height: 100%;
+  gap: var(--margin-normal)
+}
+.message span {
+  background-color: var(--color-bg-mid);
+  border-radius: var(--border-normal);
+}
+input {
+  border: none;
+  border-radius: var(--border-rounded);
+  // background-color: var(--color-bg-subtle);
+  outline: none;
+}

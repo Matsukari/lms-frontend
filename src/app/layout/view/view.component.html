@@ -1,25 +1,29 @@
-<div #header>
-  @defer (when user) {
-  <app-header />
-  }
+<div class="master-view">
+  <div #header>
+    @defer (when user) {
+    <app-header />
+    }
+  </div>
+
+  <mat-sidenav-container class="view-container">
+
+    <mat-sidenav #sidenav mode="side" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="sidenavPosition"
+      [fixedBottomGap]="0" (openedChange)="navChanged()">
+      <app-side-nav />
+    </mat-sidenav>
+
+    <mat-sidenav-content class="row content" id="view-content">
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+      <div id="side-content" class="side-content">
+        <app-status-panel />
+      </div>
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+  <div id="overlay-content" class="overlay-content">
+  </div>
 </div>
-
-<mat-sidenav-container class="view-container">
-
-  <mat-sidenav #sidenav mode="side" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="sidenavPosition"
-    [fixedBottomGap]="0" (openedChange)="navChanged()">
-    <app-side-nav/>
-  </mat-sidenav>
-
-  <mat-sidenav-content class="row content" id="view-content">
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-    <div id="side-content" class="side-content">
-      <app-status-panel />
-    </div>
-  </mat-sidenav-content>
-
-
-</mat-sidenav-container>
-

@@ -1,0 +1,24 @@
+
+.host {
+  border: 2px solid var(--color-outline-normal);
+  border-radius: var(--border-normal);
+}
+.chat-list {
+  gap: var(--margin-small);
+}
+.chat-list > * {
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--border-normal);
+}
+.last-message {
+  justify-content: space-between;
+}
+.last-message .message {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.last-message .date {
+  white-space: nowrap;
+  color: var(--color-disabled);
+}

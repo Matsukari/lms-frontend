@@ -30,8 +30,21 @@
   margin-left: var(--margin-small);
 }
 
+.master-view {
+  width: 100vw;
+  height: 100vh;
+}
+
 .side-content::-webkit-scrollbar {
   display: none;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // width: 100vw;
+  // height: 100vh;
 }
 
 .sidenav {
