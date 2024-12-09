@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, ComponentRef, createComponent, ElementRef, Input, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, ComponentRef, createComponent, ElementRef, Input, signal, ViewChild } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,9 @@ import { SubmissionPanelComponent } from '../../components/submission-panel/subm
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationService } from '../../services/navigation.service';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-task',
@@ -36,7 +38,7 @@ import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 export class TaskComponent {
   submissionPanel: ComponentRef<SubmissionPanelComponent>;
   user: any;
-  task: any;
+  task = signal(null);
   activeTab: any;
   tabs = [
     { name: "Comments", icon: "forum", url: "comments" },
@@ -45,26 +47,19 @@ export class TaskComponent {
   constructor(
     protected service: TaskService,
     private userService: UserService,
-    private location: Location,
-    private appRef: ApplicationRef,
+    private ui: UiStateService,
     private route: ActivatedRoute,
+    private navigationService: NavigationService,
   ) { }
   @Input()
   set id(taskId: string) {
     this.service.getTask(taskId, true, true, true).subscribe((data: any) => {
-      this.task = data;
+      this.task.set(data);
       this.userService.getLoggedUser().subscribe((user: any) => {
         this.user = user;
-        const appRef = this.appRef;
-        const sideContent = document.getElementById("side-content");
-        const component = createComponent(SubmissionPanelComponent, {
-          environmentInjector: appRef.injector,
+        this.submissionPanel = this.ui.pushSideContentTop(SubmissionPanelComponent, {
+          taskData: this.task(),
         })
-        component.setInput("task", this.task);
-        component.setInput("userData", this.user);
-        this.submissionPanel = component;
-        appRef.attachView(component.hostView);
-        sideContent.insertBefore(component.location.nativeElement, sideContent.firstChild);
       })
     });
     this.route.firstChild.url.subscribe(url => {
@@ -75,8 +70,7 @@ export class TaskComponent {
     const sideContent = document.getElementById("side-content");
     sideContent.removeChild(this.submissionPanel.location.nativeElement);
   }
-  gotoLastPage() {
-    this.ngOnDestroy();
-    this.location.back();
+  getLastPage() {
+    return this.navigationService.getPreviousUrl();
   }
 }

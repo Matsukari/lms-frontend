@@ -1,6 +1,6 @@
-@defer (when task) {
+@defer (when task()) {
 <div class="">
-  <mat-toolbar class="header row">
+  <mat-toolbar class="header row container">
     <div class="header-text row-centered">
       <mat-icon class="icon-outline">task</mat-icon>
       <span class="header-title">
@@ -15,10 +15,8 @@
 
     <span class="spacer"></span>
 
-    <button class="close-button" mat-icon-button (click)="gotoLastPage()">
-      <mat-icon>
-        close
-      </mat-icon>
+    <button class="close-button" mat-icon-button [routerLink]="getLastPage()">
+      <mat-icon>close</mat-icon>
     </button>
   </mat-toolbar>
 
@@ -28,11 +26,11 @@
   <div class="content column container">
     <div class="semi-header row-centered">
       <span class="task-name">
-        {{ task.name }}
+        {{ task().name }}
       </span>
       <span class="spacer"></span>
 
-      <button mat-icon-button (click)="gotoLastPage()">
+      <button mat-icon-button [routerLink]="getLastPage()">
         <mat-icon>
           more_horiz
         </mat-icon>
@@ -41,21 +39,21 @@
     <div class="main column">
       <div class="head row">
         <div class="column">
-          <span class="due">Due {{task.due_at | date}}</span>
+          <span class="due">Due {{task().due_at | date}}</span>
         </div>
         <div class="creator row">
           <img class="border-circle" src="https://i.pravatar.cc/300" />
           <span>
-            <p>{{task.creator.lastname}}</p>
+            <p>{{task().creator.lastname}}</p>
             <p class="text-hint-small">Teacher</p>
           </span>
         </div>
 
       </div>
-      @if (task.desc) {
+      @if (task().desc) {
       <div class="desc container">
         <p>
-          {{task.desc}}
+          {{task().desc}}
         </p>
       </div>
       }

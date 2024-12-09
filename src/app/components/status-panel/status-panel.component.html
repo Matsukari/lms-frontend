@@ -1,3 +1,4 @@
+@defer (when dueTasks()) {
 <div class="panel">
   <div class="accordion container row font-title">
     <mat-icon class="icon-outline">
@@ -17,6 +18,7 @@
     </p>
   </div>
   <div class="divider-line"></div>
+
   <div class="container tasks column">
     @for (item of dueTasks(); track item) {
     <div class="item row" routerLink="/task/{{item.id}}">
@@ -36,3 +38,7 @@
     }
   </div>
 </div>
+}
+@placeholder (minimum 0.4s) {
+<div class="anim-loadsquare"></div>
+}

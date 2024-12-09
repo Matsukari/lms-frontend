@@ -22,36 +22,40 @@ import { MatChipsModule } from '@angular/material/chips';
     MatChipsModule,
   ],
   templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.scss'
+  styleUrl: './tasks.component.scss',
 })
 export class TasksComponent {
   tasks = signal(null);
   allTasks = signal([]);
-  categories = [];
+  categories = signal([]);
 
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
     private userService: UserService,
-  ) { }
+  ) {}
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      let groupId = params["id"];
+      let groupId  = params["id"];
       this.taskService.getTasksFromGroup(groupId, true, true, true).subscribe((data: any) => {
         this.tasks.set(data);
         this.allTasks.set(this.tasks());
         this.userService.getLoggedUser().subscribe((user: any) => {
           this.taskService.getTasksFromUser(user.id, "due", true, true, true, groupId).subscribe((items: any) => {
-            this.categories.push({ label: "Due", items: items });
+            this.categories().push({ label: "Due", items: items });
+            this.categories.set(this.categories());
           })
           this.taskService.getTasksFromUser(user.id, "missed", true, true, true, groupId).subscribe((items: any) => {
-            this.categories.push({ label: "Missed", items: items });
+            this.categories().push({ label: "Missed", items: items });
+            this.categories.set(this.categories());
           })
           this.taskService.getTasksFromUser(user.id, "completed", true, true, true, groupId).subscribe((items: any) => {
-            this.categories.push({ label: "Completed", items: items });
+            this.categories().push({ label: "Completed", items: items });
+            this.categories.set(this.categories());
           })
           this.taskService.getTasksFromUser(user.id, "graded", true, true, true, groupId).subscribe((items: any) => {
-            this.categories.push({ label: "Graded", items: items });
+            this.categories().push({ label: "Graded", items: items });
+            this.categories.set(this.categories());
           })
           //this.taskService.submit({ attachments: ["Sample"], remark: "Sample remark", user: user.id, source: data[0].id }).subscribe(data => {
           //});

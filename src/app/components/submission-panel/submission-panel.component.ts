@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, Signal, signal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { FileUploaderComponent } from '../file-uploader/file-uploader.component';
 import { UiStateService } from '../../services/ui-state.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-submission-panel',
@@ -27,7 +28,7 @@ import { UiStateService } from '../../services/ui-state.service';
   styleUrl: './submission-panel.component.scss'
 })
 export class SubmissionPanelComponent {
-  @Input() task: any;
+  task = signal(null);
   user: any;
   yourSubmission = signal(null);
   yourSubmissionResponse = signal(null);
@@ -37,23 +38,27 @@ export class SubmissionPanelComponent {
   });
   submissionAttachments = [];
   @Input()
-  set userData(user: any) {
-    this.user = user;
-    this.service.getTaskSubmission(this.task.id, this.user.id).subscribe((submission: any) => {
-      this.yourSubmission.set(submission);
-      this.submissionAttachments = this.yourSubmission().attachments;
-      this.submissionForm.get("remark").setValue(this.yourSubmission().desc);
-    });
-    this.service.getTaskResponse(this.task.id, this.user.id).subscribe((data: any) => {
-      this.yourSubmissionResponse.set(data);
-    });
-    this.service.getTaskOtherSubmissions(this.task.id, this.user.id).subscribe((data: any) => {
-      this.otherSubmissions.set(data);
+  set taskData(task: any) {
+    this.task.set(task);
+    this.userService.getLoggedUser().subscribe((user: any) => {
+      this.user = user;
+      this.service.getTaskSubmission(this.task().id, this.user.id).subscribe((submission: any) => {
+        this.yourSubmission.set(submission);
+        this.submissionAttachments = this.yourSubmission().attachments;
+        this.submissionForm.get("remark").setValue(this.yourSubmission().desc);
+      });
+      this.service.getTaskResponse(this.task().id, this.user.id).subscribe((data: any) => {
+        this.yourSubmissionResponse.set(data);
+      });
+      this.service.getTaskOtherSubmissions(this.task().id, this.user.id).subscribe((data: any) => {
+        this.otherSubmissions.set(data);
+      });
     });
   }
   constructor(
     private service: TaskService,
     private ui: UiStateService,
+    private userService: UserService,
   ) { }
   getSubmissionAttachments() {
     return this.submissionAttachments;
@@ -82,7 +87,7 @@ export class SubmissionPanelComponent {
   submit() {
     this.service.submit({
       attachments: this.getSubmissionAttachments(),
-      source: this.task.id,
+      source: this.task().id,
       user: this.user.id,
       remark: this.submissionForm.get("remark").value
     }).subscribe((data: any) => {

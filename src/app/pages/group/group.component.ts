@@ -29,8 +29,8 @@ export class GroupComponent {
     { name: "Events", icon: "event", url: "events" },
     { name: "Resources", icon: "task", url: "resources" },
   ];
-  group: any;
-  posts: any;
+  group = signal(null);
+  posts = signal(null);
   activeTab: any;
   aboutPanel: ComponentRef<GroupAboutPanelComponent>;
 
@@ -38,9 +38,9 @@ export class GroupComponent {
   @Input()
   set id(groupId: string) {
     this.groupService.getGroup(groupId, true, true, true).subscribe((data: any) => {
-      this.group = data;
-      this.posts = data.posts;
-      if (this.group.type == "CLASS") {
+      this.group.set(data);
+      this.posts.set(data.posts);
+      if (this.group().type == "CLASS") {
         this.tabs.splice(1, 0, { name: "Tasks", icon: "task", url: "tasks" });
       }
       this.createPanel();
@@ -62,7 +62,7 @@ export class GroupComponent {
     const component = createComponent(GroupAboutPanelComponent, {
       environmentInjector: appRef.injector,
     })
-    component.setInput("group", this.group);
+    component.setInput("group", this.group());
     this.aboutPanel = component;
     appRef.attachView(component.hostView);
     sideContent.insertBefore(component.location.nativeElement, sideContent.firstChild);

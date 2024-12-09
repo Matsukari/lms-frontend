@@ -1,3 +1,26 @@
+<mat-toolbar class="header row container">
+  <div class="header-text row-centered">
+    <!--<mat-icon class="icon-outline"></mat-icon>-->
+    <span class="header-title">
+      <span>
+        Post
+      </span>
+      <!--<span class="number">-->
+      <!--  # 1-->
+      <!--</span>-->
+    </span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <button class="close-button" mat-icon-button [routerLink]="getLastPage()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="horizontal-line"></div>
+
+
 <div class="post container">
   <div class="header">
     <div class="row">

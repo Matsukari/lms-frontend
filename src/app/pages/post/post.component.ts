@@ -7,12 +7,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 import { CommentBoxComponent } from '../../components/comment-box/comment-box.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommentsSectionComponent } from '../../components/comments-section/comments-section.component';
 import { UiStateService } from '../../services/ui-state.service';
+import { NavigationService } from '../../services/navigation.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-post',
@@ -29,6 +31,7 @@ import { UiStateService } from '../../services/ui-state.service';
     CommentBoxComponent,
     MatMenuModule,
     CommonModule,
+    MatToolbarModule,
     CommentsSectionComponent,
   ],
   templateUrl: './post.component.html',
@@ -52,9 +55,9 @@ export class PostComponent {
   }
   constructor(
     protected service: PostService,
-    private location: Location,
     private userService: UserService,
-    private ui: UiStateService
+    private ui: UiStateService,
+    private navigationService: NavigationService,
   ) { }
 
   submitComment(comment: string) {
@@ -64,8 +67,8 @@ export class PostComponent {
       });
     });
   }
-  gotoLastPage() {
-    this.location.back();
+  getLastPage() {
+    return this.navigationService.getPreviousUrl();
   }
   react(reaction: string = "LIKE") {
     this.service.react({ post: this.post.id, user: this.user.id, reaction: reaction }).subscribe(_ => {

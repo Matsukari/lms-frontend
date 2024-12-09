@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UiStateService } from './services/ui-state.service';
+import { NavigationService } from './services/navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,11 @@ import { UiStateService } from './services/ui-state.service';
 export class AppComponent {
 
   constructor(
-    private uiState: UiStateService
+    private uiState: UiStateService,
+    private navigation: NavigationService,
   ) {}
   ngOnInit() {
     this.uiState.init();
+    this.navigation.init();
   }
 }

@@ -1,9 +1,9 @@
 <mat-toolbar>
-  @defer (when group) {
+  @defer (when group()) {
 
   <mat-icon>wysiwyg</mat-icon>
 
-  <p><span class="group-type">{{group.type.toLowerCase()}}</span> : {{ group.name }}</p>
+  <p><span class="group-type">{{group().type.toLowerCase()}}</span> : {{ group().name }}</p>
   }
   @placeholder (minimum 0.4s) {
   <h3></h3>
