@@ -12,8 +12,8 @@
   </div>
 
 
-  <div class="message-list column">
-    @for (item of room.messages;track item) {
+  <div #messageList class="message-list column">
+    @for (item of messages();track item) {
     <div class="row message">
       <img src="https://i.pravatar.cc/300" class="border-circle" />
       <span class="section container">
@@ -29,7 +29,7 @@
       <input type="text" class="box container" id="chat" placeholder="Type something..." matInput [formControl]="chat">
     </span>
     <span class="spacer"></span>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="sendMessage()">
       <mat-icon>send</mat-icon>
     </button>
   </div>

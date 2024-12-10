@@ -34,15 +34,17 @@ export class ProfileComponent {
     }, 100);
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
+      if (!user)
+        return;
       this.form = new FormGroup({
         email: new FormControl(user.email),
-        sex: new FormControl(user.profile.sex),
-        age: new FormControl(user.profile.age),
-        desc: new FormControl(user.profile.bio),
-        birthday: new FormControl(user.profile.birthday),
-        religion: new FormControl(user.profile.religion),
-        address: new FormControl(user.profile.address),
-        pfp: new FormControl(user.profile.pfp ? user.profile.pfp : "notha"),
+        sex: new FormControl(user.profile?.sex),
+        age: new FormControl(user.profile?.age),
+        desc: new FormControl(user.profile?.bio),
+        birthday: new FormControl(user.profile?.birthday),
+        religion: new FormControl(user.profile?.religion),
+        address: new FormControl(user.profile?.address),
+        pfp: new FormControl(user.profile?.pfp ? user.profile.pfp : "notha"),
       })
     })
   }

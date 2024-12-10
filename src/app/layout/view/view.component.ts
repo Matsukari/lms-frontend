@@ -45,7 +45,7 @@ export class ViewComponent {
   constructor(
     private userService: UserService,
     private uiState: UiStateService,
-  ) { }
+  ) {}
   async ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;

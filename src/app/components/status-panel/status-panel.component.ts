@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './status-panel.component.scss'
 })
 export class StatusPanelComponent {
+  user = signal(null);
   completedTasks = signal(null);
   dueTasks = signal(null);
   missedTasks = signal(null);
@@ -27,6 +28,7 @@ export class StatusPanelComponent {
   ngOnInit() {
     //alert(this.userService.loggedUser());
     this.userService.getLoggedUser().subscribe((user: any) => {
+      this.user = user;
       this.taskService.getTasksFromUser(user.id, "completed", true, true, true).subscribe((data: any) => {
         //alert("completed: " + data.length.toString());
         //this.completedTasks.set(data);

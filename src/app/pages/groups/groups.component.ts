@@ -32,8 +32,16 @@ export class GroupsComponent {
   ) { }
   ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
+      if (!user)
+        return;
       const array = [];
-      user.member_groups.forEach((item: any) => {
+      let groups = [];
+      if (user.role == "TEACHER")
+        groups = user.member_groups;
+      else
+        groups = user.admin_groups;
+
+      groups.forEach((item: any) => {
         if (item.type === "CLASS") {
           array.push(item);
         }

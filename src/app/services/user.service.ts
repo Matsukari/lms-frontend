@@ -2,33 +2,23 @@ import { Injectable, signal } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
-import { AsyncSubject, BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  loggedUser = new BehaviorSubject<any>(null);
-
 
   constructor(
     private authService: AuthService,
     private http: HttpClient,
   ) {
-    this.authService.authenticate().subscribe((user: any) => {
-      this.loggedUser.next(user);
-    });
+    this.authService.update();
   }
-
+  init() {
+  }
   getLoggedUser() {
-    return this.loggedUser.asObservable();
-    //return this.authService.authenticate();
+    return this.authService.getLoggedUser();
   }
-  //callUser(callback: (result: any) => void) {
-  //  if (this.loggedUser.observed) {
-  //    callback(this.loggedUser)
-  //  }
-  //}
   getUser(username: string) {
     //const params = new HttpParams()
     //  .set("role", role);

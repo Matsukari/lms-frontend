@@ -28,7 +28,9 @@ export class LoginComponent {
     username: new FormControl(""),
     password: new FormControl(""),
   })
-  constructor(private auth: AuthService) { }
+  constructor(
+    private auth: AuthService
+  ) { }
   onSubmit() {
     this.auth.login(formGroupToFormData(this.profileForm), this.loading);
   }
