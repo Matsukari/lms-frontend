@@ -1,5 +1,3 @@
-
-
 :root {
   --font-size-sidenav: 14px;
   --font-size-header: 14px;
@@ -24,6 +22,14 @@ h3 {
 .font-sub {
   font-size: var(--font-size-tab);
 }
+
 .text-disabled {
   color: var(--color-disabled);
+}
+
+@media only screen and (max-width: 1000px) {
+  div * {
+    font-size: 30px;
+  }
+
 }

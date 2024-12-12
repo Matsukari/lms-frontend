@@ -5,9 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabNav, MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { GroupAboutPanelComponent } from '../../components/group-about-panel/group-about-panel.component';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-group',
@@ -33,6 +34,7 @@ export class GroupComponent {
   posts = signal(null);
   activeTab: any;
   aboutPanel: ComponentRef<GroupAboutPanelComponent>;
+  @ViewChild("nav", {read: ElementRef}) nav!: ElementRef;
 
 
   @Input()
@@ -43,34 +45,27 @@ export class GroupComponent {
       if (this.group().type == "CLASS") {
         this.tabs.splice(1, 0, { name: "Tasks", icon: "task", url: "tasks" });
       }
-      this.createPanel();
+      this.aboutPanel = this.ui.pushSideContentTop(GroupAboutPanelComponent, {group: this.group()});
     });
   }
   constructor(
     private groupService: GroupService,
     private route: ActivatedRoute,
-    private appRef: ApplicationRef,
+    private ui: UiStateService,
   ) { }
   ngOnInit() {
     this.route.firstChild.url.subscribe(url => {
       this.activeTab = url;
     })
+    //const scroll = localStorage.getItem("groupScroll");
+    //window.scrollTo(0, +scroll);
   }
-  createPanel() {
-    const appRef = this.appRef;
-    const sideContent = document.getElementById("side-content");
-    const component = createComponent(GroupAboutPanelComponent, {
-      environmentInjector: appRef.injector,
-    })
-    component.setInput("group", this.group());
-    this.aboutPanel = component;
-    appRef.attachView(component.hostView);
-    sideContent.insertBefore(component.location.nativeElement, sideContent.firstChild);
-
+  ngAfterViewInit() {
+    const nav = this.nav.nativeElement as HTMLElement;
+    nav.style.top = this.ui.getHeaderHeight().toString() + "px";
   }
   ngOnDestroy() {
-    const sideContent = document.getElementById("side-content");
-    sideContent.removeChild(this.aboutPanel.location.nativeElement);
+    this.ui.popSideContent(this.aboutPanel);
   }
   taskIsOverdue(task: any) {
     return new Date().toISOString() > task.due_at;

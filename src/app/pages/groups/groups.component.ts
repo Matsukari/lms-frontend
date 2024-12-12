@@ -36,7 +36,7 @@ export class GroupsComponent {
         return;
       const array = [];
       let groups = [];
-      if (user.role == "TEACHER")
+      if (user.role == "STUDENT")
         groups = user.member_groups;
       else
         groups = user.admin_groups;

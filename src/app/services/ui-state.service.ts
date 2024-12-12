@@ -59,6 +59,9 @@ export class UiStateService {
     const sideContent = document.getElementById("side-content");
     sideContent.removeChild(component.location.nativeElement);
   }
+  getHeaderHeight() {
+    return document.getElementById("header").offsetHeight;
+  }
   // MatDialog somehow loads the dialog into the component caller
   openDialog(component: ComponentType<unknown>, config: any) {
     const dialogRef = this.dialog.open(component, config);

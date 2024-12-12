@@ -17,7 +17,7 @@
       <mat-icon matListItemIcon>school</mat-icon>
       <div matListItemTitle>School</div>
     </mat-list-item>
-    <mat-list-item [class.current-router]="isCurrentRoute('resources')">
+    <mat-list-item routerLink="/resources" [class.current-router]="isCurrentRoute('resources')">
       <mat-icon matListItemIcon>summarize</mat-icon>
       <div matListItemTitle>Resources</div>
     </mat-list-item>

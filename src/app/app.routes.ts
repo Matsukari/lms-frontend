@@ -9,6 +9,7 @@ import { PostComponent } from './pages/post/post.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ResourcesComponent as GroupResourcesComponent } from './components/group/resources/resources.component';
 import { ResourcesComponent as SchoolResourcesComponent } from './components/school/resources/resources.component';
+import { ResourcesComponent as UserResourcesComponent } from './pages/resources/resources.component';
 import { TasksComponent } from './components/group/tasks/tasks.component';
 import { EventsComponent } from './components/group/events/events.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -32,6 +33,7 @@ export const routes: Routes = [
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "profile", component: ProfileComponent },
+      { path: "resources", component: UserResourcesComponent },
       {
         path: "school", component: SchoolComponent, children: [
           { path: "", redirectTo: "updates", pathMatch: "full" },

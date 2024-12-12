@@ -55,13 +55,17 @@ export class TaskComponent {
   set id(taskId: string) {
     this.service.getTask(taskId, true, true, true).subscribe((data: any) => {
       this.task.set(data);
+      this.submissionPanel = this.ui.pushSideContentTop(SubmissionPanelComponent, {
+        taskData: this.task(),
+      })
       this.userService.getLoggedUser().subscribe((user: any) => {
+        if (!user)
+          return;
         this.user = user;
-        this.submissionPanel = this.ui.pushSideContentTop(SubmissionPanelComponent, {
-          taskData: this.task(),
-        })
       })
     });
+  }
+  ngOnInit() {
     this.route.firstChild.url.subscribe(url => {
       this.activeTab = url;
     })

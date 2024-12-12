@@ -20,6 +20,7 @@ export class ChatroomComponent {
   @Input() room: any;
   @Output() close = new EventEmitter<void>();
   @ViewChild("messageList", { static: false }) messageList!: ElementRef;
+  // Host elements from components requries the type of component itself
   user = signal(null);
   chat = new FormControl("");
   messages = signal([]);
@@ -50,7 +51,7 @@ export class ChatroomComponent {
     }, 100);
   }
   sendMessage() {
-    alert(this.user()?.lastname + " is sending message: " + this.chat.value);
+    //alert(this.user()?.lastname + " is sending message: " + this.chat.value);
     this.messageService.sendMessage({
       user_id: this.user()?.id,
       room_id: this.room.id,

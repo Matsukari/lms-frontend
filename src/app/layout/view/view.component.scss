@@ -1,58 +1,90 @@
+.host {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "header header header"
+    "left content right"
+}
+
+.header {
+  grid-area: header;
+  position: sticky;
+  z-index: 99;
+  top: 0;
+}
+
 .content {
-  display: flex;
-  flex-direction: row;
-  background-color: var(--color-background);
+  grid-area: content;
+  width: 50vw;
+  justify-content: center;
+  // background-color: lightpink;
+  // border: 10px solid red;
 }
 
 .content::-webkit-scrollbar {
   display: none;
 }
 
-.main-content {
-  width: 70vw;
+.body {
+  align-items: start;
+  justify-content: space-evenly;
+  width: 100vw;
 }
 
-.view-container {
-  position: absolute;
-  top: 60px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+
+.sidenav {
+  grid-area: left;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 20vw;
+  border: 1px solid var(--color-outline-light);
+  // background: var(--color-sidenav);
 }
 
 .side-content {
+  grid-area: right;
   position: sticky;
   top: 0;
-  width: 30vw;
-  overflow: auto;
+  height: 100vh;
+  width: 25vw;
+  overflow: scroll;
   scrollbar-width: 0;
   -ms-overflow-style: none;
-  margin-left: var(--margin-small);
-}
-
-.master-view {
-  width: 100vw;
-  height: 100vh;
 }
 
 .side-content::-webkit-scrollbar {
   display: none;
 }
 
+
 .overlay-content {
   position: absolute;
   top: 0;
   left: 0;
-  // width: 100vw;
-  // height: 100vh;
 }
 
-.sidenav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 270px;
-  border-radius: 0;
-  border: 1px solid var(--color-outline-light);
-  background: var(--color-sidenav);
+
+.none {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .side-content {
+    display: none;
+  }
+
+  .content {
+    width: 100vw;
+  }
+
+  .sidenav {
+    width: 95vw;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
 }

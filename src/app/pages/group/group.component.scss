@@ -1,35 +1,9 @@
-
-.avatars {
-  align-items: center;
-}
 .group-type {
   text-transform: capitalize;
 }
 
-.avatars .label {
-  margin-left: 0.4em;
-  font-size: small;
-  align-items: center;
-  gap: 0.2em;
-}
-
-.avatars img {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-}
-
-.avatars>.shadow {
-  color: gray;
-  border: 2px solid white;
-  border-radius: 100px;
-  margin-left: -0.4em;
-}
-
-
 nav {
   position: sticky;
-  top: -0.5em;
   z-index: 99;
   background-color: white;
 }

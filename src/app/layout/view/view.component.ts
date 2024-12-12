@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -39,29 +39,50 @@ export interface NavSection {
   ],
   templateUrl: './view.component.html',
   styleUrl: './view.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewComponent {
   constructor(
     private userService: UserService,
     private uiState: UiStateService,
-  ) {}
+  ) { }
   async ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
       this.user = user;
     })
     this.uiState.sidenavOpen.subscribe(async (open) => {
-      if (open) this.sidenav.open();
-      else this.sidenav.close();
+      if (open) this.sidenavIsOpen.set(true);
+      else this.sidenavIsOpen.set(false);
     })
+
+    window.onresize = this.onWindowResize;
   }
-  @ViewChild('header', { static: true }) header: ElementRef;
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  // Host elements from components requries the type of component itself
+  @ViewChild('header') header!: ElementRef;
+  @ViewChild('sidenav') sidenav!: ElementRef;
+  @ViewChild('sidecontent') sidecontent!: ElementRef;
   user: any;
   sidenavPosition = 59;
-  sidenavIsOpen = false;
+  sidenavIsOpen = signal(true);
 
+  ngAfterViewInit() {
+    this.onWindowResize();
+  }
+
+
+  onWindowResize() {
+    if (window.outerWidth < 1000) {
+      this.sidenavIsOpen.set(false);
+    }
+    else {
+      this.sidenavIsOpen.set(true);
+    }
+    const sidenav = this.sidenav.nativeElement as HTMLElement;
+    const sidecontent = this.sidecontent.nativeElement as HTMLElement;
+    const header = this.header.nativeElement as HTMLElement;
+    sidenav.style.top = header.offsetHeight.toString() + "px";
+    sidecontent.style.top = header.offsetHeight.toString() + "px";
+  }
   navChanged() {
-    this.sidenavIsOpen = !this.sidenavIsOpen;
+    this.sidenavIsOpen.set(!this.sidenavIsOpen());
   }
 }

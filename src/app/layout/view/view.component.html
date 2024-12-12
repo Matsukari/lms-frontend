@@ -1,26 +1,22 @@
-<div class="master-view">
-  <div #header>
+<div class="host">
+
+  <div #header class="header" id="header">
     <app-header />
   </div>
 
-  <mat-sidenav-container class="view-container">
+  <div class="body row">
 
-    <mat-sidenav #sidenav mode="side" class="sidenav" opened [fixedInViewport]="true" [fixedTopGap]="sidenavPosition"
-      [fixedBottomGap]="0" (openedChange)="navChanged()">
+    <div #sidenav class="sidenav" [class.none]="!sidenavIsOpen()">
       <app-side-nav />
-    </mat-sidenav>
+    </div>
 
-    <mat-sidenav-content class="row content" id="view-content">
-      <div class="main-content">
-        <router-outlet></router-outlet>
-      </div>
-      <div id="side-content" class="side-content">
-        <app-status-panel />
-      </div>
-    </mat-sidenav-content>
-
-
-  </mat-sidenav-container>
+    <div class="content" id="view-content">
+      <router-outlet class="full"></router-outlet>
+    </div>
+    <div #sidecontent id="side-content" class="side-content column">
+      <app-status-panel />
+    </div>
+  </div>
 
   <div id="overlay-content" class="overlay-content">
   </div>

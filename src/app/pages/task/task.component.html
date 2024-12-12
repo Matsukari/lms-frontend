@@ -1,82 +1,64 @@
 @defer (when task()) {
-<div class="">
-  <mat-toolbar class="header row container">
-    <div class="header-text row-centered">
-      <mat-icon class="icon-outline">task</mat-icon>
-      <span class="header-title">
-        <span>
-          Task
-        </span>
-        <!--<span class="number">-->
-        <!--  # 1-->
-        <!--</span>-->
-      </span>
-    </div>
+<div class="header row-centered container">
+  <div class="header-text row-centered">
+    <mat-icon class="icon-outline">task</mat-icon>
+    <span class="font-title">Task</span>
+    <!--<span class="number"># 1</span>-->
+  </div>
+  <span class="spacer"></span>
+  <button class="close-button" mat-icon-button [routerLink]="getLastPage()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 
+<div class="horizontal-line"></div>
+
+<div class="content column container">
+  <div class="semi-header row-centered">
+    <span class="task-name">{{ task().name }}</span>
     <span class="spacer"></span>
 
-    <button class="close-button" mat-icon-button [routerLink]="getLastPage()">
-      <mat-icon>close</mat-icon>
+    <button mat-icon-button [routerLink]="getLastPage()">
+      <mat-icon>more_horiz</mat-icon>
     </button>
-  </mat-toolbar>
-
-  <div class="horizontal-line"></div>
-
-
-  <div class="content column container">
-    <div class="semi-header row-centered">
-      <span class="task-name">
-        {{ task().name }}
-      </span>
-      <span class="spacer"></span>
-
-      <button mat-icon-button [routerLink]="getLastPage()">
-        <mat-icon>
-          more_horiz
-        </mat-icon>
-      </button>
-    </div>
-    <div class="main column">
-      <div class="head row">
-        <div class="column">
-          <span class="due">Due {{task().due_at | date}}</span>
-        </div>
-        <div class="creator row">
-          <img class="border-circle" src="https://i.pravatar.cc/300" />
-          <span>
-            <p>{{task().creator.lastname}}</p>
-            <p class="text-hint-small">Teacher</p>
-          </span>
-        </div>
-
-      </div>
-      @if (task().desc) {
-      <div class="desc container">
-        <p>
-          {{task().desc}}
-        </p>
-      </div>
-      }
-
-
-      <div class="row sections">
-        <div class="tab-section column">
-          <nav mat-tab-nav-bar [tabPanel]="panel">
-            @for (item of tabs; track item) {
-            <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
-              {{item.name}}
-            </a>
-            }
-          </nav>
-          <mat-tab-nav-panel class="active-content" #panel>
-            <div class="tab-content">
-              <router-outlet />
-            </div>
-          </mat-tab-nav-panel>
-        </div>
-      </div>
-    </div>
   </div>
-
+  <div class="main column">
+    <div class="head row">
+      <div class="column">
+        <span class="due">Due {{task().due_at | date}}</span>
+      </div>
+      <div class="creator row">
+        <img class="border-circle" src="https://i.pravatar.cc/300" />
+        <span>
+          <p>{{task().creator.lastname}}</p>
+          <p class="text-hint-small">Teacher</p>
+        </span>
+      </div>
+    </div>
+    @if (task().desc) {
+    <div class="desc container">
+      <p>
+        {{task().desc}}
+      </p>
+    </div>
+    }
+  </div>
 </div>
 }
+
+<div class="row sections">
+  <div class="tab-section column">
+    <nav mat-tab-nav-bar [tabPanel]="panel">
+      @for (item of tabs; track item) {
+      <a mat-tab-link [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+        {{item.name}}
+      </a>
+      }
+    </nav>
+    <mat-tab-nav-panel class="active-content" #panel>
+      <div class="tab-content">
+        <router-outlet />
+      </div>
+    </mat-tab-nav-panel>
+  </div>
+</div>

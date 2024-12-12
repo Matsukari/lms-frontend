@@ -1,9 +1,11 @@
 
 
 .toolbar {
-  border-bottom: 5px solid red;
+  border-bottom: 1px solid var(--color-outline-normal);
   border-color: var(--color-nav-line);
   background-color: var(--color-nav);
+  padding: var(--margin-small);
+  // height: 200px;
 }
 
 .buttons {

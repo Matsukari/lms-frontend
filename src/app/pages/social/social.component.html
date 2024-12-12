@@ -1,17 +1,15 @@
-<div class="column">
-  <nav mat-tab-nav-bar [tabPanel]="panel" fitInkBarToContent>
-    @for (item of tabs; track item) {
-    <a mat-tab-link mat [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
-      <mat-icon>
-        {{item.icon}}
-      </mat-icon>
-      <p>
+<nav mat-tab-nav-bar [tabPanel]="panel" fitInkBarToContent>
+  @for (item of tabs; track item) {
+  <a mat-tab-link mat [routerLink]="item.url" (click)="activeTab = item.url" [active]="activeTab == item.url">
+    <mat-icon>
+      {{item.icon}}
+    </mat-icon>
+    <p>
       {{item.name}}
-      </p>
-    </a>
-    }
-  </nav>
-  <mat-tab-nav-panel #panel class="container">
-    <router-outlet class="tab-content" />
-  </mat-tab-nav-panel>
-</div>
+    </p>
+  </a>
+  }
+</nav>
+<mat-tab-nav-panel #panel class="container">
+  <router-outlet class="tab-content" />
+</mat-tab-nav-panel>

@@ -32,7 +32,6 @@ export class SubmissionPanelComponent {
   user: any;
   yourSubmission = signal(null);
   yourSubmissionResponse = signal(null);
-  otherSubmissions = signal(null);
   submissionForm = new FormGroup({
     remark: new FormControl(""),
   });
@@ -41,6 +40,8 @@ export class SubmissionPanelComponent {
   set taskData(task: any) {
     this.task.set(task);
     this.userService.getLoggedUser().subscribe((user: any) => {
+      if (!user)
+        return;
       this.user = user;
       this.service.getTaskSubmission(this.task().id, this.user.id).subscribe((submission: any) => {
         this.yourSubmission.set(submission);
@@ -49,9 +50,7 @@ export class SubmissionPanelComponent {
       });
       this.service.getTaskResponse(this.task().id, this.user.id).subscribe((data: any) => {
         this.yourSubmissionResponse.set(data);
-      });
-      this.service.getTaskOtherSubmissions(this.task().id, this.user.id).subscribe((data: any) => {
-        this.otherSubmissions.set(data);
+        alert("Got response: " + this.yourSubmissionResponse().grade);
       });
     });
   }

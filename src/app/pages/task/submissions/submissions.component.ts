@@ -28,6 +28,8 @@ export class SubmissionsComponent {
     this.route.parent.params.subscribe(params => {
       let taskId = params["id"];
       this.userService.getLoggedUser().subscribe((user: any) => {
+        if (!user)
+          return;
         this.user = user;
         this.service.getTaskOtherSubmissions(taskId, this.user.id).subscribe((data: any) => {
           this.otherSubmissions.set(data);
