@@ -33,9 +33,9 @@ export class ProfileComponent {
       //this.uiState.openSidenav(false);
     }, 100);
     this.userService.getLoggedUser().subscribe((user: any) => {
-      this.user = user;
       if (!user)
         return;
+      this.user = user;
       this.form = new FormGroup({
         email: new FormControl(user.email),
         sex: new FormControl(user.profile?.sex),
@@ -44,7 +44,7 @@ export class ProfileComponent {
         birthday: new FormControl(user.profile?.birthday),
         religion: new FormControl(user.profile?.religion),
         address: new FormControl(user.profile?.address),
-        pfp: new FormControl(user.profile?.pfp ? user.profile.pfp : "notha"),
+        pfp: new FormControl(user.profile?.pfp ? user.profile.pfp : ""),
       })
     })
   }
