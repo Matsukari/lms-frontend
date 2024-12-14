@@ -1,3 +1,5 @@
+
+@defer (when post) {
 <mat-toolbar class="header row container">
   <div class="header-text row-centered">
     <!--<mat-icon class="icon-outline"></mat-icon>-->
@@ -19,7 +21,6 @@
 </mat-toolbar>
 
 <div class="horizontal-line"></div>
-
 
 <div class="post container">
   <div class="header">
@@ -92,3 +93,4 @@
 <div class="container">
   <app-comments-section (onSubmit)="submitComment($event)" [commentService]="service" [comments]="post.comments" />
 </div>
+}

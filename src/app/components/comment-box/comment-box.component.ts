@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, HostListener, Output, signal } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, Component, EventEmitter, HostListener, Output, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +16,7 @@ import { UiStateService } from '../../services/ui-state.service';
     CommonModule,
   ],
   templateUrl: './comment-box.component.html',
-  styleUrl: './comment-box.component.scss'
+  styleUrl: './comment-box.component.scss',
 })
 export class CommentBoxComponent {
   @Output() onSubmit = new EventEmitter<string>();

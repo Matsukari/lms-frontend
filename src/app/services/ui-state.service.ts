@@ -1,6 +1,7 @@
 import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { ComponentType } from '@angular/cdk/portal';
-import { ApplicationRef, ComponentRef, createComponent, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ApplicationRef, ComponentRef, createComponent, Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
@@ -28,17 +29,17 @@ export class UiStateService {
     this.sidenavIsOpen = !this.sidenavIsOpen;
     this.sidenavOpen.next(this.sidenavIsOpen);
   }
-  pushSideContentTop<T>(componentType: ComponentType<T>, data: {}) {
-    return this.pushAcrossHtml("side-content", componentType, data, (component, where)=>{
+  pushSideContentTop<T>(componentType: ComponentType<T>, data = {}) {
+    return this.pushAcrossHtml("side-content", componentType, data, (component, where) => {
       where.insertBefore(component.location.nativeElement, where.firstChild);
     })
   }
-  pushOverlay<T>(componentType: ComponentType<T>, data: {}) {
-    return this.pushAcrossHtml("overlay-content", componentType, data, (component, where)=>{
+  pushOverlay<T>(componentType: ComponentType<T>, data = {}) {
+    return this.pushAcrossHtml("overlay-content", componentType, data, (component, where) => {
       where.insertBefore(component.location.nativeElement, where.firstChild);
     })
   }
-  pushAcrossHtml<T>(toWhere: string, componentType: ComponentType<T>, data: {}, insertFunction: (component: ComponentRef<T>, where: HTMLElement)=>void) {
+  pushAcrossHtml<T>(toWhere: string, componentType: ComponentType<T>, data: {}, insertFunction: (component: ComponentRef<T>, where: HTMLElement) => void) {
     const appRef = this.appRef;
     const target = document.getElementById(toWhere);
     const component = createComponent(componentType, {

@@ -47,7 +47,7 @@ export class CommentsSectionComponent {
 
   }
   ownComment() {
-    return (this.user && this.commentSelected().user.id == this.user.id)
+    return (this.user && this.commentSelected()?.user.id == this.user?.id)
 
   }
   deleteComment() {

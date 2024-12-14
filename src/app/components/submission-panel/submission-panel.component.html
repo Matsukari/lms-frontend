@@ -1,7 +1,7 @@
 <div class="submission column">
   <div class="row font-title container">
     <mat-icon>receipt_long</mat-icon>
-    <p>Your Submission</p>
+    <p>Submission</p>
     <span class="spacer"></span>
     @if (yourSubmissionResponse()) {
     <p class="grade">
@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="margin-bottom"></div>
-          <input #fileSelector hidden="true" type="file" formControlName="attachments" (change)="onFileSelected($event)"
+          <input #fileSelector hidden="true" type="file" (change)="onFileSelected($event)"
             multiple>
           <button mat-button class="container note" (click)="openFileSelector(fileSelector)">
             Upload here

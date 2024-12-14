@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, ComponentRef, Input, signal } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
@@ -18,9 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class StatusPanelComponent {
   user = signal(null);
-  completedTasks = signal(null);
   dueTasks = signal(null);
-  missedTasks = signal(null);
   constructor(
     private taskService: TaskService,
     private userService: UserService,
@@ -28,22 +26,11 @@ export class StatusPanelComponent {
   ngOnInit() {
     //alert(this.userService.loggedUser());
     this.userService.getLoggedUser().subscribe((user: any) => {
-      this.user = user;
-      this.taskService.getTasksFromUser(user.id, "completed", true, true, true).subscribe((data: any) => {
-        //alert("completed: " + data.length.toString());
-        //this.completedTasks.set(data);
-      })
+      if (!user) return;
+      this.user.set(user);
       this.taskService.getTasksFromUser(user.id, "due", true, true, true).subscribe((data: any) => {
         //alert("Due: " + data.length.toString());
         this.dueTasks.set(data.slice(0, Math.min(data.length, 10)));
-      })
-      this.taskService.getTasksFromUser(user.id, "missed", true, true, true).subscribe((data: any) => {
-        //alert("missed: " + data.length.toString());
-        this.missedTasks.set(data);
-      })
-      this.taskService.getTasksFromUser(user.id, "graded", true, true, true).subscribe((data: any) => {
-        //alert("graded: " + data.length.toString());
-        //this.missedTasks.set(data);
       })
     })
   }

@@ -32,7 +32,6 @@ export interface NavSection {
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent {
   constructor(

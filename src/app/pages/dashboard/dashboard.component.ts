@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, signal, } from '@angular/core';
 import { CalendarEventComponent } from '../../components/calendar-event/calendar-event.component';
 import { QuoteHeaderComponent } from '../../components/quote-header/quote-header.component';
 
@@ -13,5 +13,4 @@ import { QuoteHeaderComponent } from '../../components/quote-header/quote-header
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-
 }

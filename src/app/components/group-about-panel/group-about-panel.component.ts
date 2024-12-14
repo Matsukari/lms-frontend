@@ -23,6 +23,8 @@ export class GroupAboutPanelComponent {
   constructor(
     private ui: UiStateService,
   ) {}
+  ngOnInit() {
+  }
   seeMembers() {
     this.ui.openDialog(MemberListComponent, {
       data: {

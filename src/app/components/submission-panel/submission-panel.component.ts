@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Signal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, Input, Signal, signal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +25,8 @@ import { UserService } from '../../services/user.service';
     ReactiveFormsModule,
   ],
   templateUrl: './submission-panel.component.html',
-  styleUrl: './submission-panel.component.scss'
+  styleUrl: './submission-panel.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SubmissionPanelComponent {
   task = signal(null);
@@ -50,7 +51,6 @@ export class SubmissionPanelComponent {
       });
       this.service.getTaskResponse(this.task().id, this.user.id).subscribe((data: any) => {
         this.yourSubmissionResponse.set(data);
-        alert("Got response: " + this.yourSubmissionResponse().grade);
       });
     });
   }

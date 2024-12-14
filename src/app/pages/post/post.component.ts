@@ -47,6 +47,7 @@ export class PostComponent {
     this.service.getPost(postId, true, true).subscribe((data: any) => {
       this.post = data;
       this.userService.getLoggedUser().subscribe((user: any) => {
+        if (!user) return;
         this.user = user;
         this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => this.isFavorited.set(result));
         this.service.hasReacted(this.post.id, this.user.id).subscribe((data: boolean) => this.hasReaction.set(data));

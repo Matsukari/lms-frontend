@@ -18,7 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './social.component.html',
   styleUrl: './social.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SocialComponent {
   posts = signal(null);

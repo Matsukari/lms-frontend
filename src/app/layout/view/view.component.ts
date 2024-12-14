@@ -53,6 +53,7 @@ export class ViewComponent {
       if (open) this.sidenavIsOpen.set(true);
       else this.sidenavIsOpen.set(false);
     })
+    this.uiState.pushSideContentTop(StatusPanelComponent);
 
     window.onresize = this.onWindowResize;
   }
@@ -70,6 +71,9 @@ export class ViewComponent {
 
 
   onWindowResize() {
+    if (typeof window === "undefined")
+      return;
+
     if (window.outerWidth < 1000) {
       this.sidenavIsOpen.set(false);
     }

@@ -1,5 +1,4 @@
-
-@defer (when dueTasks()) {
+@if (dueTasks()) {
 <div class="panel">
   <div class="accordion container row font-title">
     <mat-icon class="icon-outline">
@@ -40,6 +39,6 @@
   </div>
 </div>
 }
-@placeholder (minimum 0.4s) {
+@else {
 <div class="anim-loadsquare"></div>
 }
