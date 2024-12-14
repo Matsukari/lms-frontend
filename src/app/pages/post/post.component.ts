@@ -49,8 +49,8 @@ export class PostComponent {
       this.userService.getLoggedUser().subscribe((user: any) => {
         if (!user) return;
         this.user = user;
-        this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => this.isFavorited.set(result));
-        this.service.hasReacted(this.post.id, this.user.id).subscribe((data: boolean) => this.hasReaction.set(data));
+        this.service.isFavorited(this.post.id, this.user.id).subscribe((result: any) => this.isFavorited.set(result ? true:false));
+        this.service.hasReacted(this.post.id, this.user.id).subscribe((result: any) => this.hasReaction.set(result ? true:false));
       });
     });
   }
@@ -73,8 +73,8 @@ export class PostComponent {
   }
   react(reaction: string = "LIKE") {
     this.service.react({ post: this.post.id, user: this.user.id, reaction: reaction }).subscribe(_ => {
-      this.service.hasReacted(this.post.id, this.user.id).subscribe((result: boolean) => {
-        this.hasReaction.set(result)
+      this.service.hasReacted(this.post.id, this.user.id).subscribe((result: any) => {
+        this.hasReaction.set(result?true:false);
         if (result)
           this.ui.openSnackBar("Liked post!");
         else
@@ -87,8 +87,8 @@ export class PostComponent {
       post: this.post.id,
       user: this.user.id,
     }).subscribe((_: any) => {
-      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => {
-        this.isFavorited.set(result)
+      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: any) => {
+        this.isFavorited.set(result?true:false)
         if (result)
           this.ui.openSnackBar("Added post to favorites.");
         else

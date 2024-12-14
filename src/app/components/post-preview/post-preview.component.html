@@ -5,11 +5,11 @@
       <span class="header-info column">
         <p>
           <span>
-          {{ post.source.lastname }}, {{ post.source.firstname }}
+            {{ post.source.lastname }}, {{ post.source.firstname }}
           </span>
           <span class="text-hint-small">
 
-           - {{post.group.name}}
+            - {{post.group.name}}
           </span>
         </p>
         <p class="text-hint-small">
@@ -18,7 +18,7 @@
       </span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="favorite()">
-        <mat-icon [class.icon-outline]="!isFavorited()">bookmark</mat-icon>
+        <mat-icon [class.icon-outline]="!isFavorited()">book</mat-icon>
       </button>
       <button mat-icon-button>
         <mat-icon>more_vert</mat-icon>

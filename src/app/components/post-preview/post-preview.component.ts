@@ -9,6 +9,7 @@ import { PostService } from '../../services/post.service';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { UserService } from '../../services/user.service';
+import { UiStateService } from '../../services/ui-state.service';
 
 @Component({
   selector: 'app-post-preview',
@@ -35,17 +36,25 @@ export class PostPreviewComponent {
   constructor(
     private service: PostService,
     private userService: UserService,
+    private ui: UiStateService,
   ) { }
   ngOnInit() {
-    this.service.hasReacted(this.post.id, this.post.source.id).subscribe((data: boolean) => this.hasReaction.set(data));
     this.userService.getLoggedUser().subscribe((user: any) => {
+      if (!user) return;
       this.user = user;
-      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => this.isFavorited.set(result));
+      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: any) => this.isFavorited.set(result ? true : false));
+      this.service.hasReacted(this.post.id, this.user.id).subscribe((result: any) => this.hasReaction.set(result ? true : false));
     });
   }
   react(reaction: string = "LIKE") {
-    this.service.react({ post: this.post.id, user: this.post.source.id, reaction: reaction }).subscribe(_ => {
-      this.service.hasReacted(this.post.id, this.post.source.id).subscribe((result: boolean) => this.hasReaction.set(result));
+    this.service.react({ post: this.post.id, user: this.user.id, reaction: reaction }).subscribe(_ => {
+      this.service.hasReacted(this.post.id, this.user.id).subscribe((result: any) => {
+        this.hasReaction.set(result?true:false);
+        if (result)
+          this.ui.openSnackBar("Liked post!");
+        else
+          this.ui.openSnackBar("Unliked post.");
+      });
     })
   }
   favorite() {
@@ -53,7 +62,13 @@ export class PostPreviewComponent {
       post: this.post.id,
       user: this.user.id,
     }).subscribe((_: any) => {
-      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: boolean) => this.isFavorited.set(result));
+      this.service.isFavorited(this.post.id, this.user.id).subscribe((result: any) => {
+        this.isFavorited.set(result?true:false);
+        if (result)
+          this.ui.openSnackBar("Added post to favorites.");
+        else
+          this.ui.openSnackBar("Removed post to favorites.");
+      });
     });
   }
 }
