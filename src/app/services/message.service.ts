@@ -8,13 +8,11 @@ import { environment } from '../../environments/environment.development';
 })
 export class MessageService {
   private socket$: WebSocketSubject<{}>;
-  private sock: WebSocket;
 
   constructor(
     private http: HttpClient,
   ) {
     this.socket$ = new WebSocketSubject("ws://" + environment.raw + "/chatroom");
-    //this.sock = new WebSocket("ws://" + environment.raw + "/chatroom");
   }
   sendMessage(data: { user_id: number, content: string, room_id: number, receiver_id?: number }) {
     this.socket$.next(data);

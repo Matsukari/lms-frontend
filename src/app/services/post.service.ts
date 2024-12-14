@@ -2,18 +2,29 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { CommentServiceInterface } from './interface/comment.interface';
+import { WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService implements CommentServiceInterface {
+  private socket$: WebSocketSubject<{}>;
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+    this.socket$ = new WebSocketSubject("ws://" + environment.raw + "/group-active");
+  }
   ngOnInit() {
   }
   getCommunity() {
     return this.http.get(environment.apiUrl + "/get/community/");
+  }
+  subscribeNewPost(callback: (data: any)=>void) {
+    this.socket$.subscribe((dat: any) => {
+      const data = JSON.parse(dat);
+      if (data.meta.type == "post")
+        callback(data);
+    })
   }
   getPost(id: string, reacts?: boolean, comments?: boolean) {
     const params = new HttpParams()
@@ -21,7 +32,7 @@ export class PostService implements CommentServiceInterface {
       .set("comments", comments);
     return this.http.get(environment.apiUrl + "/get/post/" + id, { params: params });
   }
-  setMeta(id: string, data: {key: string, value: any}) {
+  setMeta(id: string, data: { key: string, value: any }) {
     return this.http.post(environment.apiUrl + "/set/meta/" + id, data);
   }
   getPostsFromGroup(id: string, reacts?: boolean, comments?: boolean) {

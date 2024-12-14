@@ -33,11 +33,15 @@ export class CommunityComponent {
   ]
   constructor(
     private postService: PostService,
-  ) {}
+  ) { }
   ngOnInit() {
     this.postService.getCommunity().subscribe((posts: any) => {
+      posts.reverse();
       posts[0].attachments.push("First one");
       this.posts.set(posts.slice(0, Math.min(posts.length, 10)));
+      this.postService.subscribeNewPost(newPost => {
+        this.posts.set([newPost].concat(this.posts()));
+      })
     });
 
   }

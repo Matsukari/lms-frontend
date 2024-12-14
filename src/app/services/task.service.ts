@@ -2,15 +2,24 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { CommentServiceInterface } from './interface/comment.interface';
+import { WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService implements CommentServiceInterface {
+  private socket$: WebSocketSubject<{}>;
   constructor(
     private http: HttpClient,
-  ) { }
-  ngOnInit() {
+  ) {
+    this.socket$ = new WebSocketSubject("ws://" + environment.raw + "/group-active");
+  }
+  subscribeNewTask(callback: (data: any)=>void) {
+    this.socket$.subscribe((dat: any) => {
+      const data = JSON.parse(dat);
+      if (data.meta.type == "task")
+        callback(data);
+    })
   }
   getTaskSubmission(task: string, userId: string) {
     return this.http.get(`${environment.apiUrl}/from/task-submission/${task}/${userId}`);
