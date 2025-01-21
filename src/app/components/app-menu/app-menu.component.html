@@ -3,4 +3,14 @@
     <mat-icon>edit_square</mat-icon>
     <div class="item">Create post</div>
   </button>
+  @if (user?.role == "ADMIN") {
+  <button mat-menu-item (click)="openCreatePost()">
+    <mat-icon>person</mat-icon>
+    <div class="item">Add user</div>
+  </button>
+  <button mat-menu-item (click)="openCreatePost()">
+    <mat-icon>group</mat-icon>
+    <div class="item">Assign group</div>
+  </button>
+  }
 </mat-menu>

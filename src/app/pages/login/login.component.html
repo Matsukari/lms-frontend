@@ -1,7 +1,7 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-  <h2>
+  <h2 class="row">
     <mat-icon>token</mat-icon>
-    <span>Login to LMS</span>
+    <p>Login to LMS</p>
   </h2>
   <mat-form-field class="" appearance="outline">
     <mat-label>Username</mat-label>
@@ -16,6 +16,6 @@
   </mat-form-field>
   <button mat-flat-button type="submit" [disabled]="loading()">
     <mat-icon>login</mat-icon>
-    Login
+    <p>Login</p>
   </button>
 </form>

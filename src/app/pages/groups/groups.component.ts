@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 export class GroupsComponent {
   classes = signal([]);
   activeTab: any;
+  user: any;
   tabs = [
     { name: "Clubs", icon: "event", url: "clubs" },
     { name: "Organization", icon: "task", url: "orgs" },
@@ -34,6 +35,7 @@ export class GroupsComponent {
     this.userService.getLoggedUser().subscribe((user: any) => {
       if (!user)
         return;
+      this.user = user;
       const array = [];
       let groups = [];
       if (user.role == "STUDENT")

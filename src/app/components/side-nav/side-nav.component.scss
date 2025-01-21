@@ -2,42 +2,34 @@
   font-size: 14px;
 }
 
-.current-router {
-  border-left: 5px solid var(--color-accent);
-}
+// .current-router {
+//   border-left: 5px solid var(--color-accent);
+// }
 
 .current-router {
   color: var(--color-normal);
 }
 
-.navs>mat-list-item {
+.navs>div {
   border-radius: var(--border-rounded);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   transition: color 0.1s;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  padding: var(--margin-normal);
 }
 
-mat-list-item * {
-  color: var(--color-normal);
-}
-
-.navs>mat-list-item:hover mat-list-item {
+.navs>div:hover div {
   color: var(--color-contrast);
 }
 
-.navs>mat-list-item:active {
-  background-color: transparent;
-}
 
 .sidenav mat-icon {
   font-size: large;
 }
 
-mat-divider {
-  margin: 1em 2.2em;
-}
-
 .events {
-  background-color: #eaeaea;
-  padding: 1em;
+  background-color: var(--color-bg-subtle);
 }

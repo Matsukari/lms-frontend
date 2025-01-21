@@ -1,0 +1,15 @@
+
+.container{
+  margin: var(--margin-normal) 0;
+  border: 2px solid var(--color-outline-normal);
+}
+
+.items > div {
+  display: flex;
+  flex-direction: row;
+  padding: var(--margin-normal);
+  cursor: pointer;
+}
+div p {
+  font-size: var(--font-size-tab);
+}

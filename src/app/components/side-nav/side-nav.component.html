@@ -1,31 +1,26 @@
 <div class="sidenav">
-  <mat-list class="navs">
+  <div class="navs column">
     @for (item of popular; track item) {
-    <mat-list-item [routerLink]="item.url" [class.current-router]="isCurrentRoute(item.url)">
-      <mat-icon matListItemIcon>{{ item.icon}}</mat-icon>
-      <div matListItemTitle>{{item.name}}</div>
-    </mat-list-item>
+    <div [routerLink]="item.url" [class.current-router]="isCurrentRoute(item.url)">
+      <mat-icon>{{ item.icon}}</mat-icon>
+      <p>{{item.name}}</p>
+    </div>
     }
-
-    <mat-divider></mat-divider>
-
-    <mat-list-item routerLink="/groups" [class.current-router]="isCurrentRoute('group')">
-      <mat-icon matListItemIcon>diversity_3</mat-icon>
-      <div matListItemTitle>Groups</div>
-    </mat-list-item>
-    <mat-list-item routerLink="/school" [class.current-router]="isCurrentRoute('school')">
-      <mat-icon matListItemIcon>school</mat-icon>
-      <div matListItemTitle>School</div>
-    </mat-list-item>
-    <mat-list-item routerLink="/resources" [class.current-router]="isCurrentRoute('resources')">
-      <mat-icon matListItemIcon>summarize</mat-icon>
-      <div matListItemTitle>Resources</div>
-    </mat-list-item>
-    <mat-divider />
+    <div routerLink="/groups" [class.current-router]="isCurrentRoute('group')">
+      <mat-icon>diversity_3</mat-icon>
+      <p>Groups</p>
+    </div>
+    <div routerLink="/school" [class.current-router]="isCurrentRoute('school')">
+      <mat-icon>school</mat-icon>
+      <p>School</p>
+    </div>
+    <div routerLink="/resources" [class.current-router]="isCurrentRoute('resources')">
+      <mat-icon>summarize</mat-icon>
+      <p>Resources</p>
+    </div>
 
     <div class="events">
       Nothing's happening right now.
     </div>
-  </mat-list>
+  </div>
 </div>
-

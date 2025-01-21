@@ -1,27 +1,37 @@
 # LmsFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+This is an in-development Learning Management System (LMS). The project is divided:
+- Frontend: https://github.com/Matsukari/lms-frontend
+- Backend: https://github.com/Matsukari/lms-backend
 
-## Development server
+![Class](screenshots/class.png "class")
+![Feeds](screenshots/feeds.png "feeds")
+![School](screenshots/school.png "school")
+![Task](screenshots/task.png "task")
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### Features
+- Commenting on post and task
+- Submit task
+- Post and like
+- Class and groups
+- School page
+- Websocket chat
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Host locally
+The frontend uses Angular. To host this, simply run:
+    ```
+    ng serve --host 0.0.0.0
+    ```
+## Notes 
 
-## Build
+The backend has to be served separately. Refer to its repo for intructions to serve it.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The seeded data is random and is simply used as placeholder value.
 
-## Running unit tests
+Visit the locally-hosted site directly using your IP.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Test login with the usernames (according to their roles): student, teacher, admin
+Same password: zxcv
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

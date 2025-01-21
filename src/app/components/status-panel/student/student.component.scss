@@ -1,0 +1,43 @@
+
+.panel {
+  border-top-left-radius: var(--border-normal);
+  border-bottom-left-radius: var(--border-normal);
+  margin: 1px;
+  margin-top: var(--margin-normal);
+  border: 2px solid var(--color-status-panel-border);
+  background-color: var(--color-status-panel);
+  overflow: clip;
+}
+
+.divider-line {
+  margin: 0;
+  background-color: var(--color-divider-line-deep);
+}
+
+
+.tasks {
+  gap: var(--margin-small);
+}
+
+.item {
+  text-overflow: ellipsis;
+  padding: var(--margin-small);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.item * {
+  color: var(--color-medium);
+}
+.item mat-icon {
+  background-color: var(--color-accent);
+  color: var(--color-accented);
+  padding: 0.2em;
+}
+
+.item:hover {
+  background-color: var(--color-bg-subtle);
+}
+.item:hover * {
+  color: var(--color-normal);
+}
+

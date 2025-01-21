@@ -47,13 +47,14 @@ export class ViewComponent {
   ) { }
   async ngOnInit() {
     this.userService.getLoggedUser().subscribe((user: any) => {
+      if (!user) return;
       this.user = user;
+      this.uiState.pushSideContentTop(StatusPanelComponent);
     })
     this.uiState.sidenavOpen.subscribe(async (open) => {
       if (open) this.sidenavIsOpen.set(true);
       else this.sidenavIsOpen.set(false);
     })
-    this.uiState.pushSideContentTop(StatusPanelComponent);
 
     window.onresize = this.onWindowResize;
   }
