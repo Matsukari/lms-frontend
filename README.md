@@ -1,8 +1,8 @@
 # LmsFrontend
 
 This is an in-development Learning Management System (LMS). The project is divided:
-- Frontend: https://github.com/Matsukari/lms-frontend
-- Backend: https://github.com/Matsukari/lms-backend
+- Frontend: https://github.com/alwaysrice/lms-frontend
+- Backend: https://github.com/alwaysrice/lms-backend
 
 ![Class](screenshots/class.png "class")
 ![Feeds](screenshots/feeds.png "feeds")
